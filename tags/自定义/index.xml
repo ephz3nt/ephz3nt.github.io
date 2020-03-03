@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>自定义 on ephz3nt</title><link>http://localhost:1313/tags/%E8%87%AA%E5%AE%9A%E4%B9%89/</link><description>Recent content in 自定义 on ephz3nt</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 03 Mar 2012 18:29:20 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/%E8%87%AA%E5%AE%9A%E4%B9%89/index.xml" rel="self" type="application/rss+xml"/><item><title>自定义使用Incapsula的CDN节点。</title><link>http://localhost:1313/posts/tech/2012/custom-incapsula-cdn-nodes/</link><pubDate>Sat, 03 Mar 2012 18:29:20 +0000</pubDate><guid>http://localhost:1313/posts/tech/2012/custom-incapsula-cdn-nodes/</guid><description>由于历史悠久，本篇文章图片已失效
+在Incapsula添加好站点后一般都会给你一个CNAME让你解析过去，但是我的DZ论坛用它默认的解析效果并不是很理想，有时候解析到美国速度就没啥差别了，还不如按照自己的意愿来设置 (:O
+方法如下：
+首先确定你需要使用哪个节点，多个不同地段的节点也OK的，在just-ping.com上ping一下www.incapsula.com 得到它的各个节点的IP地址。
+当然日本节点到国内是最快的了，这里就哪日本节点演示，日本节点IP是103开头 我这里找到一个
+103.28.249.100
+找到以后就到DNS设置里面把原来的CNAME指向换成A记录把IP填上去
+可以填写多个哦，以防不测 (:F
+再告诉大家一个小窍门，为了防止和其他站点公用这个103.28.249.100节点可以把它换成103.28.249.119或者其他，只要在浏览器上打开是下面这个页面就证明是Incapsula的节点服务器可以解析，这样就可以避免被Q掉。
+2012.3.28更新：
+经测试大家使用日本节点时尽量使用103.28.249.1-100 的段，200以上的我测试过不行了
+2012.7.29更新：
+Incapsula日本节点IP段更新从103.28.249.1-255 更改为103.28.248.1-255</description></item></channel></rss>

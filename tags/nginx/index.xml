@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Nginx on ephz3nt</title><link>http://localhost:1313/tags/nginx/</link><description>Recent content in Nginx on ephz3nt</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 28 Feb 2017 14:57:48 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/nginx/index.xml" rel="self" type="application/rss+xml"/><item><title>使用acme签发&amp;续期 Let&#39;s Encrypt 证书。</title><link>http://localhost:1313/posts/tech/2017/acme-lets-encrypt-issue/</link><pubDate>Tue, 28 Feb 2017 14:57:48 +0000</pubDate><guid>http://localhost:1313/posts/tech/2017/acme-lets-encrypt-issue/</guid><description>acme.sh 实现了 acme 协议, 可以从 letsencrypt 生成免费的证书.
+使用它的原因是 acme.sh 支持DNS API方式签发证书,这可方便太多了
+支持的DNS服务商有: cloudflare, dnspod, cloudxns, godaddy 以及 ovh 等数十种解析商的自动集成.
+[root@ROOT ~]# ls .acme.sh/dnsapi/ dns_ad.sh dns_cf.sh dns_do.sh dns_gd.sh dns_linode.sh dns_myapi.sh dns_pdns.sh dns_ali.sh dns_cx.sh dns_dp.sh dns_ispconfig.sh dns_lua.sh dns_nsupdate.sh README.md dns_aws.sh dns_cyon.sh dns_freedns.sh dns_lexicon.sh dns_me.sh dns_ovh.sh 获取acme.sh
+curl https://get.acme.sh | sh 将安装acme.sh至你当前账户根目录下的 .acme.sh下
+创建一个bash的alias, 方便直接使用acme.sh
+vim ~/.bashrc 增加一行 alias acme.sh=~/.acme.sh/acme.sh
+# .bashrc # User specific aliases and functions alias acme.sh=~/.acme.sh/acme.sh alias rm=&amp;#39;rm -i&amp;#39; alias cp=&amp;#39;cp -i&amp;#39; alias mv=&amp;#39;mv -i&amp;#39; 执行 source .</description></item><item><title>Let&#39;s Encrypt 免费SSL证书安装小记。</title><link>http://localhost:1313/posts/tech/2015/lets-encrypt-freessl-install/</link><pubDate>Thu, 10 Dec 2015 16:08:58 +0000</pubDate><guid>http://localhost:1313/posts/tech/2015/lets-encrypt-freessl-install/</guid><description>从去年就开始关注Let&amp;rsquo;s Encrypt 了， 就在不久前它宣布公测。所有人都可以使用由此机构签发的免费SSL证书。
+下面来分享一下本屌的安装过程。
+系统：CentOS 6.4 x64 环境：军哥LNMP 签发的域名：本博客 使用的签发工具：acme-tiny (这里不使用官方提供的工具原因为太过臃肿，acme-tiny仅200+行代码，小巧简单)
+2015-12-27 22:06:57 update: CloudXNS已支持Let&amp;rsquo;s Encrypt的验证, See https://www.cloudxns.net/Support/detail/id/1062.html 注意： 1、确保需要签发的域名使用的DNS为国外DNS服务(如cloudflare,linode等，否则到签发步骤可能会报错) 2、确保需要签发的域名已指向A记录到你的网站服务器，不要用CNAME等记录，一定要A记录！(否则到签发步骤可能会报错) 3、最好用ROOT帐号操作(我使用普通帐号操作会报key values mismatch)
+安装git
+yum -y install git 如果你已经有了git则执行(注意：存放目录最好不要在home目录下，我存放在/web/acme-tiny)
+git clone https://github.com/diafygi/acme-tiny.git 生成帐号KEY
+openssl genrsa 4096 &amp;amp;gt; account.key 生成域名KEY
+openssl genrsa 4096 &amp;amp;gt; painso.key 生成CSR文件(如果你是以根域名来访问的话使用单域名即可，签发的主机头越多越麻烦哦)
+单域名(不包含其他域如www)： openssl req -new -sha256 -key painso.key -subj &amp;quot;/CN=painso.com&amp;quot; &amp;amp;gt; painso.csr 多域名： openssl req -new -sha256 -key painso.key -subj &amp;quot;/&amp;quot; -reqexts SAN -config &amp;amp;lt;(cat /etc/ssl/openssl.</description></item><item><title>Nginx 301域名重定向。</title><link>http://localhost:1313/posts/tech/2013/nginx-301/</link><pubDate>Tue, 18 Jun 2013 16:55:21 +0000</pubDate><guid>http://localhost:1313/posts/tech/2013/nginx-301/</guid><description>闲来无事又整了几个电影站，资源空着也是空着，把设置301域名重定向规则记录下来，省的每次都Google；
+在Nginx虚拟主机配置文件的server段中添加如下配置：
+server_name domain.com www.domain.com; if ($host != &#39;www.domain.com&#39; ) { rewrite ^/(.*) http://www.domain.com/1 permanent; } 访问domain.com重定向到www.domain.com;
+nginx -t nginx: the configuration file /usr/local/nginx/conf/nginx.conf syntax is ok nginx: configuration file /usr/local/nginx/conf/nginx.conf test is successful service nginx reload OK..</description></item><item><title>Nginx修改Header信息。</title><link>http://localhost:1313/posts/tech/2012/the-nginx-modify-header-information/</link><pubDate>Thu, 15 Mar 2012 00:58:48 +0000</pubDate><guid>http://localhost:1313/posts/tech/2012/the-nginx-modify-header-information/</guid><description>Header信息是访客访问你的网站时，web服务返回给客户端的一段信息，包含了网页的一些基本情况。那么为什么要修改 header信息呢？主要是为了防止被居心不良的人利用来获取漏洞信息，例如：通过最最简单的获取Header信息发现你的web服务器版本是 nginx/1.0.13，现在又已知这个版本的nginx有某个漏洞，那么就可以利用这个漏洞来攻击你了。互联网信息更新非常快，web服务程序的更新 也是很频繁，我们很多时候由于种种原因不能及时打上补丁，对服务器安全很不利，如果修改header信息达到隐藏web服务器版本的效果，就可以在某种程 度上消除一些隐患。 首先需要修改nginx.h这个文件，一般在安装目录下面的src/core/nginx.h。因为之前我装的是LNMP一键安装包，所以就在LNMP目录下的nginx-x.x.x.x下面，
+vi 编辑一下nginx.h/*
+Copyright (C) Igor Sysoev */ ifndef NGINX_HINCLUDED_ define NGINX_HINCLUDED_ define nginx_version 1000010 define NGINX_VERSION &amp;quot;1.0.0.1&amp;quot; define NGINX_VER &amp;quot;nginx/&amp;quot; NGINX_VERSION define NGINX_VAR &amp;quot;NGINX&amp;quot; define NGX_OLDPID_EXT &amp;quot;.oldbin&amp;quot; endif /* NGINX_HINCLUDED_ */ 只需要修改
+define NGINX_VERSION 对应的版本值，不填的话留空 如&amp;rdquo;&amp;rdquo;
+define NGINX_VER &amp;quot;nginx/&amp;quot; NGINX_VERSION  在这里&amp;rdquo;nginx/&amp;ldquo; nginx/修改成你想显示的Server信息 /看不填，看个人需求。
+编辑好以后回到NGINX安装目录下面输入：
+./configure --user=www --group=www --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module --with-http_gzip_static_module --with-ipv6 再输入
+make
+编译完成后的NGINX文件在 objs文件夹下，先备份一下原来的 &amp;gt; cp /usr/local/nginx/sbin/nginx /usr/local/nginx/sbin/nginx.bak &amp;gt; 把新的NGINX文件复制过去，需先停止NGINX服务哦：service nginx stop &amp;gt; cp objs/nginx /usr/local/nginx/sbin/ &amp;gt; service nginx start</description></item></channel></rss>

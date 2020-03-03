@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>acme.sh on ephz3nt</title><link>http://localhost:1313/tags/acme.sh/</link><description>Recent content in acme.sh on ephz3nt</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 28 Feb 2017 14:57:48 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/acme.sh/index.xml" rel="self" type="application/rss+xml"/><item><title>使用acme签发&amp;续期 Let&#39;s Encrypt 证书。</title><link>http://localhost:1313/posts/tech/2017/acme-lets-encrypt-issue/</link><pubDate>Tue, 28 Feb 2017 14:57:48 +0000</pubDate><guid>http://localhost:1313/posts/tech/2017/acme-lets-encrypt-issue/</guid><description>acme.sh 实现了 acme 协议, 可以从 letsencrypt 生成免费的证书.
+使用它的原因是 acme.sh 支持DNS API方式签发证书,这可方便太多了
+支持的DNS服务商有: cloudflare, dnspod, cloudxns, godaddy 以及 ovh 等数十种解析商的自动集成.
+[root@ROOT ~]# ls .acme.sh/dnsapi/ dns_ad.sh dns_cf.sh dns_do.sh dns_gd.sh dns_linode.sh dns_myapi.sh dns_pdns.sh dns_ali.sh dns_cx.sh dns_dp.sh dns_ispconfig.sh dns_lua.sh dns_nsupdate.sh README.md dns_aws.sh dns_cyon.sh dns_freedns.sh dns_lexicon.sh dns_me.sh dns_ovh.sh 获取acme.sh
+curl https://get.acme.sh | sh 将安装acme.sh至你当前账户根目录下的 .acme.sh下
+创建一个bash的alias, 方便直接使用acme.sh
+vim ~/.bashrc 增加一行 alias acme.sh=~/.acme.sh/acme.sh
+# .bashrc # User specific aliases and functions alias acme.sh=~/.acme.sh/acme.sh alias rm=&amp;#39;rm -i&amp;#39; alias cp=&amp;#39;cp -i&amp;#39; alias mv=&amp;#39;mv -i&amp;#39; 执行 source .</description></item></channel></rss>

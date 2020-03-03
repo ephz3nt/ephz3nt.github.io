@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>网络 on ephz3nt</title><link>http://localhost:1313/tags/%E7%BD%91%E7%BB%9C/</link><description>Recent content in 网络 on ephz3nt</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 05 Feb 2015 11:16:04 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/%E7%BD%91%E7%BB%9C/index.xml" rel="self" type="application/rss+xml"/><item><title>Android L 网络图标感叹号去除方法</title><link>http://localhost:1313/posts/tech/2015/android-l-exclamation-mark/</link><pubDate>Thu, 05 Feb 2015 11:16:04 +0000</pubDate><guid>http://localhost:1313/posts/tech/2015/android-l-exclamation-mark/</guid><description>大致意思是Android 5.0连上WIFI后会访问 clients3.google.com/generate_204 这个网址
+如果能正常访问, 则不会在通知栏出现 &amp;ldquo;此WIFI需要登录才能使用&amp;rdquo;
+而你也知道, 谷歌在国内基本是不能访问的
+所以找一个替换一下就OK了
+clients3.google.com/generate_204 会给你返回一个204状态, 你也可以自己搭建一个这样的服务
+解决方法(无需root):
+完全屏蔽网络检查功能, 最简单快速, 但是就没有办法提示wifi登录: adb shell &amp;quot;settings put global captive_portal_detection_enabled 0&amp;quot; 使用g.cn替换掉被墙的google服务器: adb shell &amp;quot;settings put global captive_portal_server g.cn&amp;quot; 上面的方法需要电脑执行adb命令, 当然你也可以在手机上安装类似本地Shell的APP执行: settings put global captive_portal_server g.cn btw: g.cn中的g.cn/generate_204也同样会返回204状态所以建议使用</description></item></channel></rss>

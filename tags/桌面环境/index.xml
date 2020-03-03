@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>桌面环境 on ephz3nt</title><link>http://localhost:1313/tags/%E6%A1%8C%E9%9D%A2%E7%8E%AF%E5%A2%83/</link><description>Recent content in 桌面环境 on ephz3nt</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 30 Sep 2013 12:41:48 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/%E6%A1%8C%E9%9D%A2%E7%8E%AF%E5%A2%83/index.xml" rel="self" type="application/rss+xml"/><item><title>CentOS桌面环境安装</title><link>http://localhost:1313/posts/tech/2013/centos-install-desktop/</link><pubDate>Mon, 30 Sep 2013 12:41:48 +0000</pubDate><guid>http://localhost:1313/posts/tech/2013/centos-install-desktop/</guid><description>由于历史悠久，本篇文章图片已失效
+测试环境 CentOS6.4 64位 首先需要安装桌面环境包 yum -y groupinstall &amp;quot;KDE Desktop&amp;quot; yum -y groupinstall &amp;quot;X Window System&amp;quot; 默认源里好像只有KDE需要GNOME的可自行GOOGLE 等待安装完毕 安装完毕后再安装一下语言支持 yum -y groupinstall &amp;quot;Chinese Support&amp;quot;
+装VNC yum -y install tigervnc-server
+编辑一下配置文件 vim /etc/sysconfig/vncservers 修改如图
+输入vncpasswd设置管理密码
+启动服务
+现在你已经可以使用vnc client来连接你的服务器了
+这里使用的是TigerVNC,你可以去官方下载：http://www.tightvnc.com/download.php
+官方默认是安装包（服务端和客户端一起的）
+设置桌面语言
+选择左下CENTOS图标-点击System Settings
+进入面板后选择 Regional Language
+点击Add Lanuage下拉菜单的Simplified Chinese(简体中文)
+然后点击右下的Apply按钮应用，这时候系统会提示你需要重启 按照它说的办吧！
+OK现在已经全部显示成中文了，高端大气上档次！</description></item></channel></rss>

@@ -1,0 +1,233 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><meta name=theme-color content=#494f5c><meta name=msapplication-TileColor content=#494f5c><meta itemprop=name content="CloudStack 4.2.1&#43;KVM部署实战。"><meta itemprop=description content="拓扑图：
+
+ 
+
+相关说明：
+
+系统都为CentOS6.4 x64
+
+Management端不需要任何虚拟化的支持，只是做WEB控制台和管理用，任意机器即可
+
+Agent端的CPU需要虚拟化支持，我这里用的是R710，已开启VT并且cpu支持flag:vmx
+
+主存储和二级存储都放在Agent端"><meta itemprop=datePublished content=2014-03-20T16:16:44&#43;00:00><meta itemprop=dateModified content=2014-03-20T16:16:44&#43;00:00><meta itemprop=wordCount content=942><meta itemprop=keywords content=CentOS,CloudStack,KVM,安装,><meta property=og:title content="CloudStack 4.2.1&#43;KVM部署实战。"><meta property=og:description content="拓扑图：
+
+ 
+
+相关说明：
+
+系统都为CentOS6.4 x64
+
+Management端不需要任何虚拟化的支持，只是做WEB控制台和管理用，任意机器即可
+
+Agent端的CPU需要虚拟化支持，我这里用的是R710，已开启VT并且cpu支持flag:vmx
+
+主存储和二级存储都放在Agent端"><meta property=og:type content=article><meta property=og:url content=http://localhost:1313/posts/tech/2014/cloudstack-kvm-install/><meta property=article:published_time content=2014-03-20T16:16:44+00:00><meta property=article:modified_time content=2014-03-20T16:16:44+00:00><meta name=twitter:card content=summary><meta name=twitter:title content="CloudStack 4.2.1&#43;KVM部署实战。"><meta name=twitter:description content="拓扑图：
+
+ 
+
+相关说明：
+
+系统都为CentOS6.4 x64
+
+Management端不需要任何虚拟化的支持，只是做WEB控制台和管理用，任意机器即可
+
+Agent端的CPU需要虚拟化支持，我这里用的是R710，已开启VT并且cpu支持flag:vmx
+
+主存储和二级存储都放在Agent端"><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color><link rel="shortcut icon" href=/favicon.ico><title>CloudStack 4.2.1&#43;KVM部署实战。</title><link rel=stylesheet href=http://localhost:1313/css/style.min.5ee5e7976cd09872c64e40a582206543f6aa38c69a8c43898aadc70040344b92.css integrity="sha256-XuXnl2zQmHLGTkClgiBlQ/aqOMaajEOJiq3HAEA0S5I=" crossorigin=anonymous></head><body id=page><header id=site-header class="animated slideInUp faster"><div class="hdr-wrapper section-inner"><div class=hdr-left><div class=site-branding><a href=http://localhost:1313>ephz3nt</a></div><nav class="site-nav hide-in-mobile"><a href=http://localhost:1313/posts/>Posts</a>
+<a href=http://localhost:1313/about-me/>About</a></nav></div><div class="hdr-right hdr-icons"><span class="hdr-social hide-in-mobile"><a href=https://github.com/ephz3nt target=_blank rel="noopener me" title=Github><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0 0 20 4.77 5.07 5.07.0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38.0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 0 0 5 4.77a5.44 5.44.0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 0 0 9 18.13V22"/></svg></a></span><button id=menu-btn class=hdr-btn><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><path d="M3 12H21z"/><path d="M3 6H21z"/><path d="M3 18H21z"/></svg></button></div></div></header><div id=mobile-menu class="animated fast"><ul><li><a href=http://localhost:1313/posts/>Posts</a></li><li><a href=http://localhost:1313/about-me/>About</a></li></ul></div><main class="site-main section-inner animated fadeIn faster"><article class=thin><header class=post-header><div class=post-meta><span>Mar 20, 2014</span></div><h1>CloudStack 4.2.1&#43;KVM部署实战。</h1></header><div class=content><p>拓扑图：</p><p><a href=/images/2014/Topology.png><img src=/images/2014/Topology.png alt=Topology></a></p><p>相关说明：</p><p>系统都为CentOS6.4 x64</p><p>Management端不需要任何虚拟化的支持，只是做WEB控制台和管理用，任意机器即可</p><p>Agent端的CPU需要虚拟化支持，我这里用的是R710，已开启VT并且cpu支持flag:vmx</p><p>主存储和二级存储都放在Agent端</p><p>配置网络：</p><pre><code>[root@management ~]# cat /etc/sysconfig/network-scripts/ifcfg-eth1
+DEVICE=eth1
+BOOTPROTO=static
+ONBOOT=yes
+IPADDR=10.10.16.250
+NETMASK=255.255.255.0
+GATEWAY=10.10.16.254
+DNS1=8.8.4.4
+</code></pre><pre><code>[root@management ~]# ifconfig
+eth1      Link encap:Ethernet  HWaddr 00:1D:60:E4:01:F2  
+          inet addr:10.10.16.250  Bcast:10.10.16.255  Mask:255.255.255.0
+          inet6 addr: fe80::21d:60ff:fee4:1f2/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:31460 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:9113 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:25547046 (24.3 MiB)  TX bytes:704232 (687.7 KiB)
+          Interrupt:18 
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:0 (0.0 b)  TX bytes:0 (0.0 b)```
+</code></pre><pre><code>[root@agent ~]# cat /etc/sysconfig/network-scripts/ifcfg-em2
+DEVICE=em2
+BOOTPROTO=static
+ONBOOT=yes
+IPADDR=10.10.16.253
+NETMASK=255.255.255.0
+GATEWAY=10.10.16.254
+DNS1=8.8.4.4
+</code></pre><pre><code>[root@agent ~]# ifconfig
+em2       Link encap:Ethernet  HWaddr 78:2B:CB:64:B7:A2  
+          inet addr:10.10.16.253  Bcast:10.10.16.255  Mask:255.255.255.0
+          inet6 addr: fe80::7a2b:cbff:fe64:b7a2/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:189 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:58 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:19800 (19.3 KiB)  TX bytes:6460 (6.3 KiB)
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+</code></pre><p>清空防火墙（两台都需要）：</p><pre><code>[root@management ~]# iptables  -F
+[root@management ~]# service  iptables  save
+iptables: Saving firewall rules to /etc/sysconfig/iptables: [  OK  ]
+</code></pre><p>配置NTP：</p><p>management：</p><pre><code>[root@management ~]# yum -y install ntp
+</code></pre><p>编辑/etc/ntp.conf，找到server部分，修改如下（把management做NTP服务器，不从互联网更新，也可参考其他配置或者事先从网络更新一下）：</p><pre><code>#server 0.rhel.pool.ntp.org iburst
+#server 1.rhel.pool.ntp.org iburst
+#server 2.rhel.pool.ntp.org iburst
+#server 3.rhel.pool.ntp.org iburst
+server 127.127.1.0
+fudge 127.127.1.0 stratum 10
+</code></pre><pre><code>[root@management ~]# service ntpd restart
+Shutting down ntpd:                                        [  OK  ]
+Starting ntpd:                                             [  OK  ]
+[root@management ~]# chkconfig ntpd on
+</code></pre><p>agent：</p><pre><code>[root@agent ~]# yum -y install ntp
+</code></pre><p>编辑/etc/ntp.conf，找到server部分，修改如下：</p><pre><code>#server 0.rhel.pool.ntp.org iburst
+#server 1.rhel.pool.ntp.org iburst
+#server 2.rhel.pool.ntp.org iburst
+#server 3.rhel.pool.ntp.org iburst
+server 10.10.16.250
+</code></pre><pre><code>[root@management ~]# service ntpd restart
+Shutting down ntpd:                                        [  OK  ]
+Starting ntpd:                                             [  OK  ]
+[root@management ~]# chkconfig ntpd on
+</code></pre><p>重启网络和关闭SELINUX、hosts文件添加住被控IP和主机名（2台都需要）</p><pre><code>[root@management ~]# service network restart
+Shutting down interface eth1:                              [  OK  ]
+Shutting down loopback interface:                          [  OK  ]
+Bringing up loopback interface:                            [  OK  ]
+Bringing up interface eth1:                                [  OK  ]
+
+[root@agent ~]# service network restart
+Shutting down interface em2:                               [  OK  ]
+Shutting down loopback interface:                          [  OK  ]
+Bringing up loopback interface:                            [  OK  ]
+Bringing up interface em2:                                 [  OK  ]
+
+[root@agent ~]# cat /etc/selinux/config 
+# This file controls the state of SELinux on the system.
+# SELINUX= can take one of these three values:
+#	enforcing - SELinux security policy is enforced.
+#	permissive - SELinux prints warnings instead of enforcing.
+#	disabled - SELinux is fully disabled.
+SELINUX=disabled
+# SELINUXTYPE= type of policy in use. Possible values are:
+#	targeted - Only targeted network daemons are protected.
+#	strict - Full SELinux protection.
+SELINUXTYPE=targeted
+
+[root@management ~]# hostname --fqdn
+management
+[root@management ~]# cat /etc/hosts
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+10.10.16.250    management
+10.10.16.253    agent
+</code></pre><p>添加源：</p><p>只需要默认源和cloudstack源即可，由于网速太慢，我事先准备了另外一台服务器做本地源</p><p><a href=/images/2014/repo.png><img src=/images/2014/repo.png alt=repo></a></p><pre><code>[root@management ~]# cat /etc/yum.repos.d/1.repo 
+[rhel]
+name=rhel
+baseurl=http://10.10.16.100/repo/rhel
+enable=1
+gpgcheck=0
+[cloudstack]
+name=cloudstack
+baseurl=http://10.10.16.100/repo/cloudstack
+enable=1
+gpgcheck=0
+</code></pre><p>更新重启：</p><pre><code>[root@management ~]# yum -y update;reboot
+[root@agent ~]# yum -y update;reboot
+</code></pre><p>配置management端：</p><p>安装MYSQL：</p><pre><code>[root@management ~]# yum -y install mysql-server
+[root@management ~]# service mysqld start
+[root@management ~]# chkconfig mysqld on
+</code></pre><p>设置MYSQL密码：</p><pre><code>[root@management ~]# mysql_secure_installation
+</code></pre><p>这里我的mysql密码为：cloudstack</p><p>安装management：</p><pre><code>[root@management ~]# yum -y install cloudstack-management
+</code></pre><p>等待ing：</p><p><a href=/images/2014/install-management.png><img src=/images/2014/install-management.png alt=install-management></a></p><p>导入数据库：</p><pre><code>[root@management ~]# cloudstack-setup-databases 新建的数据库帐号:密码@主机名 --deploy-as=root:mysql管理员密码
+</code></pre><p><a href=/images/2014/setup-database.png><img src=/images/2014/setup-database.png alt=setup-database></a></p><p>设置cloudstack用户对/var/log/cloudstack*日志目录的访问权限（不然会无法启动）：</p><pre><code>[root@management ~]# chown -R cloud:cloud /var/log/cloudstack*
+</code></pre><p>cloud账户为安装management时自动创建的，用于运行相关服务 。</p><p>初始化management服务：</p><pre><code>[root@management ~]# cloudstack-setup-management 
+Starting to configure CloudStack Management Server:
+Configure sudoers ...         [OK]
+Configure Firewall ...        [OK]
+Configure CloudStack Management Server ...[OK]
+CloudStack Management Server setup is Done!
+[root@management ~]# netstat -antp
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address               Foreign Address             State       PID/Program name   
+tcp        0      0 0.0.0.0:22                  0.0.0.0:*                   LISTEN      941/sshd            
+tcp        0      0 127.0.0.1:25                0.0.0.0:*                   LISTEN      1018/master         
+tcp        0      0 0.0.0.0:3306                0.0.0.0:*                   LISTEN      1272/mysqld         
+tcp        0     52 10.10.16.250:22             10.10.16.220:57436          ESTABLISHED 1052/sshd           
+tcp        0      0 :::51022                    :::*                        LISTEN      2193/java           
+tcp        0      0 :::48686                    :::*                        LISTEN      2193/java           
+tcp        0      0 :::8080                     :::*                        LISTEN      2193/java           
+tcp        0      0 :::22                       :::*                        LISTEN      941/sshd            
+tcp        0      0 ::1:25                      :::*                        LISTEN      1018/master         
+tcp        0      0 :::45219                    :::*                        LISTEN      2193/java           
+tcp        0      0 :::7080                     :::*                        LISTEN      2193/java           
+tcp        0      0 ::1:55059                   ::1:34910                   TIME_WAIT   -
+</code></pre><p>如上，8080 WEB控制台已经正常启动，</p><p>访问<code>http://10.10.16.250:8080/client</code> 默认帐号：admin 密码：password</p><p><a href=/images/2014/dashboard.png><img src=/images/2014/dashboard.png alt=dashboard></a></p><p>配置NFS服务：</p><p>之前说了，我准备把主存储和二级存储都放agent，所以在agent上安装NFS</p><pre><code>[root@agent ~]# yum -y install nfs-utils
+</code></pre><p>挂载磁盘：</p><pre><code>[root@agent ~]# mkdir -p /storage/{primary,secondary}
+[root@agent ~]# mount /dev/sdb /storage/secondary/
+[root@agent ~]# mount /dev/sdc /storage/primary/
+</code></pre><pre><code>[root@agent ~]# df -h
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda1        20G 1003M   18G   6% /
+tmpfs            56G     0   56G   0% /dev/shm
+/dev/sdb        135G  188M  128G   1% /storage/secondary
+/dev/sdc        3.6T  197M  3.4T   1% /storage/primary
+</code></pre><p>我对cloudstack存储的理解：</p><p>主存储存放VM文件和磁盘文件</p><p>辅助存储存放ISO镜像和系统模板</p><p>记得添加开机自动挂载</p><p><a href=/images/2014/fstab.png><img src=/images/2014/fstab.png alt=fstab></a></p><p>编辑/etc/exports 添加NFS共享信息：</p><pre><code>[root@agent ~]# vim /etc/exports 
+/storage/primary        *(rw,async,no_root_squash)
+/storage/secondary      *(rw,async,no_root_squash)
+</code></pre><p>启动NFS服务：</p><pre><code>[root@agent ~]# service rpcbind start
+Starting rpcbind:                                          [  OK  ]
+[root@agent ~]# chkconfig rpcbind on
+[root@agent ~]# service nfs start
+Starting NFS services:                                     [  OK  ]
+Starting NFS mountd:                                       [  OK  ]
+Starting NFS daemon:                                       [  OK  ]
+Starting RPC idmapd:                                       [  OK  ]
+[root@agent ~]# chkconfig nfs on
+</code></pre><p>在management测试nfs是否工作正常：</p><pre><code>[root@management ~]# showmount -e 10.10.16.253
+Export list for 10.10.16.253:
+/storage/secondary *
+/storage/primary   *
+</code></pre><p>能正常显示则OK；</p><p>management端导入KVM系统模板(用于cloudstack系统VM)：</p><p>我之前用官方的一直不正常，推荐使用下方地址的模板</p><p>可以在<a href=http://jenkins.buildacloud.org/job/build-systemvm64-master/>http://jenkins.buildacloud.org/job/build-systemvm64-master/</a> 这里下载</p><p><a href=/images/2014/systemvm-template.png><img src=/images/2014/systemvm-template.png alt=systemvm-template></a></p><p>挂载NFS二级存储（之前讲过是放系统模板和ISO用）：</p><pre><code>[root@management ~]# mount 10.10.16.253:/storage/secondary /opt
+</code></pre><p>导入系统VM模板：</p><pre><code>[root@management ~]# /usr/share/cloudstack-common/scripts/storage/secondary/cloud-install-sys-tmplt -m NFS挂载二级存储的路径 -f 系统模板文件路径 -h 虚拟化平台名称 -F
+</code></pre><p><a href=/images/2014/import-systemvm-template.png><img src=/images/2014/import-systemvm-template.png alt=import-systemvm-template></a></p><p>等待。。。</p><p>导入完毕后卸载二级存储：</p><pre><code>[root@management ~]# umount /opt
+</code></pre><p>进入WEB管理界面点击”我以前使用过 CloudStack，跳过此指南“，进入全局设置选项</p><p>设置存储所在网段：</p><p><a href=/images/2014/secstorage.png><img src=/images/2014/secstorage.png alt=secstorage></a></p><p>设置延时时间（删除VM等等操作的延时）：</p><p><a href=/images/2014/expunge.png><img src=/images/2014/expunge.png alt=expunge></a></p><p>重启management：</p><pre><code>[root@management ~]# service cloudstack-management restart
+Stopping cloudstack-management:                            [  OK  ]
+Starting cloudstack-management:                            [  OK  ]
+</code></pre><p>配置Agent：</p><p>安装qemu等组件支持，不然待会添加主机会加不上；</p><pre><code>[root@agent ~]# yum -y install qemu* virt* libvirt*
+</code></pre><p><a href=/images/2014/install-qemu.png><img src=/images/2014/install-qemu.png alt=install-qemu></a></p><pre><code>[root@agent ~]# yum -y install cloudstack-agent
+</code></pre><p>编辑/etc/libvirt/qemu.conf找到vnc_listen = &ldquo;0.0.0.0&rdquo;取消注释</p><p><a href=/images/2014/qemu.png><img src=/images/2014/qemu.png alt=qemu></a></p><p>编辑/etc/cgconfig.conf添加：</p><pre><code>group virt {
+cpu {
+cpu.shares = 9216;
+}
+}
+</code></pre><p><a href=/images/2014/cgconfig.png><img src=/images/2014/cgconfig.png alt=cgconfig></a></p><p>启动服务：</p><pre><code>[root@agent ~]# service cgconfig start
+Starting cgconfig service:                                 [  OK  ]
+[root@agent ~]# service libvirtd restart
+Stopping libvirtd daemon:                                  [  OK  ]
+Starting libvirtd daemon:                                  [  OK  ]
+[root@agent ~]# chkconfig cgconfig on
+[root@agent ~]# chkconfig libvirtd on
+</code></pre><p>注意：此时cloudstack-agent服务不需要启动，management添加该主机时会自动启动</p><p>访问<a href=http://10.10.16.250:8080/client>http://10.10.16.250:8080/client</a> management端开始配置cloudstack：</p><p><a href=/images/2014/cloudstack-1.png><img src=/images/2014/cloudstack-1.png alt=cloudstack-1></a></p><p>修改新密码继续：</p><p><a href=/images/2014/cloudstack-pass.png><img src=/images/2014/cloudstack-pass.png alt=cloudstack-pass></a></p><p>区域类似一个数据中心；</p><p><a href=/images/2014/add-area.png><img src=/images/2014/add-area.png alt=add-area></a></p><p>添加提供点：我的理解是给CloudStack内部系统用的IP，如系统VM</p><p><a href=/images/2014/add-offer.png><img src=/images/2014/add-offer.png alt=add-offer></a></p><p>来宾网络：我的理解是给我们创建的VM用的IP</p><p><a href=/images/2014/add-guest-network.png><img src=/images/2014/add-guest-network.png alt=add-guest-network></a></p><p><a href=/images/2014/add-cluster.png><img src=/images/2014/add-cluster.png alt=add-cluster></a></p><p>添加主机：就是添加agent端，输入IP、用户名和密码即可</p><p><a href=/images/2014/add-host.png><img src=/images/2014/add-host.png alt=add-host></a></p><p><a href=/images/2014/add-primary.png><img src=/images/2014/add-primary.png alt=add-primary></a></p><p><a href=/images/2014/add-secondary.png><img src=/images/2014/add-secondary.png alt=add-secondary></a></p><p>最后点击启动，等待数分钟</p><p><a href=/images/2014/cs-successfully.png><img src=/images/2014/cs-successfully.png alt=cs-successfully></a></p><p>点击启动后可进入主面板，可查看agent配置信息和相关资源使用信息</p><p><a href=/images/2014/cs-dashboard.png><img src=/images/2014/cs-dashboard.png alt=cs-dashboard></a></p><p>点击“基本架构”，可查看相关信息</p><p><a href=/images/2014/cs-base.png><img src=/images/2014/cs-base.png alt=cs-base></a></p><p>点击系统VM下的“查看全部”可看到系统VM的状态，都为running+up则表示正常</p><p><a href=/images/2014/systemvm-satate.png><img src=/images/2014/systemvm-satate.png alt=systemvm-satate></a></p><p>至此CloudStack Management Agent分离安装完毕，如果有任何批评和疑问请在此提出。</p></div><hr class=post-end><footer class=post-info><p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83.0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><path d="M7 7V7z"/></svg><span class=tag><a href=http://localhost:1313/tags/centos>CentOS</a></span><span class=tag><a href=http://localhost:1313/tags/cloudstack>CloudStack</a></span><span class=tag><a href=http://localhost:1313/tags/kvm>KVM</a></span><span class=tag><a href=http://localhost:1313/tags/%E5%AE%89%E8%A3%85>安装</a></span></p><p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2V8h6"/><path d="M16 13H8z"/><path d="M16 17H8z"/><path d="M10 9H9 8"/></svg></p><p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><path d="M16 2V6z"/><path d="M8 2V6z"/><path d="M3 10H21z"/></svg>2014-03-20 16:16 &#43;0000</p></footer></article><div class="post-nav thin"><a class=next-post href=http://localhost:1313/posts/thinking/the-future/><span class=post-nav-label><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><path d="M19 12H5z"/><path d="M12 19 5 12l7-7"/></svg>&nbsp;</span><br><span>The Future。</span></a>
+<a class=prev-post href=http://localhost:1313/posts/tech/2014/python3-garbled/><span class=post-nav-label>&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><path d="M5 12H19z"/><path d="M12 5l7 7-7 7"/></svg></span><br><span>Python3方向键乱码问题。</span></a></div><div id=comments class=thin><div id=utter-container></div><script src=https://utteranc.es/client.js repo=ephz3nt/blog-comments issue-term=title theme=github-light crossorigin=anonymous async></script></div></main><footer id=site-footer class="section-inner thin animated fadeIn faster"><p>&copy; 2020 <a href=http://localhost:1313>ephz3nt</a> &#183; <a href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank rel=noopener>CC BY-NC 4.0</a></p><p>Made with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> &#183; Theme <a href=https://github.com/Track3/hermit target=_blank rel=noopener>Hermit</a> &#183; <a href=http://localhost:1313/posts/index.xml target=_blank title=rss><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg></a></p></footer><script src=http://localhost:1313/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin=anonymous></script><script type=application/javascript>var doNotTrack=false;if(!doNotTrack){window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create','UA-56069703-3','auto');ga('send','pageview');}</script><script async src=https://www.google-analytics.com/analytics.js></script></body></html>

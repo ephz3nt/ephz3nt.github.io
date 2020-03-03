@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Dropbox on ephz3nt</title><link>http://localhost:1313/tags/dropbox/</link><description>Recent content in Dropbox on ephz3nt</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 12 Nov 2014 15:16:02 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/dropbox/index.xml" rel="self" type="application/rss+xml"/><item><title>Dropbox被墙解决方案。</title><link>http://localhost:1313/posts/tech/2014/dropbox-can-not-connect/</link><pubDate>Wed, 12 Nov 2014 15:16:02 +0000</pubDate><guid>http://localhost:1313/posts/tech/2014/dropbox-can-not-connect/</guid><description>&lt;p&gt;Dropbox被墙已经有好几个月了，无论是网页版还是客户端都无法正常工作，之前一直用的SS来访问，但是如果是用别人电脑的时候还是有些麻烦的。
+现在使用了@&lt;a href=&#34;http://github.com/clowwindy&#34;&gt;clowwindy&lt;/a&gt;的ChinaDNS
+使用方法：
+下载地址：
+&lt;a href=&#34;https://github.com/clowwindy/ChinaDNS/blob/master/README.md#install&#34;&gt;https://github.com/clowwindy/ChinaDNS/blob/master/README.md#install&lt;/a&gt;
+解压后运行dnsrelay.exe启动本地DNS服务器&lt;/p&gt;</description></item></channel></rss>

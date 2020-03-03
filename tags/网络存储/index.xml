@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>网络存储 on ephz3nt</title><link>http://localhost:1313/tags/%E7%BD%91%E7%BB%9C%E5%AD%98%E5%82%A8/</link><description>Recent content in 网络存储 on ephz3nt</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 28 Oct 2013 02:41:16 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/%E7%BD%91%E7%BB%9C%E5%AD%98%E5%82%A8/index.xml" rel="self" type="application/rss+xml"/><item><title>IP网络存储iSCSI小试。</title><link>http://localhost:1313/posts/tech/2013/iscsi-experiment/</link><pubDate>Mon, 28 Oct 2013 02:41:16 +0000</pubDate><guid>http://localhost:1313/posts/tech/2013/iscsi-experiment/</guid><description>iSCSI技术是一种由IBM公司研究开发的，是一个供硬件设备使用的可以在IP协议的上层运行的SCSI指令集，这种指令集合可以实现在IP网络上运行SCSI协议，使其能够在诸如高速千兆以太网上进行路由选择。iSCSI技术是一种新储存技术，该技术是将现有SCSI接口与以太网络(Ethernet)技术结合，使服务器可与使用IP网络的储存装置互相交换资料。(详见百科)
+搭建环境：
+177.208.11.199 iSCSI-Enterprise-Target - CentOS6.4 - 32 177.208.11.234 iSCSI-initiator-utils - CentOS6.4 - 32 177.208.11.103 iSCSI-Initiator - Windows Server 2003 Enterprise Edition SP2
+以下以IP后3位为简称吧
+199为iSCSI服务端，其他2台分别为客户端，我这里的服务端只是测试用所以只有一块普通的硬盘，如果用户生产环境的话可能需要做一些集群或者RAID之类的，现在开始吧。
+首先在199(Target端)安装服务端软件：
+你可以在官方网站获取：http://iscsitarget.sf.net
+[root@localhost ~]# tar zxvf iscsitarget-1.4.20.2.tar.gz [root@localhost ~]# cd iscsitarget-1.4.20.2 [root@localhost iscsitarget-1.4.20.2]# make 这里我编译报错：
+make[1]: Leaving directory `/root/iscsitarget-1.4.20.2/usr&#39; make -C /lib/modules/2.6.32-358.14.1.el6.i686/build SUBDIRS=/root/iscsitarget-1.4.20.2/kernel modules make: *** /lib/modules/2.6.32-358.14.1.el6.i686/build: No such file or directory. Stop. make: *** [kernel] Error 2 安装kernel-devel和patch
+[root@localhost iscsitarget-1.4.20.2]# yum -y install kernel kernel-devel patch [root@localhost iscsitarget-1.</description></item></channel></rss>

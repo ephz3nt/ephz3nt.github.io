@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>修改主机名称 on ephz3nt</title><link>http://localhost:1313/tags/%E4%BF%AE%E6%94%B9%E4%B8%BB%E6%9C%BA%E5%90%8D%E7%A7%B0/</link><description>Recent content in 修改主机名称 on ephz3nt</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 15 Feb 2012 21:34:20 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/%E4%BF%AE%E6%94%B9%E4%B8%BB%E6%9C%BA%E5%90%8D%E7%A7%B0/index.xml" rel="self" type="application/rss+xml"/><item><title>Ubuntu永久修改主机名称。</title><link>http://localhost:1313/posts/tech/2012/ubuntu-permanently-modify-the-host-name/</link><pubDate>Wed, 15 Feb 2012 21:34:20 +0000</pubDate><guid>http://localhost:1313/posts/tech/2012/ubuntu-permanently-modify-the-host-name/</guid><description>&lt;ul&gt;
+&lt;li&gt;修改etc下的hostname文件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;vi /etc/hostname&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;a,第一行输入你的主机名称&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;esc ,: ,x,&lt;/code&gt;回车保存&lt;/p&gt;</description></item></channel></rss>

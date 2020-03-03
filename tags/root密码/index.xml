@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>root密码 on ephz3nt</title><link>http://localhost:1313/tags/root%E5%AF%86%E7%A0%81/</link><description>Recent content in root密码 on ephz3nt</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 05 Aug 2013 13:08:39 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/root%E5%AF%86%E7%A0%81/index.xml" rel="self" type="application/rss+xml"/><item><title>修改mysql用户密码</title><link>http://localhost:1313/posts/tech/2013/change-mysql-password/</link><pubDate>Mon, 05 Aug 2013 13:08:39 +0000</pubDate><guid>http://localhost:1313/posts/tech/2013/change-mysql-password/</guid><description>mysqladmin命令（回目录） 格式如下（其中，USER为用户名，PASSWORD为新密码）：
+mysqladmin -u USER -p password PASSWORD 该命令之后会提示输入原密码，输入正确后即可修改。 例如，设置root用户的密码为123456，则
+mysqladmin -u root -p password 123456 UPDATE user 语句（回目录） 这种方式必须是先用root帐户登入mysql，然后执行：
+UPDATE user SET password=PASSWORD(&#39;123456&#39;) WHERE user=&#39;root&#39;; FLUSH PRIVILEGES; SET PASSWORD 语句（回目录） 这种方式也需要先用root命令登入mysql，然后执行：
+SET PASSWORD FOR root=PASSWORD(&#39;123456&#39;); 忘记mysql密码（回目录） windows：在bin目录下执行
+mysqld --skip-grant-tables 回车。如果没有出现提示信息，那就对了。 再开一个DOS窗口(因为刚才那个DOS窗口已经不能动了)，转到mysql\bin目录。 输入mysql回车，如果成功，将出现MySQL提示符
+use mysql; update user set password=password(&amp;quot;newpassword&amp;quot;) where user=&amp;quot;root&amp;quot;; flush privileges; 注销系统，再进入，开MySQL，使用用户名root和刚才设置的新密码123456登陆。 linux：
+vi /etc/my.cnf 在[mysqld]的段中加上一句：skip-grant-tables 例如：
+[mysqld] datadir=/var/lib/mysql socket=/var/lib/mysql/mysql.sock skip-grant-tables 保存并且退出vi。 重新启动mysqld</description></item></channel></rss>
