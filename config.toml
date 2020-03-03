@@ -1,7 +1,7 @@
-baseURL = "https://ephz3nt.github.io"
+baseURL = "http://localhost:1313"
 languageCode = "zh-cn"
 defaultContentLanguage = "cn"
-title = "Ephz3nt"
+title = "ephz3nt"
 theme = "hermit"
 # enableGitInfo = true
 pygmentsCodefences  = true
@@ -10,11 +10,11 @@ pygmentsUseClasses  = true
 rssLimit = 10  # Maximum number of items in the RSS feed.
 copyright = "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License." # This message is only used by the RSS template.
 enableEmoji = true  # Shorthand emojis in content files - https://gohugo.io/functions/emojify/
-googleAnalytics = "GTM-T8SFCTS"
+googleAnalytics = "UA-56069703-3"
 disqusShortname = "yourdiscussshortname"
 
 [author]
-  name = "Ephz3nt"
+  name = "ephz3nt"
 
 [blackfriday]
   # hrefTargetBlank = true
@@ -23,7 +23,6 @@ disqusShortname = "yourdiscussshortname"
 
 [taxonomies]
   tag = "tags"
-  # Categories are disabled by default.
 
 [params]
   dateform        = "Jan 2, 2006"
@@ -74,5 +73,5 @@ disqusShortname = "yourdiscussshortname"
 
   [[menu.main]]
     name = "About"
-    url = "about-hugo/"
+    url = "about-me/"
     weight = 20

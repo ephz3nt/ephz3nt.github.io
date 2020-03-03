@@ -1,0 +1,65 @@
+---
+title: 科学使用GAE(Google App Engine)+谷歌浏览器搭建代理上网。
+tags:
+  - Chrome
+  - GAE
+  - GFW
+  - Google App Engine
+id: 321
+categories:
+  - 网络相关
+date: 2012-03-24 04:56:49
+---
+
+大家都知道在CN有个GFW，它会屏蔽掉一些他们认为“不合适”的网站，怎么越过这道墙呢？为了上个Twitter还要天天去找免费VPN/代理，找的你蛋碎，还不如自己搞一个自己用，进入正题吧。
+
+首先打开appengine.google.com，有谷歌账户的可以直接登录(不推荐在appengine.google.com下用别的邮箱注册，否则你会蛋疼的)，没有则在gmail.com注册一个邮箱，到时候就在appengine.google.com输入你的GMAIL邮箱账户密码登录，我就在现在已经新注册了一个账户，在appengine.google.com登录
+登录后会出现下面的页面
+
+点击 Create Application (创建应用)会出现下面的页面
+
+第一项选择Other，第二项输入手机号码获取验证码，如+8613888888888输入完成之后点击Send发送验证码到手机，不久会收到GAE发来的短信，把验证码输入以下激活即可正式开始使用GAE，初次登陆会出现下面的页面
+
+红色部分是我之前创建的，新账号是没有的，点击Create Application。会出现下面的页面
+
+1、应用名称(填写英文字母)
+
+2、应用描述，建议和名称一样
+
+3、创建应用OK
+
+完成之后会显示在应用列表里，可以返回appengine.google.com查看的到
+
+下面就开始给GAE空间安装代理程序啦。
+
+这里下载：(集成Proxy SwitchySharp和配置文件)
+
+这里首先把这2个程序都下载过来，解压Server端文件运行uploader.bat
+
+1、输入刚刚在APPENGINE创建应用时填写的APP ID
+
+2、输入GMAIL账号
+
+3、输入GMAIL密码回车等待上传完毕会提示完成
+
+然后解压Local文件，鼠标选中SwitchySharp-0.9-beta-r37.crx拖到谷歌浏览器中，下方会出现
+
+点击继续、安装好后会出现以下页面
+
+
+选择导入导出项、从文件恢复、选择SwitchyOptions.bak即可
+
+然后修改Local里的proxy.ini文件
+
+修改以下appid = goagent   ，goagent 修改成你自己的GAE ID
+
+然后运行goagent.exe即可开启代理了，需要上代理的时候点击谷歌浏览器右上角的球
+
+
+1、不使用代理连接
+
+2、开启代理模式
+
+再说明一下，第一次上传了Server端程序后就不用再传了，下次在别的地方上网只需要下载Local程序就OK了
+
+PS：有了GAE  Twitter、Facebook、youtube神马都是浮云

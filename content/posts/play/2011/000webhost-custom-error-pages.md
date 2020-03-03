@@ -1,0 +1,55 @@
+---
+title: 000webhost三蛋空间全新自定义404及其他错误页面方法
+tags:
+  - 000webhost
+  - '404'
+  - 三蛋空间
+  - 自定义错误页面
+categories:
+  - 网络相关
+date: 2011-11-18 17:02:06
+---
+
+**000webhost三蛋空间全新自定义404及其他错误页面方法**
+
+今天整了一个三蛋空间做WP，差不多都弄好了，最后剩下个404页面让我很蛋疼
+于是我就去度娘那搜相关文章，按照他们的方法都不行，后来无意中我访问错误页面的时候跳到了正常的404，我马上进FTP下载了空间上的.htaccess文件看了看
+
+我把这段代码同样复制到另外一个三蛋BBS站上去也OK了，
+
+代码如下：
+```
+Options -Indexes
+
+ErrorDocument 403 /sorry.php
+
+ErrorDocument 404 /sorry.php
+
+ErrorDocument 500 /sorry.php
+
+<IfModule mod_rewrite.c>
+
+RewriteEngine On
+
+RewriteBase /
+
+RewriteRule ^index.php$ - [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule . /404.htm [L]
+
+</IfModule>
+
+```
+只要把这段代码复制保存成.htaccess 文件即可 （如果不可以保存的话可以先随便保存一个文件名，传到空间后再改回来）
+
+然后```RewriteRule . /404.htm [L]```这里的404.htm换成你的错误页面文件名
+
+大功告成试试
+
+三蛋的速度还是比较快的嘿嘿
+
+btw: 听说给000webhost挂友链可以降低被封几率
