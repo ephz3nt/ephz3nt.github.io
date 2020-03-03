@@ -5,10 +5,10 @@ tags:
   - hugo
   - hexo
   - wordpress
-  - git-pages
+  - github
 categories:
   - 心情琐事
-date: 2020-03-04 18:22:00
+date: 2020-03-03 18:32:00
 ---
 
 从wordpress到hexo，从hexo到hugo
