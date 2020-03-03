@@ -7,8 +7,8 @@ tags:
   - wordpress
   - git-pages
 categories:
-  - 网络相关
-date: 2020-03-04 18:22
+  - 心情琐事
+date: 2020-03-04 18:22:00
 ---
 
 从wordpress到hexo，从hexo到hugo
