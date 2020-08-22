@@ -22,11 +22,10 @@ jobs:
 
     - name: Build
       run: hugo --gc --minify --cleanDestinationDir
-
     - name: Deploy
-      uses: peaceiris/actions-gh-pages@v2.4.0
-      env:
-        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        PUBLISH_BRANCH: master
-        PUBLISH_DIR: ./public
-        CNAME: painso.com
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        publish_branch: master
+        publish_dir: ./public
+        cname: painso.com
