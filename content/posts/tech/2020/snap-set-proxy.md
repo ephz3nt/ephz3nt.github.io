@@ -14,6 +14,7 @@ sudo snap set system proxy.http="http://127.0.0.1:12333"
 sudo snap set system proxy.https="http://127.0.0.1:12333"
 ```
 
-![image-20200822203717827](/home/ephz3nt/Dropbox/Documents/github/blog/content/posts/tech/2020/snap-set-proxy.assets/image-20200822203717827.png)
+![](snap-set-proxy.assets/snap-install.png)
 
 酸爽！
+
