@@ -1,4 +1,53 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on ephz3nt</title><link>https://painso.com/posts/</link><description>Recent content in Posts on ephz3nt</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 22 Aug 2020 20:58:13 +0800</lastBuildDate><atom:link href="https://painso.com/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>snap 设置HTTP代理</title><link>https://painso.com/posts/tech/2020/snap-set-proxy/</link><pubDate>Sat, 22 Aug 2020 20:58:13 +0800</pubDate><guid>https://painso.com/posts/tech/2020/snap-set-proxy/</guid><description>这里由于我用的是V2RAY, 代理端口 &amp;ldquo;12333&amp;rdquo;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on ephz3nt</title><link>https://painso.com/posts/</link><description>Recent content in Posts on ephz3nt</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 22 Aug 2020 21:19:42 +0800</lastBuildDate><atom:link href="https://painso.com/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Manjaro 添加自定义快捷方式</title><link>https://painso.com/posts/tech/2020/manjaro-custom-shortcut/</link><pubDate>Sat, 22 Aug 2020 21:19:42 +0800</pubDate><guid>https://painso.com/posts/tech/2020/manjaro-custom-shortcut/</guid><description>今天装了个Goland, 由于没有像Ubuntu那样的deb包导致每次启动都需shell进相应目录执行
+./goland.sh 非常麻烦
+稍微找了下资料
+首先进入 &amp;ldquo;/usr/share/applications&amp;rdquo; 目录, 可以看到里面有很多的 .desktop 文件, 这就是快捷方式文件了
+可以随便找一个复制出来, 如:
+sudo cp idea.desktop goland.desktop 文件大概长这样, 怎么改一目了然了 路径按照自己实际目录修改就行.
+goland.desktop
+[Desktop Entry] Version=1.0 Type=Application Name=Goland Comment=Develop with pleasure! Exec=/home/ephz3nt/Downloads/GoLand-2020.2.2/bin/goland.sh %f Icon=/home/ephz3nt/Downloads/GoLand-2020.2.2/bin/goland.png Terminal=false StartupNotify=true StartupWMClass=jetbrains-goland Categories=Development;IDE;Go; 顺便贴一下Typora的配置吧, 正好今天在用
+[Desktop Entry] Version=1.0 Type=Application Name=Typora Comment=Typora Markdown Editor Exec=/home/ephz3nt/Downloads/Typora-linux-x64/Typora %f Icon=/home/ephz3nt/Downloads/Typora-linux-x64/resources/app/asserts/icon/icon_128x128.png Terminal=false StartupNotify=true #StartupWMClass=jetbrains-goland Categories=Development;Markdown;Typora;</description><content type="html"><![CDATA[<p>今天装了个Goland, 由于没有像Ubuntu那样的deb包导致每次启动都需shell进相应目录执行</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">./goland.sh</code></pre></div>
+<p>非常麻烦</p>
+
+<p>稍微找了下资料</p>
+
+<p>首先进入 &ldquo;/usr/share/applications&rdquo; 目录, 可以看到里面有很多的 .desktop 文件, 这就是快捷方式文件了</p>
+
+<p>可以随便找一个复制出来, 如:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sudo cp idea.desktop goland.desktop</code></pre></div>
+<p>文件大概长这样, 怎么改一目了然了 路径按照自己实际目录修改就行.</p>
+
+<blockquote>
+<p>goland.desktop</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>Desktop Entry<span class="o">]</span>
+<span class="nv">Version</span><span class="o">=</span><span class="m">1</span>.0
+<span class="nv">Type</span><span class="o">=</span>Application
+<span class="nv">Name</span><span class="o">=</span>Goland
+<span class="nv">Comment</span><span class="o">=</span>Develop with pleasure!
+<span class="nv">Exec</span><span class="o">=</span>/home/ephz3nt/Downloads/GoLand-2020.2.2/bin/goland.sh %f
+<span class="nv">Icon</span><span class="o">=</span>/home/ephz3nt/Downloads/GoLand-2020.2.2/bin/goland.png
+<span class="nv">Terminal</span><span class="o">=</span><span class="nb">false</span>
+<span class="nv">StartupNotify</span><span class="o">=</span><span class="nb">true</span>
+<span class="nv">StartupWMClass</span><span class="o">=</span>jetbrains-goland
+<span class="nv">Categories</span><span class="o">=</span>Development<span class="p">;</span>IDE<span class="p">;</span>Go<span class="p">;</span></code></pre></div>
+<p>顺便贴一下Typora的配置吧, 正好今天在用</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">[</span>Desktop Entry<span class="o">]</span>
+<span class="nv">Version</span><span class="o">=</span><span class="m">1</span>.0
+<span class="nv">Type</span><span class="o">=</span>Application
+<span class="nv">Name</span><span class="o">=</span>Typora
+<span class="nv">Comment</span><span class="o">=</span>Typora Markdown Editor
+<span class="nv">Exec</span><span class="o">=</span>/home/ephz3nt/Downloads/Typora-linux-x64/Typora %f
+<span class="nv">Icon</span><span class="o">=</span>/home/ephz3nt/Downloads/Typora-linux-x64/resources/app/asserts/icon/icon_128x128.png
+<span class="nv">Terminal</span><span class="o">=</span><span class="nb">false</span>
+<span class="nv">StartupNotify</span><span class="o">=</span><span class="nb">true</span>
+<span class="c1">#StartupWMClass=jetbrains-goland</span>
+<span class="nv">Categories</span><span class="o">=</span>Development<span class="p">;</span>Markdown<span class="p">;</span>Typora<span class="p">;</span></code></pre></div>
+<p><img src="manjaro-custom-shortcut.assets/image-20200822212806112.png" alt="image-20200822212806112" /></p>
+
+<p><img src="manjaro-custom-shortcut.assets/image-20200822212825943.png" alt="image-20200822212825943" /></p>
+]]></content></item><item><title>snap 设置HTTP代理</title><link>https://painso.com/posts/tech/2020/snap-set-proxy/</link><pubDate>Sat, 22 Aug 2020 20:58:13 +0800</pubDate><guid>https://painso.com/posts/tech/2020/snap-set-proxy/</guid><description>这里由于我用的是V2RAY, 代理端口 &amp;ldquo;12333&amp;rdquo;
 sudo snap set system proxy.http=&amp;#34;http://127.0.0.1:12333&amp;#34; sudo snap set system proxy.https=&amp;#34;http://127.0.0.1:12333&amp;#34; 酸爽！</description><content type="html"><![CDATA[<blockquote>
 <p>这里由于我用的是V2RAY, 代理端口 &ldquo;12333&rdquo;</p>
 </blockquote>

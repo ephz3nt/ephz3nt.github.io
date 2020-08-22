@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>manjaro on ephz3nt</title><link>https://painso.com/tags/manjaro/</link><description>Recent content in manjaro on ephz3nt</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 22 Aug 2020 21:19:42 +0800</lastBuildDate><atom:link href="https://painso.com/tags/manjaro/index.xml" rel="self" type="application/rss+xml"/><item><title>Manjaro 添加自定义快捷方式</title><link>https://painso.com/posts/tech/2020/manjaro-custom-shortcut/</link><pubDate>Sat, 22 Aug 2020 21:19:42 +0800</pubDate><guid>https://painso.com/posts/tech/2020/manjaro-custom-shortcut/</guid><description>今天装了个Goland, 由于没有像Ubuntu那样的deb包导致每次启动都需shell进相应目录执行
+./goland.sh 非常麻烦
+稍微找了下资料
+首先进入 &amp;ldquo;/usr/share/applications&amp;rdquo; 目录, 可以看到里面有很多的 .desktop 文件, 这就是快捷方式文件了
+可以随便找一个复制出来, 如:
+sudo cp idea.desktop goland.desktop 文件大概长这样, 怎么改一目了然了 路径按照自己实际目录修改就行.
+goland.desktop
+[Desktop Entry] Version=1.0 Type=Application Name=Goland Comment=Develop with pleasure! Exec=/home/ephz3nt/Downloads/GoLand-2020.2.2/bin/goland.sh %f Icon=/home/ephz3nt/Downloads/GoLand-2020.2.2/bin/goland.png Terminal=false StartupNotify=true StartupWMClass=jetbrains-goland Categories=Development;IDE;Go; 顺便贴一下Typora的配置吧, 正好今天在用
+[Desktop Entry] Version=1.0 Type=Application Name=Typora Comment=Typora Markdown Editor Exec=/home/ephz3nt/Downloads/Typora-linux-x64/Typora %f Icon=/home/ephz3nt/Downloads/Typora-linux-x64/resources/app/asserts/icon/icon_128x128.png Terminal=false StartupNotify=true #StartupWMClass=jetbrains-goland Categories=Development;Markdown;Typora;</description></item></channel></rss>
