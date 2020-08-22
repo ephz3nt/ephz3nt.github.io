@@ -5,6 +5,7 @@ tags:
   - snap
 categories:
   - 网络相关
+typora-root-url: ../../../../static
 ---
 
 > 这里由于我用的是V2RAY, 代理端口 "12333"
@@ -14,7 +15,6 @@ sudo snap set system proxy.http="http://127.0.0.1:12333"
 sudo snap set system proxy.https="http://127.0.0.1:12333"
 ```
 
-![](snap-set-proxy.assets/snap-install.png)
+![](/images/snap-set-proxy/snap-install.png)
 
 酸爽！
-

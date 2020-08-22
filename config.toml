@@ -12,6 +12,7 @@ copyright = "This work is licensed under a Creative Commons Attribution-NonComme
 enableEmoji = true  # Shorthand emojis in content files - https://gohugo.io/functions/emojify/
 googleAnalytics = "UA-56069703-3"
 disqusShortname = "yourdiscussshortname"
+#uglyurls = true
 
 [author]
   name = "ephz3nt"
@@ -29,7 +30,6 @@ disqusShortname = "yourdiscussshortname"
   dateformShort   = "Jan 2"
   dateformNum     = "2006-01-02"
   dateformNumTime = "2006-01-02 15:04 -0700"
-
   # Metadata mostly used in document's head
   # description = ""
   # images = [""]

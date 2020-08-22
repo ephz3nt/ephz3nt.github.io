@@ -60,6 +60,6 @@ StartupNotify=true
 Categories=Development;Markdown;Typora;
 ```
 
-![image-20200822212806112](manjaro-custom-shortcut.assets/image-20200822212806112.png)
+![goland](../../../../images/manjaro-custom-shortcut/goland.png)
 
-![image-20200822212825943](manjaro-custom-shortcut.assets/image-20200822212825943.png)
+![typora](../../../../images/manjaro-custom-shortcut/typora.png)
