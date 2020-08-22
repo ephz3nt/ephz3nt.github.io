@@ -1,7 +1,10 @@
 ---
 title: "snap 设置HTTP代理"
 date: 2020-08-22T20:58:13+08:00
-draft: true
+tags:
+  - snap
+categories:
+  - 网络相关
 ---
 
 > 这里由于我用的是V2RAY, 代理端口 "12333"
