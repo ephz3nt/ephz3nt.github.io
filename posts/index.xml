@@ -1,4 +1,57 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on ephz3nt</title><link>https://painso.com/posts/</link><description>Recent content in Posts on ephz3nt</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 22 Aug 2020 21:19:42 +0800</lastBuildDate><atom:link href="https://painso.com/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Manjaro 添加自定义快捷方式</title><link>https://painso.com/posts/tech/2020/manjaro-custom-shortcut/</link><pubDate>Sat, 22 Aug 2020 21:19:42 +0800</pubDate><guid>https://painso.com/posts/tech/2020/manjaro-custom-shortcut/</guid><description>今天装了个Goland, 由于没有像Ubuntu那样的deb包导致每次启动都需shell进相应目录执行
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on ephz3nt</title><link>https://painso.com/posts/</link><description>Recent content in Posts on ephz3nt</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 23 Aug 2020 16:50:36 +0800</lastBuildDate><atom:link href="https://painso.com/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Java 变量作用域</title><link>https://painso.com/posts/tech/2020/java-variable-scope/</link><pubDate>Sun, 23 Aug 2020 16:50:36 +0800</pubDate><guid>https://painso.com/posts/tech/2020/java-variable-scope/</guid><description>Java 变量分为: 类变量 实例变量 局部变量 类变量 需要在变量前添加修饰符static，可以在方法中直接调用
+public class Hello { static int number = 10; // 定义类变量 public static void main(String[] args) { System.out.println(number); // 直接调用 } } 实例变量 定义格式为String &amp;lt;type&amp;gt; &amp;lt;name&amp;gt; = &amp;lt;value&amp;gt;;
+实例变量从属于对象，使用时需要进行初始化
+public class Hello { // 定义实例变量 String name = &amp;#34;Benjamin&amp;#34;; int age = 18; public static void main(String[] args) { Hello instance = new Hello() ; // new 一个当前的Hello对象 System.</description><content type="html"><![CDATA[
+
+<h3 id="java-变量分为">Java 变量分为:</h3>
+
+<ol>
+<li>类变量</li>
+<li>实例变量</li>
+<li>局部变量</li>
+</ol>
+
+<h4 id="类变量">类变量</h4>
+
+<p>需要在变量前添加修饰符<code>static</code>，可以在方法中直接调用</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">class</span> <span class="n">Hello</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="nf">int</span> <span class="n">number</span> <span class="o">=</span> <span class="n">10</span><span class="p">;</span> <span class="c1">// 定义类变量
+</span><span class="c1"></span>    <span class="kd">public</span> <span class="nf">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="p">[]</span> <span class="nf">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">number</span><span class="p">);</span>  <span class="c1">// 直接调用
+</span><span class="c1"></span>    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+<h4 id="实例变量">实例变量</h4>
+
+<p>定义格式为<code>String &lt;type&gt; &lt;name&gt; = &lt;value&gt;;</code></p>
+
+<p>实例变量从属于对象，使用时需要进行初始化</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">class</span> <span class="n">Hello</span> <span class="p">{</span>
+    <span class="c1">// 定义实例变量
+</span><span class="c1"></span>    <span class="n">String</span> <span class="nf">name</span> <span class="o">=</span> <span class="s">&#34;Benjamin&#34;</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="nf">age</span> <span class="o">=</span> <span class="n">18</span><span class="p">;</span>
+    <span class="kd">public</span> <span class="nf">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="p">[]</span> <span class="nf">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Hello</span> <span class="nf">instance</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Hello</span><span class="p">()</span> <span class="p">;</span> <span class="c1">// new 一个当前的Hello对象
+</span><span class="c1"></span>        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="s">&#34;name: %s, age: %s\n&#34;</span><span class="p">,</span><span class="n">instance</span><span class="p">.</span><span class="na">name</span><span class="p">,</span><span class="n">instance</span><span class="p">.</span><span class="na">age</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&#34;-------------------------------------------------&#34;</span><span class="p">);</span>
+        <span class="c1">// 修改实例变量的值
+</span><span class="c1"></span>        <span class="n">instance</span><span class="p">.</span><span class="na">name</span> <span class="o">=</span> <span class="s">&#34;Bob&#34;</span><span class="p">;</span>
+        <span class="n">instance</span><span class="p">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">24</span><span class="p">;</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="s">&#34;name: %s, age: %s\n&#34;</span><span class="p">,</span><span class="n">instance</span><span class="p">.</span><span class="na">name</span><span class="p">,</span><span class="n">instance</span><span class="p">.</span><span class="na">age</span><span class="p">);</span>
+
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+<h4 id="局部变量">局部变量</h4>
+
+<p>定义在方法内部的变量，该方法体使用完后跟随销毁，无法被其他方法直接调用</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">class</span> <span class="n">Hello</span> <span class="p">{</span>
+
+    <span class="kd">public</span> <span class="nf">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="p">[]</span> <span class="nf">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 定义局部变量
+</span><span class="c1"></span>        <span class="n">String</span> <span class="nf">name</span> <span class="o">=</span> <span class="s">&#34;Benjamin&#34;</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="nf">age</span> <span class="o">=</span> <span class="n">18</span><span class="p">;</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="s">&#34;name: %s, age: %s\n&#34;</span><span class="p">,</span><span class="n">name</span><span class="p">,</span><span class="n">age</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre></div>]]></content></item><item><title>Manjaro 添加自定义快捷方式</title><link>https://painso.com/posts/tech/2020/manjaro-custom-shortcut/</link><pubDate>Sat, 22 Aug 2020 21:19:42 +0800</pubDate><guid>https://painso.com/posts/tech/2020/manjaro-custom-shortcut/</guid><description>今天装了个Goland, 由于没有像Ubuntu那样的deb包导致每次启动都需shell进相应目录执行
 ./goland.sh 非常麻烦
 稍微找了下资料
 首先进入 &amp;ldquo;/usr/share/applications&amp;rdquo; 目录, 可以看到里面有很多的 .desktop 文件, 这就是快捷方式文件了
