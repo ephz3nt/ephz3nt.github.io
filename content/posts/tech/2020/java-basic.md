@@ -10,9 +10,9 @@ categories:
 
 ## 狂神说JAVA学习笔记 - JavaSE基础部分
 
-[Bilibili]: https://www.bilibili.com/video/av68373450
+[Bilibili]: https://www.bilibili.com/video/av68373450	"Bilibili"
 
-[当前观看至]: https://www.bilibili.com/video/av68373450?p=45
+[当前观看至]: https://www.bilibili.com/video/av68373450?p=45	"当前观看至"
 
 ### 运算符
 
