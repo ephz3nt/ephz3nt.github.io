@@ -207,9 +207,9 @@ categories:
    }
    ```
 
-   2. 打印金字塔三角形
+2. 打印金字塔三角形
 
-      ```java
+   ```java
       package com.painso.study.condition;
       
       public class D2 {
@@ -244,6 +244,8 @@ categories:
          *****
         *******
        *********
-      ```
+   ```
 
       
+
+   
