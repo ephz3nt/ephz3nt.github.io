@@ -170,44 +170,43 @@ package operator; public class Demo01 { public static void main(String[] args) {
            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span> <span class="c1">// 嵌套for执行结束后输出换行
 </span><span class="c1"></span>       <span class="p">}</span>
    <span class="p">}</span>
-<span class="p">}</span></code></pre></div>
-<ol>
+<span class="p">}</span></code></pre></div></li>
+
 <li><p>打印金字塔三角形</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nf">com</span><span class="p">.</span><span class="na">painso</span><span class="p">.</span><span class="na">study</span><span class="p">.</span><span class="na">condition</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">  <span class="kn">package</span> <span class="nf">com</span><span class="p">.</span><span class="na">painso</span><span class="p">.</span><span class="na">study</span><span class="p">.</span><span class="na">condition</span><span class="p">;</span>
       
-<span class="kd">public</span> <span class="nf">class</span> <span class="n">D2</span> <span class="p">{</span>
-  <span class="kd">public</span> <span class="nf">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="p">[]</span> <span class="nf">args</span><span class="p">)</span> <span class="p">{</span>
-      <span class="cm">/**
-</span><span class="cm">       * 打印一个三角形
-</span><span class="cm">       * 1. 把三角形拆分成左右两边
-</span><span class="cm">       * 2. 定义几个矩形框起来
-</span><span class="cm">       * 3. 打印左边空白区域
-</span><span class="cm">       * 4. 打印三角形左边
-</span><span class="cm">       */</span>
-      <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="nf">i</span> <span class="o">=</span> <span class="n">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">5</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-          <span class="c1">// 打印空白区
-</span><span class="c1"></span>          <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="nf">j</span> <span class="o">=</span> <span class="n">5</span><span class="p">;</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="n">i</span><span class="p">;</span> <span class="n">j</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
-              <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&#34; &#34;</span><span class="p">);</span>
+  <span class="kd">public</span> <span class="nf">class</span> <span class="n">D2</span> <span class="p">{</span>
+      <span class="kd">public</span> <span class="nf">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="p">[]</span> <span class="nf">args</span><span class="p">)</span> <span class="p">{</span>
+          <span class="cm">/**
+</span><span class="cm">           * 打印一个三角形
+</span><span class="cm">           * 1. 把三角形拆分成左右两边
+</span><span class="cm">           * 2. 定义几个矩形框起来
+</span><span class="cm">           * 3. 打印左边空白区域
+</span><span class="cm">           * 4. 打印三角形左边
+</span><span class="cm">           */</span>
+          <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="nf">i</span> <span class="o">=</span> <span class="n">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">5</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+              <span class="c1">// 打印空白区
+</span><span class="c1"></span>              <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="nf">j</span> <span class="o">=</span> <span class="n">5</span><span class="p">;</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="n">i</span><span class="p">;</span> <span class="n">j</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+                  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&#34; &#34;</span><span class="p">);</span>
+              <span class="p">}</span>
+              <span class="c1">// 反向打印三角形左边
+</span><span class="c1"></span>              <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="nf">j</span> <span class="o">=</span> <span class="n">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">i</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&#34;*&#34;</span><span class="p">);</span>
+              <span class="p">}</span>
+              <span class="c1">// 打印三角形右边
+</span><span class="c1"></span>              <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="nf">j</span> <span class="o">=</span> <span class="n">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">i</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+                  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&#34;*&#34;</span><span class="p">);</span>
+              <span class="p">}</span>
+              <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
           <span class="p">}</span>
-          <span class="c1">// 反向打印三角形左边
-</span><span class="c1"></span>          <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="nf">j</span> <span class="o">=</span> <span class="n">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">i</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-              <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&#34;*&#34;</span><span class="p">);</span>
-          <span class="p">}</span>
-          <span class="c1">// 打印三角形右边
-</span><span class="c1"></span>          <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="nf">j</span> <span class="o">=</span> <span class="n">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">i</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-              <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&#34;*&#34;</span><span class="p">);</span>
-          <span class="p">}</span>
-          <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
       <span class="p">}</span>
   <span class="p">}</span>
-<span class="p">}</span>
-<span class="c1">// 输出
-</span><span class="c1"></span>   <span class="o">*</span>
-  <span class="o">***</span>
- <span class="o">*****</span>
-<span class="o">*******</span>
-<span class="o">*********</span></code></pre></div></li>
-</ol></li>
+  <span class="c1">// 输出
+</span><span class="c1"></span>       <span class="o">*</span>
+      <span class="o">***</span>
+     <span class="o">*****</span>
+    <span class="o">*******</span>
+   <span class="o">*********</span></code></pre></div></li>
 </ol>
 ]]></content></item><item><title>Java 变量作用域</title><link>https://painso.com/posts/tech/2020/java-variable-scope/</link><pubDate>Sun, 23 Aug 2020 16:50:36 +0800</pubDate><guid>https://painso.com/posts/tech/2020/java-variable-scope/</guid><description>Java 变量分为: 类变量 实例变量 局部变量 类变量 需要在变量前添加修饰符static，可以在方法中直接调用
 public class Hello { static int number = 10; // 定义类变量 public static void main(String[] args) { System.out.println(number); // 直接调用 } } 实例变量 定义格式为String &amp;lt;type&amp;gt; &amp;lt;name&amp;gt; = &amp;lt;value&amp;gt;;
