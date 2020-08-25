@@ -1,188 +1,203 @@
-<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><meta name=theme-color content=#494f5c><meta name=msapplication-TileColor content=#494f5c><meta itemprop=name content="Java 基础"><meta itemprop=description content="狂神说JAVA学习笔记 - JavaSE基础部分 Bilibili: https://www.bilibili.com/video/av68373450
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="ie=edge"><meta name=theme-color content="#494f5c"><meta name=msapplication-TileColor content="#494f5c"><meta itemprop=name content="Java 基础"><meta itemprop=description content="狂神说JAVA学习笔记 - JavaSE基础部分 Bilibili: https://www.bilibili.com/video/av68373450
 当前观看至: https://www.bilibili.com/video/av68373450?p=50
-运算符  不同类型运算返回值
-double a = 55; float b = 10F; long c = 10; int d = 20; short e = 25; byte f = 25;  如果变量a&#43;b&#43;c&#43;d相加，返回值类型为double  如果变量b&#43;c&#43;d&#43;e相加，返回值类型为float
- 如果d&#43;e相加，返回值为int 如果e&#43;f相加，返回值为int 。。。    结论
- 如果一组不同类型的变量进行运算，返回值取类型最大数据类型 如果其中最大的数据类型为int，返回值为int  如果小于int的类型，返回int     自增、自减 &#43;&#43; --
-package operator; public class Demo01 { public static void main(String[] args) { int a = 1; int b = a&#43;&#43;; int c = &#43;&#43;a; System."><meta itemprop=datePublished content=2020-08-23T17:25:46&#43;08:00><meta itemprop=dateModified content=2020-08-23T17:25:46&#43;08:00><meta itemprop=wordCount content=611><meta itemprop=keywords content=basic,java,><meta property=og:title content="Java 基础"><meta property=og:description content="狂神说JAVA学习笔记 - JavaSE基础部分 Bilibili: https://www.bilibili.com/video/av68373450
+运算符   不同类型运算返回值
+double a = 55; float b = 10F; long c = 10; int d = 20; short e = 25; byte f = 25;  如果变量a+b+c+d相加，返回值类型为double      如果变量b+c+d+e相加，返回值类型为float
+ 如果d+e相加，返回值为int 如果e+f相加，返回值为int 。。。  结论
+ 如果一组不同类型的变量进行运算，返回值取类型最大数据类型    如果其中最大的数据类型为int，返回值为int
+ 如果小于int的类型，返回int     自增、自减 ++ --
+package operator; public class Demo01 { public static void main(String[] args) { int a = 1; int b = a++; int c = ++a; System."><meta itemprop=datePublished content="2020-08-23T17:25:46+08:00"><meta itemprop=dateModified content="2020-08-23T17:25:46+08:00"><meta itemprop=wordCount content="613"><meta itemprop=keywords content="basic,java,"><meta property="og:title" content="Java 基础"><meta property="og:description" content="狂神说JAVA学习笔记 - JavaSE基础部分 Bilibili: https://www.bilibili.com/video/av68373450
 当前观看至: https://www.bilibili.com/video/av68373450?p=50
-运算符  不同类型运算返回值
-double a = 55; float b = 10F; long c = 10; int d = 20; short e = 25; byte f = 25;  如果变量a&#43;b&#43;c&#43;d相加，返回值类型为double  如果变量b&#43;c&#43;d&#43;e相加，返回值类型为float
- 如果d&#43;e相加，返回值为int 如果e&#43;f相加，返回值为int 。。。    结论
- 如果一组不同类型的变量进行运算，返回值取类型最大数据类型 如果其中最大的数据类型为int，返回值为int  如果小于int的类型，返回int     自增、自减 &#43;&#43; --
-package operator; public class Demo01 { public static void main(String[] args) { int a = 1; int b = a&#43;&#43;; int c = &#43;&#43;a; System."><meta property=og:type content=article><meta property=og:url content=https://painso.com/posts/tech/2020/java-basic/><meta property=article:published_time content=2020-08-23T17:25:46+08:00><meta property=article:modified_time content=2020-08-23T17:25:46+08:00><meta name=twitter:card content=summary><meta name=twitter:title content="Java 基础"><meta name=twitter:description content="狂神说JAVA学习笔记 - JavaSE基础部分 Bilibili: https://www.bilibili.com/video/av68373450
+运算符   不同类型运算返回值
+double a = 55; float b = 10F; long c = 10; int d = 20; short e = 25; byte f = 25;  如果变量a+b+c+d相加，返回值类型为double      如果变量b+c+d+e相加，返回值类型为float
+ 如果d+e相加，返回值为int 如果e+f相加，返回值为int 。。。  结论
+ 如果一组不同类型的变量进行运算，返回值取类型最大数据类型    如果其中最大的数据类型为int，返回值为int
+ 如果小于int的类型，返回int     自增、自减 ++ --
+package operator; public class Demo01 { public static void main(String[] args) { int a = 1; int b = a++; int c = ++a; System."><meta property="og:type" content="article"><meta property="og:url" content="https://painso.com/posts/tech/2020/java-basic/"><meta property="article:published_time" content="2020-08-23T17:25:46+08:00"><meta property="article:modified_time" content="2020-08-23T17:25:46+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Java 基础"><meta name=twitter:description content="狂神说JAVA学习笔记 - JavaSE基础部分 Bilibili: https://www.bilibili.com/video/av68373450
 当前观看至: https://www.bilibili.com/video/av68373450?p=50
-运算符  不同类型运算返回值
-double a = 55; float b = 10F; long c = 10; int d = 20; short e = 25; byte f = 25;  如果变量a&#43;b&#43;c&#43;d相加，返回值类型为double  如果变量b&#43;c&#43;d&#43;e相加，返回值类型为float
- 如果d&#43;e相加，返回值为int 如果e&#43;f相加，返回值为int 。。。    结论
- 如果一组不同类型的变量进行运算，返回值取类型最大数据类型 如果其中最大的数据类型为int，返回值为int  如果小于int的类型，返回int     自增、自减 &#43;&#43; --
-package operator; public class Demo01 { public static void main(String[] args) { int a = 1; int b = a&#43;&#43;; int c = &#43;&#43;a; System."><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color><link rel="shortcut icon" href=/favicon.ico><title>Java 基础</title><link rel=stylesheet href=https://painso.com/css/style.min.5ee5e7976cd09872c64e40a582206543f6aa38c69a8c43898aadc70040344b92.css integrity="sha256-XuXnl2zQmHLGTkClgiBlQ/aqOMaajEOJiq3HAEA0S5I=" crossorigin=anonymous></head><body id=page><header id=site-header class="animated slideInUp faster"><div class="hdr-wrapper section-inner"><div class=hdr-left><div class=site-branding><a href=https://painso.com>ephz3nt</a></div><nav class="site-nav hide-in-mobile"><a href=https://painso.com/posts/>Posts</a>
-<a href=https://painso.com/about-me/>About</a></nav></div><div class="hdr-right hdr-icons"><span class="hdr-social hide-in-mobile"><a href=https://github.com/ephz3nt target=_blank rel="noopener me" title=Github><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0 0 20 4.77 5.07 5.07.0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38.0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 0 0 5 4.77a5.44 5.44.0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 0 0 9 18.13V22"/></svg></a></span><button id=menu-btn class=hdr-btn><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><path d="M3 12H21z"/><path d="M3 6H21z"/><path d="M3 18H21z"/></svg></button></div></div></header><div id=mobile-menu class="animated fast"><ul><li><a href=https://painso.com/posts/>Posts</a></li><li><a href=https://painso.com/about-me/>About</a></li></ul></div><main class="site-main section-inner animated fadeIn faster"><article class=thin><header class=post-header><div class=post-meta><span>Aug 23, 2020</span></div><h1>Java 基础</h1></header><div class=content><h2 id=狂神说java学习笔记-javase基础部分>狂神说JAVA学习笔记 - JavaSE基础部分<a href=#狂神说java学习笔记-javase基础部分 class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"/><path d="M8 12h8z"/></svg></a></h2><p>Bilibili: <a href=https://www.bilibili.com/video/av68373450>https://www.bilibili.com/video/av68373450</a></p><p>当前观看至: <a href="https://www.bilibili.com/video/av68373450?p=50">https://www.bilibili.com/video/av68373450?p=50</a></p><h3 id=运算符>运算符<a href=#运算符 class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"/><path d="M8 12h8z"/></svg></a></h3><ol><li><p>不同类型运算返回值</p><div class=highlight><pre class=chroma><code class=language-java data-lang=java><span class=kt>double</span> <span class=nf>a</span> <span class=o>=</span> <span class=n>55</span><span class=p>;</span>
-<span class=kt>float</span> <span class=nf>b</span> <span class=o>=</span> <span class=n>10F</span><span class=p>;</span>
-<span class=kt>long</span> <span class=nf>c</span> <span class=o>=</span> <span class=n>10</span><span class=p>;</span>
-<span class=kt>int</span> <span class=nf>d</span> <span class=o>=</span> <span class=n>20</span><span class=p>;</span>
-<span class=kt>short</span> <span class=nf>e</span> <span class=o>=</span> <span class=n>25</span><span class=p>;</span>
-<span class=kt>byte</span> <span class=nf>f</span> <span class=o>=</span> <span class=n>25</span><span class=p>;</span></code></pre></div><ul><li>如果变量<code>a+b+c+d</code>相加，返回值类型为<code>double</code></li></ul></li><li><p>如果变量<code>b+c+d+e</code>相加，返回值类型为<code>float</code></p><ul><li>如果<code>d+e</code>相加，返回值为int</li><li>如果<code>e+f</code>相加，返回值为int</li><li>。。。<br></li></ul></li></ol><p>结论</p><ul><li>如果一组不同类型的变量进行运算，返回值取类型最大数据类型</li><li>如果其中最大的数据类型为<code>int</code>，返回值为<code>int</code><ul><li>如果小于<code>int</code>的类型，返回<code>int</code><br></li></ul></li></ul><ol><li><p>自增、自减 <code>++</code> <code>--</code></p><div class=highlight><pre class=chroma><code class=language-java data-lang=java><span class=kn>package</span> <span class=nf>operator</span><span class=p>;</span>
+运算符   不同类型运算返回值
+double a = 55; float b = 10F; long c = 10; int d = 20; short e = 25; byte f = 25;  如果变量a+b+c+d相加，返回值类型为double      如果变量b+c+d+e相加，返回值类型为float
+ 如果d+e相加，返回值为int 如果e+f相加，返回值为int 。。。  结论
+ 如果一组不同类型的变量进行运算，返回值取类型最大数据类型    如果其中最大的数据类型为int，返回值为int
+ 如果小于int的类型，返回int     自增、自减 ++ --
+package operator; public class Demo01 { public static void main(String[] args) { int a = 1; int b = a++; int c = ++a; System."><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color><link rel="shortcut icon" href=/favicon.ico><title>Java 基础</title><link rel=stylesheet href=https://painso.com/css/style.min.5ee5e7976cd09872c64e40a582206543f6aa38c69a8c43898aadc70040344b92.css integrity="sha256-XuXnl2zQmHLGTkClgiBlQ/aqOMaajEOJiq3HAEA0S5I=" crossorigin=anonymous></head><body id=page><header id=site-header class="animated slideInUp faster"><div class="hdr-wrapper section-inner"><div class=hdr-left><div class=site-branding><a href=https://painso.com>ephz3nt</a></div><nav class="site-nav hide-in-mobile"><a href=https://painso.com/posts/>Posts</a>
+<a href=https://painso.com/about-me/>About</a></nav></div><div class="hdr-right hdr-icons"><span class="hdr-social hide-in-mobile"><a href=https://github.com/ephz3nt target=_blank rel="noopener me" title=Github><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77a5.44 5.44.0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></span><button id=menu-btn class=hdr-btn><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button></div></div></header><div id=mobile-menu class="animated fast"><ul><li><a href=https://painso.com/posts/>Posts</a></li><li><a href=https://painso.com/about-me/>About</a></li></ul></div><main class="site-main section-inner animated fadeIn faster"><article class=thin><header class=post-header><div class=post-meta><span>Aug 23, 2020</span></div><h1>Java 基础</h1></header><div class=content><h2 id=狂神说java学习笔记---javase基础部分>狂神说JAVA学习笔记 - JavaSE基础部分<a href=#狂神说java学习笔记---javase基础部分 class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Bilibili: <a href=https://www.bilibili.com/video/av68373450>https://www.bilibili.com/video/av68373450</a></p><p>当前观看至: <a href="https://www.bilibili.com/video/av68373450?p=50">https://www.bilibili.com/video/av68373450?p=50</a></p><h3 id=运算符>运算符<a href=#运算符 class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h3><ol><li><p>不同类型运算返回值</p><div class=highlight><pre class=chroma><code class=language-java data-lang=java><span class=kt>double</span> <span class=n>a</span> <span class=o>=</span> <span class=n>55</span><span class=o>;</span>
+<span class=kt>float</span> <span class=n>b</span> <span class=o>=</span> <span class=n>10F</span><span class=o>;</span>
+<span class=kt>long</span> <span class=n>c</span> <span class=o>=</span> <span class=n>10</span><span class=o>;</span>
+<span class=kt>int</span> <span class=n>d</span> <span class=o>=</span> <span class=n>20</span><span class=o>;</span>
+<span class=kt>short</span> <span class=n>e</span> <span class=o>=</span> <span class=n>25</span><span class=o>;</span>
+<span class=kt>byte</span> <span class=n>f</span> <span class=o>=</span> <span class=n>25</span><span class=o>;</span>
+</code></pre></div><ul><li>如果变量<code>a+b+c+d</code>相加，返回值类型为<code>double</code></li></ul></li></ol><ul><li><p>如果变量<code>b+c+d+e</code>相加，返回值类型为<code>float</code></p><ul><li>如果<code>d+e</code>相加，返回值为int</li><li>如果<code>e+f</code>相加，返回值为int</li><li>。。。</li></ul><p>结论</p><ul><li>如果一组不同类型的变量进行运算，返回值取类型最大数据类型</li></ul></li><li><p>如果其中最大的数据类型为<code>int</code>，返回值为<code>int</code></p><ul><li>如果小于<code>int</code>的类型，返回<code>int</code></li></ul></li></ul><ol start=2><li><p>自增、自减 <code>++</code> <code>--</code></p><div class=highlight><pre class=chroma><code class=language-java data-lang=java><span class=kn>package</span> <span class=nn>operator</span><span class=o>;</span>
    
-<span class=kd>public</span> <span class=nf>class</span> <span class=n>Demo01</span> <span class=p>{</span>
-   <span class=kd>public</span> <span class=nf>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=p>(</span><span class=n>String</span><span class=p>[]</span> <span class=nf>args</span><span class=p>)</span> <span class=p>{</span>
-       <span class=kt>int</span> <span class=nf>a</span> <span class=o>=</span> <span class=n>1</span><span class=p>;</span>
-       <span class=kt>int</span> <span class=nf>b</span> <span class=o>=</span> <span class=n>a</span><span class=o>++</span><span class=p>;</span>
-       <span class=kt>int</span> <span class=nf>c</span> <span class=o>=</span> <span class=o>++</span><span class=n>a</span><span class=p>;</span>
-       <span class=n>System</span><span class=p>.</span><span class=na>out</span><span class=p>.</span><span class=na>println</span><span class=p>(</span><span class=n>a</span><span class=p>);</span>
-       <span class=n>System</span><span class=p>.</span><span class=na>out</span><span class=p>.</span><span class=na>println</span><span class=p>(</span><span class=n>b</span><span class=p>);</span>
-       <span class=n>System</span><span class=p>.</span><span class=na>out</span><span class=p>.</span><span class=na>println</span><span class=p>(</span><span class=n>c</span><span class=p>);</span>
-   <span class=p>}</span>
-<span class=p>}</span></code></pre></div></li></ol><p>输出结果为</p><div class=highlight><pre class=chroma><code class=language-shell data-lang=shell>   <span class=m>3</span>
-   <span class=m>1</span>
-   <span class=m>3</span></code></pre></div><p><code>a++ == a = a+1</code></p><p><code>++a == a = a+1</code></p><p>乍看好像都一样，实则进行赋值时顺序有所不同</p><div class=highlight><pre class=chroma><code class=language-java data-lang=java>   <span class=kt>int</span> <span class=nf>b</span> <span class=o>=</span> <span class=n>a</span><span class=o>++</span><span class=p>;</span> <span class=c1>// 先把a的值复制给b再做自增运算
-</span><span class=c1></span>   <span class=kt>int</span> <span class=nf>c</span> <span class=o>=</span> <span class=o>++</span><span class=n>a</span><span class=p>;</span> <span class=o>//</span> <span class=n>先进行自增运算再复制给c</span></code></pre></div><p>所以b的值是上述的<code>1</code>， 不信我们在b后紧跟一条输出<code>a 和 b</code>看看结果</p><div class=highlight><pre class=chroma><code class=language-java data-lang=java>   <span class=kn>package</span> <span class=nf>operator</span><span class=p>;</span>
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>Demo01</span> <span class=o>{</span>
+    <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>[]</span> <span class=n>args</span><span class=o>)</span> <span class=o>{</span>
+        <span class=kt>int</span> <span class=n>a</span> <span class=o>=</span> <span class=n>1</span><span class=o>;</span>
+        <span class=kt>int</span> <span class=n>b</span> <span class=o>=</span> <span class=n>a</span><span class=o>++;</span>
+        <span class=kt>int</span> <span class=n>c</span> <span class=o>=</span> <span class=o>++</span><span class=n>a</span><span class=o>;</span>
+        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>a</span><span class=o>);</span>
+        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>b</span><span class=o>);</span>
+        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>c</span><span class=o>);</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></div><p>输出结果为</p><div class=highlight><pre class=chroma><code class=language-shell data-lang=shell><span class=m>3</span>
+<span class=m>1</span>
+<span class=m>3</span>
+</code></pre></div><p><code>a++ == a = a+1</code></p><p><code>++a == a = a+1</code></p><p>乍看好像都一样，实则进行赋值时顺序有所不同</p><div class=highlight><pre class=chroma><code class=language-java data-lang=java><span class=kt>int</span> <span class=n>b</span> <span class=o>=</span> <span class=n>a</span><span class=o>++;</span> <span class=c1>// 先把a的值复制给b再做自增运算
+</span><span class=c1></span><span class=kt>int</span> <span class=n>c</span> <span class=o>=</span> <span class=o>++</span><span class=n>a</span><span class=o>;</span> <span class=c1>// 先进行自增运算再复制给c
+</span></code></pre></div><p>所以b的值是上述的<code>1</code>， 不信我们在b后紧跟一条输出<code>a 和 b</code>看看结果</p><div class=highlight><pre class=chroma><code class=language-java data-lang=java><span class=kn>package</span> <span class=nn>operator</span><span class=o>;</span>
    
-   <span class=kd>public</span> <span class=nf>class</span> <span class=n>Demo01</span> <span class=p>{</span>
-       <span class=kd>public</span> <span class=nf>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=p>(</span><span class=n>String</span><span class=p>[]</span> <span class=nf>args</span><span class=p>)</span> <span class=p>{</span>
-           <span class=kt>int</span> <span class=nf>a</span> <span class=o>=</span> <span class=n>1</span><span class=p>;</span>
-           <span class=kt>int</span> <span class=nf>b</span> <span class=o>=</span> <span class=n>a</span><span class=o>++</span><span class=p>;</span>
-           <span class=n>System</span><span class=p>.</span><span class=na>out</span><span class=p>.</span><span class=na>println</span><span class=p>(</span><span class=n>a</span><span class=p>);</span>
-           <span class=n>System</span><span class=p>.</span><span class=na>out</span><span class=p>.</span><span class=na>println</span><span class=p>(</span><span class=n>b</span><span class=p>);</span>
-           <span class=kt>int</span> <span class=nf>c</span> <span class=o>=</span> <span class=o>++</span><span class=n>a</span><span class=p>;</span>
-           <span class=n>System</span><span class=p>.</span><span class=na>out</span><span class=p>.</span><span class=na>println</span><span class=p>(</span><span class=n>a</span><span class=p>);</span>
-           <span class=n>System</span><span class=p>.</span><span class=na>out</span><span class=p>.</span><span class=na>println</span><span class=p>(</span><span class=n>b</span><span class=p>);</span>
-           <span class=n>System</span><span class=p>.</span><span class=na>out</span><span class=p>.</span><span class=na>println</span><span class=p>(</span><span class=n>c</span><span class=p>);</span>
-       <span class=p>}</span>
-   <span class=p>}</span></code></pre></div><div class=highlight><pre class=chroma><code class=language-shell data-lang=shell>   <span class=m>2</span>
-   <span class=m>1</span>
-   <span class=m>3</span>
-   <span class=m>1</span>
-   <span class=m>3</span>
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>Demo01</span> <span class=o>{</span>
+    <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>[]</span> <span class=n>args</span><span class=o>)</span> <span class=o>{</span>
+        <span class=kt>int</span> <span class=n>a</span> <span class=o>=</span> <span class=n>1</span><span class=o>;</span>
+        <span class=kt>int</span> <span class=n>b</span> <span class=o>=</span> <span class=n>a</span><span class=o>++;</span>
+        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>a</span><span class=o>);</span>
+        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>b</span><span class=o>);</span>
+        <span class=kt>int</span> <span class=n>c</span> <span class=o>=</span> <span class=o>++</span><span class=n>a</span><span class=o>;</span>
+        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>a</span><span class=o>);</span>
+        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>b</span><span class=o>);</span>
+        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>c</span><span class=o>);</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></div><div class=highlight><pre class=chroma><code class=language-shell data-lang=shell><span class=m>2</span>
+<span class=m>1</span>
+<span class=m>3</span>
+<span class=m>1</span>
+<span class=m>3</span>
    
-   Process finished with <span class=nb>exit</span> code <span class=m>0</span></code></pre></div><ol><li><p>短路运算</p><p>逻辑于运算中如果第一个为<code>false</code>则不再进行后面的运算</p><div class=highlight><pre class=chroma><code class=language-java data-lang=java> <span class=kn>package</span> <span class=nf>operator</span><span class=p>;</span>
-     
- <span class=kd>public</span> <span class=nf>class</span> <span class=n>Demo01</span> <span class=p>{</span>
-     <span class=kd>public</span> <span class=nf>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=p>(</span><span class=n>String</span><span class=p>[]</span> <span class=nf>args</span><span class=p>)</span> <span class=p>{</span>
-         <span class=kt>int</span> <span class=nf>c</span> <span class=o>=</span> <span class=n>10</span><span class=p>;</span>
-         <span class=n>System</span><span class=p>.</span><span class=na>out</span><span class=p>.</span><span class=na>println</span><span class=p>((</span><span class=n>c</span> <span class=o>&lt;</span> <span class=n>11</span> <span class=o>&amp;&amp;</span> <span class=n>c</span><span class=o>++</span> <span class=o>&lt;</span> <span class=n>100</span><span class=p>));</span> <span class=c1>// 添加自增运算验证第二个表达式是否执行
-</span><span class=c1></span>         <span class=n>System</span><span class=p>.</span><span class=na>out</span><span class=p>.</span><span class=na>println</span><span class=p>(</span><span class=n>c</span><span class=p>);</span>
-     <span class=p>}</span>
- <span class=p>}</span>
- <span class=cm>/* 
-</span><span class=cm> c &lt; 11 为真 继续后面的表达式运算
-</span><span class=cm> 结果为：
-</span><span class=cm> true
-</span><span class=cm> 11
-</span><span class=cm> */</span></code></pre></div><div class=highlight><pre class=chroma><code class=language-java data-lang=java> <span class=kn>package</span> <span class=nf>operator</span><span class=p>;</span>
-     
- <span class=kd>public</span> <span class=nf>class</span> <span class=n>Demo01</span> <span class=p>{</span>
-     <span class=kd>public</span> <span class=nf>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=p>(</span><span class=n>String</span><span class=p>[]</span> <span class=nf>args</span><span class=p>)</span> <span class=p>{</span>
-         <span class=kt>int</span> <span class=nf>c</span> <span class=o>=</span> <span class=n>10</span><span class=p>;</span>
-         <span class=n>System</span><span class=p>.</span><span class=na>out</span><span class=p>.</span><span class=na>println</span><span class=p>((</span><span class=n>c</span> <span class=o>&gt;</span> <span class=n>11</span> <span class=o>&amp;&amp;</span> <span class=n>c</span><span class=o>++</span> <span class=o>&lt;</span> <span class=n>100</span><span class=p>));</span> <span class=c1>// 添加自增运算验证第二个表达式是否执行
-</span><span class=c1></span>         <span class=n>System</span><span class=p>.</span><span class=na>out</span><span class=p>.</span><span class=na>println</span><span class=p>(</span><span class=n>c</span><span class=p>);</span>
-     <span class=p>}</span>
- <span class=p>}</span>
- <span class=cm>/* 
-</span><span class=cm> c &gt; 11 为假 直接忽略后面的表达式运算返回假
-</span><span class=cm> 结果为：
-</span><span class=cm> false
-</span><span class=cm> 10
-</span><span class=cm> */</span></code></pre></div><blockquote><p>逻辑或同理</p></blockquote></li><li><p>字符串拼接顺序</p><div class=highlight><pre class=chroma><code class=language-java data-lang=java><span class=kt>int</span> <span class=nf>a</span> <span class=o>=</span> <span class=n>10</span><span class=p>;</span>
-<span class=kt>int</span> <span class=nf>b</span> <span class=o>=</span> <span class=n>20</span><span class=p>;</span>
-<span class=n>System</span><span class=p>.</span><span class=na>out</span><span class=p>.</span><span class=na>println</span><span class=p>(</span><span class=s>&#34;&#34;</span><span class=o>+</span><span class=n>a</span><span class=o>+</span><span class=n>b</span><span class=p>);</span>
+Process finished with <span class=nb>exit</span> code <span class=m>0</span>
+</code></pre></div></li><li><p>短路运算</p><p>逻辑于运算中如果第一个为<code>false</code>则不再进行后面的运算</p><div class=highlight><pre class=chroma><code class=language-java data-lang=java><span class=kn>package</span> <span class=nn>operator</span><span class=o>;</span>
+   
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>Demo01</span> <span class=o>{</span>
+    <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>[]</span> <span class=n>args</span><span class=o>)</span> <span class=o>{</span>
+        <span class=kt>int</span> <span class=n>c</span> <span class=o>=</span> <span class=n>10</span><span class=o>;</span>
+        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>((</span><span class=n>c</span> <span class=o>&lt;</span> <span class=n>11</span> <span class=o>&amp;&amp;</span> <span class=n>c</span><span class=o>++</span> <span class=o>&lt;</span> <span class=n>100</span><span class=o>));</span> <span class=c1>// 添加自增运算验证第二个表达式是否执行
+</span><span class=c1></span>        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>c</span><span class=o>);</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+<span class=cm>/* 
+</span><span class=cm>c &lt; 11 为真 继续后面的表达式运算
+</span><span class=cm>结果为：
+</span><span class=cm>true
+</span><span class=cm>11
+</span><span class=cm>*/</span>
+</code></pre></div><div class=highlight><pre class=chroma><code class=language-java data-lang=java><span class=kn>package</span> <span class=nn>operator</span><span class=o>;</span>
+   
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>Demo01</span> <span class=o>{</span>
+    <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>[]</span> <span class=n>args</span><span class=o>)</span> <span class=o>{</span>
+        <span class=kt>int</span> <span class=n>c</span> <span class=o>=</span> <span class=n>10</span><span class=o>;</span>
+        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>((</span><span class=n>c</span> <span class=o>&gt;</span> <span class=n>11</span> <span class=o>&amp;&amp;</span> <span class=n>c</span><span class=o>++</span> <span class=o>&lt;</span> <span class=n>100</span><span class=o>));</span> <span class=c1>// 添加自增运算验证第二个表达式是否执行
+</span><span class=c1></span>        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>c</span><span class=o>);</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+<span class=cm>/* 
+</span><span class=cm>c &gt; 11 为假 直接忽略后面的表达式运算返回假
+</span><span class=cm>结果为：
+</span><span class=cm>false
+</span><span class=cm>10
+</span><span class=cm>*/</span>
+</code></pre></div><blockquote><p>逻辑或同理</p></blockquote></li><li><p>字符串拼接顺序</p><div class=highlight><pre class=chroma><code class=language-java data-lang=java><span class=kt>int</span> <span class=n>a</span> <span class=o>=</span> <span class=n>10</span><span class=o>;</span>
+<span class=kt>int</span> <span class=n>b</span> <span class=o>=</span> <span class=n>20</span><span class=o>;</span>
+<span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;&#34;</span><span class=o>+</span><span class=n>a</span><span class=o>+</span><span class=n>b</span><span class=o>);</span>
 <span class=c1>// 结果为 1020
-</span><span class=c1></span><span class=kt>int</span> <span class=nf>a</span> <span class=o>=</span> <span class=n>10</span><span class=p>;</span>
-<span class=kt>int</span> <span class=nf>b</span> <span class=o>=</span> <span class=n>20</span><span class=p>;</span>
-<span class=n>System</span><span class=p>.</span><span class=na>out</span><span class=p>.</span><span class=na>println</span><span class=p>(</span><span class=n>a</span><span class=o>+</span><span class=n>b</span><span class=o>+</span><span class=s>&#34;&#34;</span><span class=p>);</span>
-<span class=o>//</span> <span class=n>结果为</span> <span class=nf>30</span></code></pre></div></li></ol><p>字符串拼接所在位置会影响输出结果，如果字符串在前则后方的<code>int</code>变量以字符串拼接，如果整型在前则进行算术运算</p><ol><li><p>三元运算符</p><p><code>x ? y : z</code></p><p>如果 <code>x</code> 的运算结果为<code>true</code>则值为<code>y</code></p><p>反之为<code>z</code></p></li></ol><h3 id=条件表达式>条件表达式<a href=#条件表达式 class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"/><path d="M8 12h8z"/></svg></a></h3><ol><li><p>九九乘法表</p><div class=highlight><pre class=chroma><code class=language-java data-lang=java><span class=kn>package</span> <span class=nf>com</span><span class=p>.</span><span class=na>painso</span><span class=p>.</span><span class=na>study</span><span class=p>.</span><span class=na>condition</span><span class=p>;</span>
+</span><span class=c1></span><span class=kt>int</span> <span class=n>a</span> <span class=o>=</span> <span class=n>10</span><span class=o>;</span>
+<span class=kt>int</span> <span class=n>b</span> <span class=o>=</span> <span class=n>20</span><span class=o>;</span>
+<span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>a</span><span class=o>+</span><span class=n>b</span><span class=o>+</span><span class=s>&#34;&#34;</span><span class=o>);</span>
+<span class=c1>// 结果为 30
+</span></code></pre></div><p>字符串拼接所在位置会影响输出结果，如果字符串在前则后方的<code>int</code>变量以字符串拼接，如果整型在前则进行算术运算</p></li><li><p>三元运算符</p><p><code>x ? y : z</code></p><p>如果 <code>x</code> 的运算结果为<code>true</code>则值为<code>y</code></p><p>反之为<code>z</code></p></li></ol><h3 id=条件表达式>条件表达式<a href=#条件表达式 class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h3><ol><li><p>九九乘法表</p><div class=highlight><pre class=chroma><code class=language-java data-lang=java><span class=kn>package</span> <span class=nn>com.painso.study.condition</span><span class=o>;</span>
    
 <span class=cm>/**
-</span><span class=cm>* @author ephz3nt
-</span><span class=cm>* @version 1.0
-</span><span class=cm>*
-</span><span class=cm>* @description 使用for实现99乘法表
-</span><span class=cm>* 1x1=1
-</span><span class=cm>* 1x2=2 2x2=4
-</span><span class=cm>* 1x3=3 2x3=6 3x3=9
-</span><span class=cm>* 1x4=4 2x4=8 3x4=12 4x4=16
-</span><span class=cm>* 1x5=5 2x5=10 3x5=15 4x5=20 5x5=25
-</span><span class=cm>* 1x6=6 2x6=12 3x6=18 4x6=24 5x6=30 6x6=36
-</span><span class=cm>* 1x7=7 2x7=14 3x7=21 4x7=28 5x7=35 6x7=42 7x7=49
-</span><span class=cm>* 1x8=8 2x8=16 3x8=24 4x8=32 5x8=40 6x8=48 7x8=56 8x8=64
-</span><span class=cm>* 1x9=9 2x9=18 3x9=27 4x9=36 5x9=45 6x9=54 7x9=63 8x9=72 9x9=81
-</span><span class=cm>*/</span>
-<span class=kd>public</span> <span class=nf>class</span> <span class=n>D1</span> <span class=p>{</span>
-   <span class=kd>public</span> <span class=nf>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=p>(</span><span class=n>String</span><span class=p>[]</span> <span class=nf>args</span><span class=p>)</span> <span class=p>{</span>
-       <span class=k>for</span><span class=p>(</span><span class=kt>int</span> <span class=nf>x</span> <span class=o>=</span><span class=n>1</span><span class=p>;</span><span class=n>x</span><span class=o>&lt;=</span><span class=n>9</span><span class=p>;</span><span class=n>x</span><span class=o>++</span><span class=p>){</span> <span class=c1>// 定义x 为被乘的数，不超过9
-</span><span class=c1></span>           <span class=k>for</span><span class=p>(</span><span class=kt>int</span> <span class=nf>y</span> <span class=o>=</span><span class=n>1</span><span class=p>;</span><span class=n>y</span><span class=o>&lt;=</span><span class=n>x</span><span class=p>;</span><span class=n>y</span><span class=o>++</span><span class=p>){</span> <span class=c1>// 定义y为乘数，循环乘到不满足&lt;=x退出
-</span><span class=c1></span>               <span class=n>System</span><span class=p>.</span><span class=na>out</span><span class=p>.</span><span class=na>printf</span><span class=p>(</span><span class=s>&#34;%dx%d=%d\t&#34;</span><span class=p>,</span><span class=n>y</span><span class=p>,</span><span class=n>x</span><span class=p>,</span><span class=n>y</span><span class=o>*</span><span class=n>x</span><span class=p>);</span> <span class=c1>// 使用格式化输出 &#34;乘数x被乘数=积&#34; , 不换行
-</span><span class=c1></span>           <span class=p>}</span>
-           <span class=n>System</span><span class=p>.</span><span class=na>out</span><span class=p>.</span><span class=na>println</span><span class=p>();</span> <span class=c1>// 嵌套for执行结束后输出换行
-</span><span class=c1></span>       <span class=p>}</span>
-   <span class=p>}</span>
-<span class=p>}</span></code></pre></div></li><li><p>打印金字塔三角形</p><div class=highlight><pre class=chroma><code class=language-java data-lang=java>  <span class=kn>package</span> <span class=nf>com</span><span class=p>.</span><span class=na>painso</span><span class=p>.</span><span class=na>study</span><span class=p>.</span><span class=na>condition</span><span class=p>;</span>
+</span><span class=cm> * @author ephz3nt
+</span><span class=cm> * @version 1.0
+</span><span class=cm> *
+</span><span class=cm> * @description 使用for实现99乘法表
+</span><span class=cm> * 1x1=1
+</span><span class=cm> * 1x2=2 2x2=4
+</span><span class=cm> * 1x3=3 2x3=6 3x3=9
+</span><span class=cm> * 1x4=4 2x4=8 3x4=12 4x4=16
+</span><span class=cm> * 1x5=5 2x5=10 3x5=15 4x5=20 5x5=25
+</span><span class=cm> * 1x6=6 2x6=12 3x6=18 4x6=24 5x6=30 6x6=36
+</span><span class=cm> * 1x7=7 2x7=14 3x7=21 4x7=28 5x7=35 6x7=42 7x7=49
+</span><span class=cm> * 1x8=8 2x8=16 3x8=24 4x8=32 5x8=40 6x8=48 7x8=56 8x8=64
+</span><span class=cm> * 1x9=9 2x9=18 3x9=27 4x9=36 5x9=45 6x9=54 7x9=63 8x9=72 9x9=81
+</span><span class=cm> */</span>
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>D1</span> <span class=o>{</span>
+    <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>[]</span> <span class=n>args</span><span class=o>)</span> <span class=o>{</span>
+        <span class=k>for</span><span class=o>(</span><span class=kt>int</span> <span class=n>x</span> <span class=o>=</span><span class=n>1</span><span class=o>;</span><span class=n>x</span><span class=o>&lt;=</span><span class=n>9</span><span class=o>;</span><span class=n>x</span><span class=o>++){</span> <span class=c1>// 定义x 为被乘的数，不超过9
+</span><span class=c1></span>            <span class=k>for</span><span class=o>(</span><span class=kt>int</span> <span class=n>y</span> <span class=o>=</span><span class=n>1</span><span class=o>;</span><span class=n>y</span><span class=o>&lt;=</span><span class=n>x</span><span class=o>;</span><span class=n>y</span><span class=o>++){</span> <span class=c1>// 定义y为乘数，循环乘到不满足&lt;=x退出
+</span><span class=c1></span>                <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>printf</span><span class=o>(</span><span class=s>&#34;%dx%d=%d\t&#34;</span><span class=o>,</span><span class=n>y</span><span class=o>,</span><span class=n>x</span><span class=o>,</span><span class=n>y</span><span class=o>*</span><span class=n>x</span><span class=o>);</span> <span class=c1>// 使用格式化输出 &#34;乘数x被乘数=积&#34; , 不换行
+</span><span class=c1></span>            <span class=o>}</span>
+            <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>();</span> <span class=c1>// 嵌套for执行结束后输出换行
+</span><span class=c1></span>        <span class=o>}</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></div></li><li><p>打印金字塔三角形</p><div class=highlight><pre class=chroma><code class=language-java data-lang=java>   <span class=kn>package</span> <span class=nn>com.painso.study.condition</span><span class=o>;</span>
       
-  <span class=kd>public</span> <span class=nf>class</span> <span class=n>D2</span> <span class=p>{</span>
-      <span class=kd>public</span> <span class=nf>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=p>(</span><span class=n>String</span><span class=p>[]</span> <span class=nf>args</span><span class=p>)</span> <span class=p>{</span>
-          <span class=cm>/**
-</span><span class=cm>           * 打印一个三角形
-</span><span class=cm>           * 1. 把三角形拆分成左右两边
-</span><span class=cm>           * 2. 定义几个矩形框起来
-</span><span class=cm>           * 3. 打印左边空白区域
-</span><span class=cm>           * 4. 打印三角形左边
-</span><span class=cm>           */</span>
-          <span class=k>for</span> <span class=p>(</span><span class=kt>int</span> <span class=nf>i</span> <span class=o>=</span> <span class=n>1</span><span class=p>;</span> <span class=n>i</span> <span class=o>&lt;=</span> <span class=n>5</span><span class=p>;</span> <span class=n>i</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
-              <span class=c1>// 打印空白区
-</span><span class=c1></span>              <span class=k>for</span> <span class=p>(</span><span class=kt>int</span> <span class=nf>j</span> <span class=o>=</span> <span class=n>5</span><span class=p>;</span> <span class=n>j</span> <span class=o>&gt;=</span> <span class=n>i</span><span class=p>;</span> <span class=n>j</span><span class=o>--</span><span class=p>)</span> <span class=p>{</span>
-                  <span class=n>System</span><span class=p>.</span><span class=na>out</span><span class=p>.</span><span class=na>print</span><span class=p>(</span><span class=s>&#34; &#34;</span><span class=p>);</span>
-              <span class=p>}</span>
-              <span class=c1>// 反向打印三角形左边
-</span><span class=c1></span>              <span class=k>for</span> <span class=p>(</span><span class=kt>int</span> <span class=nf>j</span> <span class=o>=</span> <span class=n>1</span><span class=p>;</span> <span class=n>j</span> <span class=o>&lt;=</span> <span class=n>i</span><span class=p>;</span> <span class=n>j</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
-                  <span class=n>System</span><span class=p>.</span><span class=na>out</span><span class=p>.</span><span class=na>print</span><span class=p>(</span><span class=s>&#34;*&#34;</span><span class=p>);</span>
-              <span class=p>}</span>
-              <span class=c1>// 打印三角形右边
-</span><span class=c1></span>              <span class=k>for</span> <span class=p>(</span><span class=kt>int</span> <span class=nf>j</span> <span class=o>=</span> <span class=n>1</span><span class=p>;</span> <span class=n>j</span> <span class=o>&lt;</span> <span class=n>i</span><span class=p>;</span> <span class=n>j</span><span class=o>++</span><span class=p>)</span> <span class=p>{</span>
-                  <span class=n>System</span><span class=p>.</span><span class=na>out</span><span class=p>.</span><span class=na>print</span><span class=p>(</span><span class=s>&#34;*&#34;</span><span class=p>);</span>
-              <span class=p>}</span>
-              <span class=n>System</span><span class=p>.</span><span class=na>out</span><span class=p>.</span><span class=na>println</span><span class=p>();</span>
-          <span class=p>}</span>
-      <span class=p>}</span>
-  <span class=p>}</span>
-  <span class=c1>// 输出
-</span><span class=c1></span>       <span class=o>*</span>
-      <span class=o>***</span>
-     <span class=o>*****</span>
-    <span class=o>*******</span>
-   <span class=o>*********</span></code></pre></div></li></ol><h3 id=方法>方法<a href=#方法 class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"/><path d="M8 12h8z"/></svg></a></h3><ol><li><p>方法的重载</p><ul><li><p>重载就是在一个类中，有相同的函数名称，但形参不同的函数</p></li><li><p>方法的重载规则</p><ol><li>方法名称必须相同</li><li>参数列表必须不同(个数、类型、排列顺序)</li><li>方法的返回值类型可以相同也可以不同</li><li>仅仅返回值类型不同不足以成为方法的重载<br></li></ol></li><li><p>实现理论</p></li></ul><p>方法名称相同时，编译器会根据调用方法的参数个数、参数类型等去逐个匹配，以选择对应的方法，如果匹配失败则编译器报错</p></li><li><p>可变参数</p><ul><li>JDK 1.5开始支持</li><li>在方法声明中，在制定参数类型后加一个省略号<code>...</code></li><li>一个方法中只能制定一个可变参数，它必须是该方法的最后一个参数。</li><li>可变参数的传入类型必须一致</li><li>任何普通的参数必须在它之前声明</li></ul></li><li><p>递归 <code>Recursion</code></p><ul><li>自己调用自己</li><li>利用递归可以用简单的程序来解决一些复杂的问题</li><li>它通常把一个大型复杂的问题层层转化为一个与原问题相似的且规模较小的问题来求解</li><li>递归策略只需少量的程序代码就可描述出解题过程所需要的多次重复计算，大大减少了程序的代码量</li><li>递归的能力在与用有限的语句来定义对象的无限集合</li><li>递归结构包含两个部分</li><li><ol><li>递归头: 什么时候不调用自身的方法。如果没有头，将陷入死循环</li></ol><ol><li>递归体: 什么时候需要调用自身方法</li></ol></li><li><p>下面的代码体现了递归的 <code>它通常把一个大型复杂的问题层层转化为一个与原问题相似的且规模较小的问题来求解</code></p><div class=highlight><pre class=chroma><code class=language-java data-lang=java><span class=kn>package</span> <span class=nf>com</span><span class=p>.</span><span class=na>painso</span><span class=p>.</span><span class=na>study</span><span class=p>.</span><span class=na>method</span><span class=p>;</span>
+   <span class=kd>public</span> <span class=kd>class</span> <span class=nc>D2</span> <span class=o>{</span>
+       <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>[]</span> <span class=n>args</span><span class=o>)</span> <span class=o>{</span>
+           <span class=cm>/**
+</span><span class=cm>            * 打印一个三角形
+</span><span class=cm>            * 1. 把三角形拆分成左右两边
+</span><span class=cm>            * 2. 定义几个矩形框起来
+</span><span class=cm>            * 3. 打印左边空白区域
+</span><span class=cm>            * 4. 打印三角形左边
+</span><span class=cm>            */</span>
+           <span class=k>for</span> <span class=o>(</span><span class=kt>int</span> <span class=n>i</span> <span class=o>=</span> <span class=n>1</span><span class=o>;</span> <span class=n>i</span> <span class=o>&lt;=</span> <span class=n>5</span><span class=o>;</span> <span class=n>i</span><span class=o>++)</span> <span class=o>{</span>
+               <span class=c1>// 打印空白区
+</span><span class=c1></span>               <span class=k>for</span> <span class=o>(</span><span class=kt>int</span> <span class=n>j</span> <span class=o>=</span> <span class=n>5</span><span class=o>;</span> <span class=n>j</span> <span class=o>&gt;=</span> <span class=n>i</span><span class=o>;</span> <span class=n>j</span><span class=o>--)</span> <span class=o>{</span>
+                   <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>print</span><span class=o>(</span><span class=s>&#34; &#34;</span><span class=o>);</span>
+               <span class=o>}</span>
+               <span class=c1>// 反向打印三角形左边
+</span><span class=c1></span>               <span class=k>for</span> <span class=o>(</span><span class=kt>int</span> <span class=n>j</span> <span class=o>=</span> <span class=n>1</span><span class=o>;</span> <span class=n>j</span> <span class=o>&lt;=</span> <span class=n>i</span><span class=o>;</span> <span class=n>j</span><span class=o>++)</span> <span class=o>{</span>
+                   <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>print</span><span class=o>(</span><span class=s>&#34;*&#34;</span><span class=o>);</span>
+               <span class=o>}</span>
+               <span class=c1>// 打印三角形右边
+</span><span class=c1></span>               <span class=k>for</span> <span class=o>(</span><span class=kt>int</span> <span class=n>j</span> <span class=o>=</span> <span class=n>1</span><span class=o>;</span> <span class=n>j</span> <span class=o>&lt;</span> <span class=n>i</span><span class=o>;</span> <span class=n>j</span><span class=o>++)</span> <span class=o>{</span>
+                   <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>print</span><span class=o>(</span><span class=s>&#34;*&#34;</span><span class=o>);</span>
+               <span class=o>}</span>
+               <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>();</span>
+           <span class=o>}</span>
+       <span class=o>}</span>
+   <span class=o>}</span>
+   <span class=c1>// 输出
+</span><span class=c1></span>        <span class=o>*</span>
+       <span class=o>***</span>
+      <span class=o>*****</span>
+     <span class=o>*******</span>
+    <span class=o>*********</span>
+</code></pre></div></li></ol><h3 id=方法>方法<a href=#方法 class=anchor aria-hidden=true><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h3><ol><li><p>方法的重载</p><ul><li><p>重载就是在一个类中，有相同的函数名称，但形参不同的函数</p></li><li><p>方法的重载规则</p><ol><li>方法名称必须相同</li><li>参数列表必须不同(个数、类型、排列顺序)</li><li>方法的返回值类型可以相同也可以不同</li><li>仅仅返回值类型不同不足以成为方法的重载</li></ol></li><li><p>实现理论</p><p>方法名称相同时，编译器会根据调用方法的参数个数、参数类型等去逐个匹配，以选择对应的方法，如果匹配失败则编译器报错</p></li></ul></li><li><p>可变参数</p><ul><li>JDK 1.5开始支持</li><li>在方法声明中，在制定参数类型后加一个省略号<code>...</code></li><li>一个方法中只能制定一个可变参数，它必须是该方法的最后一个参数。</li><li>可变参数的传入类型必须一致</li><li>任何普通的参数必须在它之前声明</li></ul></li><li><p>递归 <code>Recursion</code></p><ul><li><p>自己调用自己</p></li><li><p>利用递归可以用简单的程序来解决一些复杂的问题</p></li><li><p>它通常把一个大型复杂的问题层层转化为一个与原问题相似的且规模较小的问题来求解</p></li><li><p>递归策略只需少量的程序代码就可描述出解题过程所需要的多次重复计算，大大减少了程序的代码量</p></li><li><p>递归的能力在与用有限的语句来定义对象的无限集合</p></li><li><p>递归结构包含两个部分</p></li><li><ol><li>递归头: 什么时候不调用自身的方法。如果没有头，将陷入死循环</li><li>递归体: 什么时候需要调用自身方法</li></ol></li><li><p>下面的代码体现了递归的 <code>它通常把一个大型复杂的问题层层转化为一个与原问题相似的且规模较小的问题来求解</code></p><div class=highlight><pre class=chroma><code class=language-java data-lang=java><span class=kn>package</span> <span class=nn>com.painso.study.method</span><span class=o>;</span>
      
-<span class=kd>public</span> <span class=nf>class</span> <span class=n>Recursion2</span> <span class=p>{</span>
- <span class=cm>/* 阶乘
-</span><span class=cm>     2! = 2 * 1
-</span><span class=cm>     3! = 3 * 2 * 1
-</span><span class=cm>     5! = 5 * 4 * 3 * 2 * 1
-</span><span class=cm>  */</span>
- <span class=kd>public</span> <span class=nf>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=p>(</span><span class=n>String</span><span class=p>[]</span> <span class=nf>args</span><span class=p>)</span> <span class=p>{</span>
-     <span class=cm>/*
-</span><span class=cm>         计算5的阶乘
-</span><span class=cm>         流程如下:
-</span><span class=cm>         main -&amp;gt; recursion(5) -&amp;gt; recursion(4) -&amp;gt; recursion(3) -&amp;gt; recursion(2) -&amp;gt; recursion(1)
-</span><span class=cm>         由于递归体if判断了参数为1直接返回
-</span><span class=cm>         所以最后的recursion(1)得到一个具体值 1 后开始回传
-</span><span class=cm>         recursion(1):1  返回给       recursion(2) == 2*1 == 2
-</span><span class=cm>         recursion(2):2  继续返回给    recursion(3) == 3*2 == 6
-</span><span class=cm>         recursion(3):6  继续返回给    recursion(4) == 4*6 == 24
-</span><span class=cm>         recursion(4):24 继续返回给    recursion(5) == 5*24 == 120
-</span><span class=cm>      */</span>
-     <span class=n>System</span><span class=p>.</span><span class=na>out</span><span class=p>.</span><span class=na>println</span><span class=p>(</span><span class=n>recursion</span><span class=p>(</span><span class=n>5</span><span class=p>));</span>
- <span class=p>}</span>
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>Recursion2</span> <span class=o>{</span>
+    <span class=cm>/* 阶乘
+</span><span class=cm>        2! = 2 * 1
+</span><span class=cm>        3! = 3 * 2 * 1
+</span><span class=cm>        5! = 5 * 4 * 3 * 2 * 1
+</span><span class=cm>     */</span>
+    <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>[]</span> <span class=n>args</span><span class=o>)</span> <span class=o>{</span>
+        <span class=cm>/*
+</span><span class=cm>            计算5的阶乘
+</span><span class=cm>            流程如下:
+</span><span class=cm>            main -&amp;gt; recursion(5) -&amp;gt; recursion(4) -&amp;gt; recursion(3) -&amp;gt; recursion(2) -&amp;gt; recursion(1)
+</span><span class=cm>            由于递归体if判断了参数为1直接返回
+</span><span class=cm>            所以最后的recursion(1)得到一个具体值 1 后开始回传
+</span><span class=cm>            recursion(1):1  返回给       recursion(2) == 2*1 == 2
+</span><span class=cm>            recursion(2):2  继续返回给    recursion(3) == 3*2 == 6
+</span><span class=cm>            recursion(3):6  继续返回给    recursion(4) == 4*6 == 24
+</span><span class=cm>            recursion(4):24 继续返回给    recursion(5) == 5*24 == 120
+</span><span class=cm>         */</span>
+        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>recursion</span><span class=o>(</span><span class=n>5</span><span class=o>));</span>
+    <span class=o>}</span>
      
- <span class=c1>// 使用递归计算阶乘
-</span><span class=c1></span> <span class=kd>public</span> <span class=nf>static</span> <span class=kt>int</span> <span class=nf>recursion</span><span class=p>(</span><span class=kt>int</span> <span class=nf>n</span><span class=p>){</span>
-     <span class=k>if</span> <span class=p>(</span><span class=n>n</span> <span class=o>==</span> <span class=n>1</span><span class=p>){</span>
-         <span class=k>return</span> <span class=n>n</span><span class=p>;</span>
-     <span class=p>}</span><span class=k>else</span><span class=p>{</span>
-         <span class=cm>/*
-</span><span class=cm>            5的阶乘这里等于 return recursion(5); == 5 * 4 * 3 * 2 * 1
-</span><span class=cm>            因为我们在上面的if判断如果n==1直接返回从而跳出递归体
-</span><span class=cm>          */</span>
-         <span class=k>return</span> <span class=n>n</span><span class=o>*</span><span class=n>recursion</span><span class=p>(</span><span class=n>n</span><span class=o>-</span><span class=n>1</span><span class=p>);</span>
-     <span class=p>}</span>
+    <span class=c1>// 使用递归计算阶乘
+</span><span class=c1></span>    <span class=kd>public</span> <span class=kd>static</span> <span class=kt>int</span> <span class=nf>recursion</span><span class=o>(</span><span class=kt>int</span> <span class=n>n</span><span class=o>){</span>
+        <span class=k>if</span> <span class=o>(</span><span class=n>n</span> <span class=o>==</span> <span class=n>1</span><span class=o>){</span>
+            <span class=k>return</span> <span class=n>n</span><span class=o>;</span>
+        <span class=o>}</span><span class=k>else</span><span class=o>{</span>
+            <span class=cm>/*
+</span><span class=cm>               5的阶乘这里等于 return recursion(5); == 5 * 4 * 3 * 2 * 1
+</span><span class=cm>               因为我们在上面的if判断如果n==1直接返回从而跳出递归体
+</span><span class=cm>             */</span>
+            <span class=k>return</span> <span class=n>n</span><span class=o>*</span><span class=n>recursion</span><span class=o>(</span><span class=n>n</span><span class=o>-</span><span class=n>1</span><span class=o>);</span>
+        <span class=o>}</span>
      
- <span class=p>}</span>
-<span class=p>}</span><span class=n>dd</span></code></pre></div></li><li><p>递归适用于少量计算，因会在栈积压栈空间，容易引发异常且资源消耗很大(因为一直在嵌套调用方法)</p></li></ul></li></ol></div><hr class=post-end><footer class=post-info><p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83.0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><path d="M7 7V7z"/></svg><span class=tag><a href=https://painso.com/tags/basic>basic</a></span><span class=tag><a href=https://painso.com/tags/java>java</a></span></p><p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2V8h6"/><path d="M16 13H8z"/><path d="M16 17H8z"/><path d="M10 9H9 8"/></svg></p><p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><path d="M16 2V6z"/><path d="M8 2V6z"/><path d="M3 10H21z"/></svg>2020-08-23 09:25</p></footer></article><div class="post-nav thin"><a class=prev-post href=https://painso.com/posts/tech/2020/java-variable-scope/><span class=post-nav-label>&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><path d="M5 12H19z"/><path d="M12 5l7 7-7 7"/></svg></span><br><span>Java 变量作用域</span></a></div><div id=comments class=thin><div id=utter-container></div><script src=https://utteranc.es/client.js repo=ephz3nt/blog-comments issue-term=title theme=github-light crossorigin=anonymous async></script></div></main><footer id=site-footer class="section-inner thin animated fadeIn faster"><p>&copy; 2020 <a href=https://painso.com>ephz3nt</a> &#183; <a href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank rel=noopener>CC BY-NC 4.0</a></p><p>Made with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> &#183; Theme <a href=https://github.com/Track3/hermit target=_blank rel=noopener>Hermit</a> &#183; <a href=https://painso.com/posts/index.xml target=_blank title=rss><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg></a></p></footer><script src=https://painso.com/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin=anonymous></script></body></html>
+    <span class=o>}</span>
+<span class=o>}</span><span class=n>dd</span>
+</code></pre></div></li><li><p>递归适用于少量计算，因会在栈积压栈空间，容易引发异常且资源消耗很大(因为一直在嵌套调用方法)</p></li></ul></li></ol></div><hr class=post-end><footer class=post-info><p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7" y2="7"/></svg><span class=tag><a href=https://painso.com/tags/basic>basic</a></span><span class=tag><a href=https://painso.com/tags/java>java</a></span></p><p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6A2 2 0 004 4v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></p><p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>2020-08-23 09:25</p></footer></article><div class="post-nav thin"><a class=prev-post href=https://painso.com/posts/tech/2020/java-variable-scope/><span class=post-nav-label>&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span><br><span>Java 变量作用域</span></a></div><div id=comments class=thin><div id=utter-container></div><script src=https://utteranc.es/client.js repo=ephz3nt/blog-comments issue-term=title theme=github-light crossorigin=anonymous async></script></div></main><footer id=site-footer class="section-inner thin animated fadeIn faster"><p>&copy; 2020 <a href=https://painso.com>ephz3nt</a> &#183; <a href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank rel=noopener>CC BY-NC 4.0</a></p><p>Made with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> &#183; Theme <a href=https://github.com/Track3/hermit target=_blank rel=noopener>Hermit</a> &#183; <a href=https://painso.com/posts/index.xml target=_blank title=rss><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg></a></p></footer><script src=https://painso.com/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin=anonymous></script></body></html>

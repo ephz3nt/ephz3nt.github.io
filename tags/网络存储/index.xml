@@ -6,5 +6,5 @@
 首先在199(Target端)安装服务端软件：
 你可以在官方网站获取：http://iscsitarget.sf.net
 [root@localhost ~]# tar zxvf iscsitarget-1.4.20.2.tar.gz [root@localhost ~]# cd iscsitarget-1.4.20.2 [root@localhost iscsitarget-1.4.20.2]# make 这里我编译报错：
-make[1]: Leaving directory `/root/iscsitarget-1.4.20.2/usr&#39; make -C /lib/modules/2.6.32-358.14.1.el6.i686/build SUBDIRS=/root/iscsitarget-1.4.20.2/kernel modules make: *** /lib/modules/2.6.32-358.14.1.el6.i686/build: No such file or directory. Stop. make: *** [kernel] Error 2 安装kernel-devel和patch
+make[1]: Leaving directory `/root/iscsitarget-1.4.20.2/usr' make -C /lib/modules/2.6.32-358.14.1.el6.i686/build SUBDIRS=/root/iscsitarget-1.4.20.2/kernel modules make: *** /lib/modules/2.6.32-358.14.1.el6.i686/build: No such file or directory. Stop. make: *** [kernel] Error 2 安装kernel-devel和patch
 [root@localhost iscsitarget-1.4.20.2]# yum -y install kernel kernel-devel patch [root@localhost iscsitarget-1.</description></item></channel></rss>

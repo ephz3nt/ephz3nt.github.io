@@ -2,5 +2,5 @@
 都知道Discuz远程附件的机制蛋疼至极，图片可以直接显示链接，其他文件不行 折腾了一天，终于搞定 打开
 \source\function\function_discuzcode.php 找到
 function parseattachurl($aid, $ext, $ignoretid = 0) 将
-function parseattachurl($aid, $ext, $ignoretid = 0) { global $_G; $_G[&#39;forum_skipaidlist&#39;][] = $aid; return $_G[&#39;siteurl&#39;].&#39;forum.php?mod=attachment&amp;amp;amp;aid=&#39;.aidencode($aid, $ext, $ignoretid ? &#39;&#39; : $_G[&#39;tid&#39;]).($ext ? &#39;&amp;amp;amp;request=yes&amp;amp;amp;_f=.&#39;.$ext : &#39;&#39;); } 替换为
-function parseattachurl($aid, $ext, $ignoretid = 0) { global $_G; $_G[&#39;forum_skipaidlist&#39;][] = $aid; $aid = intval($aid); $attach = DB::fetch_first(&amp;quot;SELECT * FROM &amp;quot;.DB::table(&#39;forum_attachment&#39;).&amp;quot; WHERE aid=&#39;$aid&#39;&amp;quot;); $tid = $attach[&#39;tableid&#39;]; $attach = DB::fetch_first(&amp;quot;SELECT * FROM &amp;quot;.</description></item></channel></rss>
+function parseattachurl($aid, $ext, $ignoretid = 0) { global $_G; $_G['forum_skipaidlist'][] = $aid; return $_G['siteurl'].'forum.php?mod=attachment&amp;amp;amp;aid='.aidencode($aid, $ext, $ignoretid ? '' : $_G['tid']).($ext ? '&amp;amp;amp;request=yes&amp;amp;amp;_f=.'.$ext : ''); } 替换为
+function parseattachurl($aid, $ext, $ignoretid = 0) { global $_G; $_G['forum_skipaidlist'][] = $aid; $aid = intval($aid); $attach = DB::fetch_first(&amp;quot;SELECT * FROM &amp;quot;.DB::table('forum_attachment').&amp;quot; WHERE aid='$aid'&amp;quot;); $tid = $attach['tableid']; $attach = DB::fetch_first(&amp;quot;SELECT * FROM &amp;quot;.</description></item></channel></rss>

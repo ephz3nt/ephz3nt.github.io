@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CentOS on ephz3nt</title><link>https://painso.com/tags/centos/</link><description>Recent content in CentOS on ephz3nt</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 20 Mar 2014 16:16:44 +0000</lastBuildDate><atom:link href="https://painso.com/tags/centos/index.xml" rel="self" type="application/rss+xml"/><item><title>CloudStack 4.2.1&#43;KVM部署实战。</title><link>https://painso.com/posts/tech/2014/cloudstack-kvm-install/</link><pubDate>Thu, 20 Mar 2014 16:16:44 +0000</pubDate><guid>https://painso.com/posts/tech/2014/cloudstack-kvm-install/</guid><description>&lt;p&gt;拓扑图：&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://painso.com/images/2014/Topology.png&#34;&gt; &lt;img src=&#34;https://painso.com/images/2014/Topology.png&#34; alt=&#34;Topology&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;相关说明：&lt;/p&gt;
-&lt;p&gt;系统都为CentOS6.4 x64&lt;/p&gt;
-&lt;p&gt;Management端不需要任何虚拟化的支持，只是做WEB控制台和管理用，任意机器即可&lt;/p&gt;
-&lt;p&gt;Agent端的CPU需要虚拟化支持，我这里用的是R710，已开启VT并且cpu支持flag:vmx&lt;/p&gt;
-&lt;p&gt;主存储和二级存储都放在Agent端&lt;/p&gt;</description></item><item><title>IP网络存储iSCSI小试。</title><link>https://painso.com/posts/tech/2013/iscsi-experiment/</link><pubDate>Mon, 28 Oct 2013 02:41:16 +0000</pubDate><guid>https://painso.com/posts/tech/2013/iscsi-experiment/</guid><description>iSCSI技术是一种由IBM公司研究开发的，是一个供硬件设备使用的可以在IP协议的上层运行的SCSI指令集，这种指令集合可以实现在IP网络上运行SCSI协议，使其能够在诸如高速千兆以太网上进行路由选择。iSCSI技术是一种新储存技术，该技术是将现有SCSI接口与以太网络(Ethernet)技术结合，使服务器可与使用IP网络的储存装置互相交换资料。(详见百科)
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CentOS on ephz3nt</title><link>https://painso.com/tags/centos/</link><description>Recent content in CentOS on ephz3nt</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 20 Mar 2014 16:16:44 +0000</lastBuildDate><atom:link href="https://painso.com/tags/centos/index.xml" rel="self" type="application/rss+xml"/><item><title>CloudStack 4.2.1+KVM部署实战。</title><link>https://painso.com/posts/tech/2014/cloudstack-kvm-install/</link><pubDate>Thu, 20 Mar 2014 16:16:44 +0000</pubDate><guid>https://painso.com/posts/tech/2014/cloudstack-kvm-install/</guid><description>&lt;p>拓扑图：&lt;/p>
+&lt;p>&lt;a href="https://painso.com/images/2014/Topology.png"> &lt;img src="https://painso.com/images/2014/Topology.png" alt="Topology">&lt;/a>&lt;/p>
+&lt;p>相关说明：&lt;/p>
+&lt;p>系统都为CentOS6.4 x64&lt;/p>
+&lt;p>Management端不需要任何虚拟化的支持，只是做WEB控制台和管理用，任意机器即可&lt;/p>
+&lt;p>Agent端的CPU需要虚拟化支持，我这里用的是R710，已开启VT并且cpu支持flag:vmx&lt;/p>
+&lt;p>主存储和二级存储都放在Agent端&lt;/p></description></item><item><title>IP网络存储iSCSI小试。</title><link>https://painso.com/posts/tech/2013/iscsi-experiment/</link><pubDate>Mon, 28 Oct 2013 02:41:16 +0000</pubDate><guid>https://painso.com/posts/tech/2013/iscsi-experiment/</guid><description>iSCSI技术是一种由IBM公司研究开发的，是一个供硬件设备使用的可以在IP协议的上层运行的SCSI指令集，这种指令集合可以实现在IP网络上运行SCSI协议，使其能够在诸如高速千兆以太网上进行路由选择。iSCSI技术是一种新储存技术，该技术是将现有SCSI接口与以太网络(Ethernet)技术结合，使服务器可与使用IP网络的储存装置互相交换资料。(详见百科)
 搭建环境：
 177.208.11.199 iSCSI-Enterprise-Target - CentOS6.4 - 32 177.208.11.234 iSCSI-initiator-utils - CentOS6.4 - 32 177.208.11.103 iSCSI-Initiator - Windows Server 2003 Enterprise Edition SP2
 以下以IP后3位为简称吧
@@ -12,7 +12,7 @@
 首先在199(Target端)安装服务端软件：
 你可以在官方网站获取：http://iscsitarget.sf.net
 [root@localhost ~]# tar zxvf iscsitarget-1.4.20.2.tar.gz [root@localhost ~]# cd iscsitarget-1.4.20.2 [root@localhost iscsitarget-1.4.20.2]# make 这里我编译报错：
-make[1]: Leaving directory `/root/iscsitarget-1.4.20.2/usr&#39; make -C /lib/modules/2.6.32-358.14.1.el6.i686/build SUBDIRS=/root/iscsitarget-1.4.20.2/kernel modules make: *** /lib/modules/2.6.32-358.14.1.el6.i686/build: No such file or directory. Stop. make: *** [kernel] Error 2 安装kernel-devel和patch
+make[1]: Leaving directory `/root/iscsitarget-1.4.20.2/usr' make -C /lib/modules/2.6.32-358.14.1.el6.i686/build SUBDIRS=/root/iscsitarget-1.4.20.2/kernel modules make: *** /lib/modules/2.6.32-358.14.1.el6.i686/build: No such file or directory. Stop. make: *** [kernel] Error 2 安装kernel-devel和patch
 [root@localhost iscsitarget-1.4.20.2]# yum -y install kernel kernel-devel patch [root@localhost iscsitarget-1.</description></item><item><title>CentOS桌面环境安装</title><link>https://painso.com/posts/tech/2013/centos-install-desktop/</link><pubDate>Mon, 30 Sep 2013 12:41:48 +0000</pubDate><guid>https://painso.com/posts/tech/2013/centos-install-desktop/</guid><description>由于历史悠久，本篇文章图片已失效
 测试环境 CentOS6.4 64位 首先需要安装桌面环境包 yum -y groupinstall &amp;quot;KDE Desktop&amp;quot; yum -y groupinstall &amp;quot;X Window System&amp;quot; 默认源里好像只有KDE需要GNOME的可自行GOOGLE 等待安装完毕 安装完毕后再安装一下语言支持 yum -y groupinstall &amp;quot;Chinese Support&amp;quot;
 装VNC yum -y install tigervnc-server

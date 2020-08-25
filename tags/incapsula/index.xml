@@ -10,5 +10,5 @@
 2012.3.28更新：
 经测试大家使用日本节点时尽量使用103.28.249.1-100 的段，200以上的我测试过不行了
 2012.7.29更新：
-Incapsula日本节点IP段更新从103.28.249.1-255 更改为103.28.248.1-255</description></item><item><title>DNSPOD&#43;Incapsula CDN实现文件国内用户可下载Dropbox文件以及外链</title><link>https://painso.com/posts/tech/2012/dropbox-dnspod-incapsula-cdn-file-domestic-users-can-download-the-dropbox-file/</link><pubDate>Sun, 05 Feb 2012 23:07:54 +0000</pubDate><guid>https://painso.com/posts/tech/2012/dropbox-dnspod-incapsula-cdn-file-domestic-users-can-download-the-dropbox-file/</guid><description>&lt;p&gt;大家现在都知道Dropbox国内用户无法下载dl.dropbox.com/xxx.xxx 这样以及 dl-web.dropbox.com/xxx.xxx 的文件&lt;/p&gt;
-&lt;p&gt;现在即可通过Dropbox+DNSPOD+Incapsula实现下载咯&lt;/p&gt;</description></item></channel></rss>
+Incapsula日本节点IP段更新从103.28.249.1-255 更改为103.28.248.1-255</description></item><item><title>DNSPOD+Incapsula CDN实现文件国内用户可下载Dropbox文件以及外链</title><link>https://painso.com/posts/tech/2012/dropbox-dnspod-incapsula-cdn-file-domestic-users-can-download-the-dropbox-file/</link><pubDate>Sun, 05 Feb 2012 23:07:54 +0000</pubDate><guid>https://painso.com/posts/tech/2012/dropbox-dnspod-incapsula-cdn-file-domestic-users-can-download-the-dropbox-file/</guid><description>&lt;p>大家现在都知道Dropbox国内用户无法下载dl.dropbox.com/xxx.xxx 这样以及 dl-web.dropbox.com/xxx.xxx 的文件&lt;/p>
+&lt;p>现在即可通过Dropbox+DNSPOD+Incapsula实现下载咯&lt;/p></description></item></channel></rss>

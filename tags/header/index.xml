@@ -2,8 +2,9 @@
 vi 编辑一下nginx.h/*
 Copyright (C) Igor Sysoev */ ifndef NGINX_HINCLUDED_ define NGINX_HINCLUDED_ define nginx_version 1000010 define NGINX_VERSION &amp;quot;1.0.0.1&amp;quot; define NGINX_VER &amp;quot;nginx/&amp;quot; NGINX_VERSION define NGINX_VAR &amp;quot;NGINX&amp;quot; define NGX_OLDPID_EXT &amp;quot;.oldbin&amp;quot; endif /* NGINX_HINCLUDED_ */ 只需要修改
 define NGINX_VERSION 对应的版本值，不填的话留空 如&amp;rdquo;&amp;rdquo;
-define NGINX_VER &amp;quot;nginx/&amp;quot; NGINX_VERSION  在这里&amp;rdquo;nginx/&amp;ldquo; nginx/修改成你想显示的Server信息 /看不填，看个人需求。
+define NGINX_VER &amp;quot;nginx/&amp;quot; NGINX_VERSION  在这里&amp;quot;nginx/&amp;rdquo; nginx/修改成你想显示的Server信息 /看不填，看个人需求。
 编辑好以后回到NGINX安装目录下面输入：
 ./configure --user=www --group=www --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module --with-http_gzip_static_module --with-ipv6 再输入
 make
-编译完成后的NGINX文件在 objs文件夹下，先备份一下原来的 &amp;gt; cp /usr/local/nginx/sbin/nginx /usr/local/nginx/sbin/nginx.bak &amp;gt; 把新的NGINX文件复制过去，需先停止NGINX服务哦：service nginx stop &amp;gt; cp objs/nginx /usr/local/nginx/sbin/ &amp;gt; service nginx start</description></item></channel></rss>
+编译完成后的NGINX文件在 objs文件夹下，先备份一下原来的
+cp /usr/local/nginx/sbin/nginx /usr/local/nginx/sbin/nginx.bak 把新的NGINX文件复制过去，需先停止NGINX服务哦：service nginx stop cp objs/nginx /usr/local/nginx/sbin/ service nginx start</description></item></channel></rss>

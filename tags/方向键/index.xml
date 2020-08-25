@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>方向键 on ephz3nt</title><link>https://painso.com/tags/%E6%96%B9%E5%90%91%E9%94%AE/</link><description>Recent content in 方向键 on ephz3nt</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 16 Feb 2014 14:01:15 +0000</lastBuildDate><atom:link href="https://painso.com/tags/%E6%96%B9%E5%90%91%E9%94%AE/index.xml" rel="self" type="application/rss+xml"/><item><title>Python3方向键乱码问题。</title><link>https://painso.com/posts/tech/2014/python3-garbled/</link><pubDate>Sun, 16 Feb 2014 14:01:15 +0000</pubDate><guid>https://painso.com/posts/tech/2014/python3-garbled/</guid><description>最近开始学习python,由于书中版本为3,所以重新安装了个3版本后发现运行后不管是方向键还是Backspace（退格键）都无法正常使用
-&amp;nbsp;
-查阅资料后发现原因是readline的问题
+ 查阅资料后发现原因是readline的问题
 做下软连接重新启动正常
 ln -s /lib64/libreadline.so.6 /usr/lib64/ ln -s /lib64/libreadline.so.6.0 /usr/lib/ ln -s /lib64/libreadline.so.6.0 /usr/lib64/ 如果还是不行就需要重新编译安装py了</description></item></channel></rss>
