@@ -221,7 +221,7 @@ package operator; public class Demo01 { public static void main(String[] args) {
 <li><p>方法的重载</p>
 
 <ul>
-<li>重载就是在一个类中，有相同的函数名称，但形参不同的函数</li>
+<li><p>重载就是在一个类中，有相同的函数名称，但形参不同的函数</p></li>
 
 <li><p>方法的重载规则</p>
 
@@ -229,13 +229,88 @@ package operator; public class Demo01 { public static void main(String[] args) {
 <li>方法名称必须相同</li>
 <li>参数列表必须不同(个数、类型、排列顺序)</li>
 <li>方法的返回值类型可以相同也可以不同</li>
-<li>仅仅返回值类型不同不足以成为方法的重载</li>
 </ol></li>
 
-<li><p>实现理论</p></li>
-</ul>
+<li><p>仅仅返回值类型不同不足以成为方法的重载</p></li>
+</ul></li>
+</ol>
+
+<ul>
+<li><p>实现理论</p>
 
 <p>方法名称相同时，编译器会根据调用方法的参数个数、参数类型等去逐个匹配，以选择对应的方法，如果匹配失败则编译器报错</p></li>
+</ul>
+
+<ol>
+<li><p>可变参数</p>
+
+<ul>
+<li>JDK 1.5开始支持</li>
+<li>在方法声明中，在制定参数类型后加一个省略号<code>...</code></li>
+<li>一个方法中只能制定一个可变参数，它必须是该方法的最后一个参数。</li>
+<li>可变参数的传入类型必须一致</li>
+<li>任何普通的参数必须在它之前声明</li>
+</ul></li>
+
+<li><p>递归 <code>Recursion</code></p>
+
+<ul>
+<li>自己调用自己</li>
+<li>利用递归可以用简单的程序来解决一些复杂的问题</li>
+<li>它通常把一个大型复杂的问题层层转化为一个与原问题相似的且规模较小的问题来求解</li>
+<li>递归策略只需少量的程序代码就可描述出解题过程所需要的多次重复计算，大大减少了程序的代码量</li>
+<li>递归的能力在与用有限的语句来定义对象的无限集合</li>
+<li>递归结构包含两个部分</li>
+
+<li><ol>
+<li>递归头: 什么时候不调用自身的方法。如果没有头，将陷入死循环</li>
+</ol>
+
+<ol>
+<li>递归体: 什么时候需要调用自身方法</li>
+</ol></li>
+
+<li><p>下面的代码体现了递归的 <code>它通常把一个大型复杂的问题层层转化为一个与原问题相似的且规模较小的问题来求解</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nf">com</span><span class="p">.</span><span class="na">painso</span><span class="p">.</span><span class="na">study</span><span class="p">.</span><span class="na">method</span><span class="p">;</span>
+     
+<span class="kd">public</span> <span class="nf">class</span> <span class="n">Recursion2</span> <span class="p">{</span>
+ <span class="cm">/* 阶乘
+</span><span class="cm">     2! = 2 * 1
+</span><span class="cm">     3! = 3 * 2 * 1
+</span><span class="cm">     5! = 5 * 4 * 3 * 2 * 1
+</span><span class="cm">  */</span>
+ <span class="kd">public</span> <span class="nf">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="p">[]</span> <span class="nf">args</span><span class="p">)</span> <span class="p">{</span>
+     <span class="cm">/*
+</span><span class="cm">         计算5的阶乘
+</span><span class="cm">         流程如下:
+</span><span class="cm">         main -&amp;gt; recursion(5) -&amp;gt; recursion(4) -&amp;gt; recursion(3) -&amp;gt; recursion(2) -&amp;gt; recursion(1)
+</span><span class="cm">         由于递归体if判断了参数为1直接返回
+</span><span class="cm">         所以最后的recursion(1)得到一个具体值 1 后开始回传
+</span><span class="cm">         recursion(1):1  返回给       recursion(2) == 2*1 == 2
+</span><span class="cm">         recursion(2):2  继续返回给    recursion(3) == 3*2 == 6
+</span><span class="cm">         recursion(3):6  继续返回给    recursion(4) == 4*6 == 24
+</span><span class="cm">         recursion(4):24 继续返回给    recursion(5) == 5*24 == 120
+</span><span class="cm">      */</span>
+     <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">recursion</span><span class="p">(</span><span class="n">5</span><span class="p">));</span>
+ <span class="p">}</span>
+     
+ <span class="c1">// 使用递归计算阶乘
+</span><span class="c1"></span> <span class="kd">public</span> <span class="nf">static</span> <span class="kt">int</span> <span class="nf">recursion</span><span class="p">(</span><span class="kt">int</span> <span class="nf">n</span><span class="p">){</span>
+     <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="n">1</span><span class="p">){</span>
+         <span class="k">return</span> <span class="n">n</span><span class="p">;</span>
+     <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+         <span class="cm">/*
+</span><span class="cm">            5的阶乘这里等于 return recursion(5); == 5 * 4 * 3 * 2 * 1
+</span><span class="cm">            因为我们在上面的if判断如果n==1直接返回从而跳出递归体
+</span><span class="cm">          */</span>
+         <span class="k">return</span> <span class="n">n</span><span class="o">*</span><span class="n">recursion</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">1</span><span class="p">);</span>
+     <span class="p">}</span>
+     
+ <span class="p">}</span>
+<span class="p">}</span><span class="n">dd</span></code></pre></div></li>
+
+<li><p>递归适用于少量计算，因会在栈积压栈空间，容易引发异常且资源消耗很大(因为一直在嵌套调用方法)</p></li>
+</ul></li>
 </ol>
 ]]></content></item><item><title>Java 变量作用域</title><link>https://painso.com/posts/tech/2020/java-variable-scope/</link><pubDate>Sun, 23 Aug 2020 16:50:36 +0800</pubDate><guid>https://painso.com/posts/tech/2020/java-variable-scope/</guid><description>Java 变量分为: 类变量 实例变量 局部变量 类变量 需要在变量前添加修饰符static，可以在方法中直接调用
 public class Hello { static int number = 10; // 定义类变量 public static void main(String[] args) { System.out.println(number); // 直接调用 } } 实例变量 定义格式为String &amp;lt;type&amp;gt; &amp;lt;name&amp;gt; = &amp;lt;value&amp;gt;;
