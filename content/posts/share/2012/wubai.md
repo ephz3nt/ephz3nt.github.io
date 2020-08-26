@@ -9,6 +9,6 @@ categories:
 date: 2012-09-02 12:15:17
 ---
 
-<iframe width="854" height="480" src="https://www.youtube.com/embed/jPu3u8kfxCw" frameborder="0" allowfullscreen></iframe>
+[![](http://img.youtube.com/vi/jPu3u8kfxCw/0.jpg)](http://www.youtube.com/watch?v=jPu3u8kfxCw "")
 
 感觉比刘德华唱的好听 (:Q

@@ -9,4 +9,4 @@ categories:
 date: 2017-01-13 20:26:48
 ---
 
-<iframe width="640" height="360" src="https://www.youtube.com/embed/w_o8fOKZKX0" frameborder="0" allowfullscreen></iframe>
+[![](http://img.youtube.com/vi/w_o8fOKZKX0/0.jpg)](http://www.youtube.com/watch?v=w_o8fOKZKX0 "")

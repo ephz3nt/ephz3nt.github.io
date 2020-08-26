@@ -10,6 +10,6 @@ categories:
 date: 2011-11-18 14:08:26
 ---
 
-<iframe width="854" height="480" src="https://www.youtube.com/embed/KqQAYfvFZgM" frameborder="0" allowfullscreen></iframe>
+[![](http://img.youtube.com/vi/ohm29TYeDl4/0.jpg)](http://www.youtube.com/watch?v=ohm29TYeDl4 "")
 
 冯巩 郭冬临 郭月《得寸进尺》

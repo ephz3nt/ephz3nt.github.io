@@ -12,7 +12,7 @@ categories:
 
 Bilibili: [https://www.bilibili.com/video/av68373450](https://www.bilibili.com/video/av68373450)
 
-当前观看至: [https://www.bilibili.com/video/av68373450?p=50](https://www.bilibili.com/video/av68373450?p=50)
+当前观看至: [https://www.bilibili.com/video/av68373450?p=58](https://www.bilibili.com/video/av68373450?p=58) 
 
 ### 运算符
 
@@ -322,3 +322,73 @@ Bilibili: [https://www.bilibili.com/video/av68373450](https://www.bilibili.com/v
      ```
 
    * 递归适用于少量计算，因会在栈积压栈空间，容易引发异常且资源消耗很大(因为一直在嵌套调用方法)
+
+### 数组
+
+1. 冒泡排序
+
+   * 比较数组中相邻的两个数值大小，如果`a[0]>a[1]` 则进行位置互换 
+
+   * java 实现
+
+     ```java
+     package com.painso.study.array;
+     
+     import java.util.Arrays;
+     
+     public class BubbleSort {
+         public static void main(String[] args) {
+             int[] ary = {23,1,44,545,22,5677,223,11,32,4,13};
+     //        System.out.println(Arrays.toString(ary));
+             sort(ary);
+         }
+         public static void sort(int[] array){
+             for (int i = 0;i< array.length;i++){
+                 for (int j = 0;j < array.length-1;j++){
+                     int tmp;
+                     if (array[j]>array[j+1]){
+                         tmp = array[j+1];
+                         array[j+1] = array[j];
+                         array[j] = tmp;
+                     }
+     
+                 }
+     
+             }
+             System.out.println(Arrays.toString(array));
+     
+         }
+     }
+     ```
+
+   * 顺便发一下Go的实现，Go的互换支持更简洁的写法 `a,b = b,a`
+
+     ```go
+     package main
+     
+     import (
+     	"fmt"
+     )
+     
+     func sort(arr []int) []int {
+     	for j := 0; j < len(arr)-1; j++ {
+     		for i := 0; i < len(arr)-1; i++ {
+     			if arr[i] > arr[i+1] {
+     				arr[i], arr[i+1] = arr[i+1], arr[i]
+     			}
+     		}
+     	}
+     	return arr
+     }
+     
+     func main() {
+     	//{3,22,1,55,33,76,32,22}
+     	var b = []int{3, 23, 1, 55, 33, 76, 8, 32, 22}
+     	fmt.Println(sort(b))
+     
+     }
+     ```
+
+     
+
+   * `冒泡排序还是不太懂，需复习` https://www.bilibili.com/video/av68373450?p=58

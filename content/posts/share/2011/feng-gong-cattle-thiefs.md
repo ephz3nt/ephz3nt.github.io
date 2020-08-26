@@ -11,6 +11,6 @@ categories:
 date: 2011-11-18 14:06:07
 ---
 
-<iframe width="854" height="480" src="https://www.youtube.com/embed/8Xdn_9dO-YU" frameborder="0" allowfullscreen></iframe>
+[![](http://img.youtube.com/vi/oeJv0wbHsMs/0.jpg)](http://www.youtube.com/watch?v=oeJv0wbHsMs "")
 
 冯巩 牛群《小偷公司》

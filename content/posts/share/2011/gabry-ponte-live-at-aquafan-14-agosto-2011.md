@@ -13,4 +13,4 @@ date: 2011-11-22 11:57:44
 
 # **Gabry Ponte live at Aquafan, 14 agosto 2011**
 
-<iframe width="854" height="480" src="https://www.youtube.com/embed/w25cdu8R_VU" frameborder="0" allowfullscreen></iframe>
+[![](http://img.youtube.com/vi/w25cdu8R_VU/0.jpg)](http://www.youtube.com/watch?v=w25cdu8R_VU "")

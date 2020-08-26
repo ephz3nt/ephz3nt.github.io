@@ -13,6 +13,6 @@ categories:
 date: 2011-11-18 13:37:38
 ---
 
-<iframe width="854" height="480" src="https://www.youtube.com/embed/C4HJ0zfZ-EM" frameborder="0" allowfullscreen></iframe>
+[![](http://img.youtube.com/vi/C4HJ0zfZ-EM/0.jpg)](http://www.youtube.com/watch?v=C4HJ0zfZ-EM "")
 
 在youtu上面下的高清，原版没混音版本好听丫
