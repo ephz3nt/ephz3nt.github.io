@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>basic on ephz3nt</title><link>https://painso.com/tags/basic/</link><description>Recent content in basic on ephz3nt</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 23 Aug 2020 17:25:46 +0800</lastBuildDate><atom:link href="https://painso.com/tags/basic/index.xml" rel="self" type="application/rss+xml"/><item><title>Java 基础</title><link>https://painso.com/posts/tech/2020/java-basic/</link><pubDate>Sun, 23 Aug 2020 17:25:46 +0800</pubDate><guid>https://painso.com/posts/tech/2020/java-basic/</guid><description>狂神说JAVA学习笔记 - JavaSE基础部分 Bilibili: https://www.bilibili.com/video/av68373450
-当前观看至: https://www.bilibili.com/video/av68373450?p=58
+当前观看至: https://www.bilibili.com/video/av68373450?p=60
 运算符 不同类型运算返回值
 double a = 55; float b = 10F; long c = 10; int d = 20; short e = 25; byte f = 25; 如果变量a+b+c+d相加，返回值类型为double 如果变量b+c+d+e相加，返回值类型为float
 如果d+e相加，返回值为int 如果e+f相加，返回值为int 。。。 结论
