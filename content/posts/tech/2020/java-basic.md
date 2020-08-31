@@ -12,7 +12,7 @@ categories:
 
 Bilibili: [https://www.bilibili.com/video/av68373450](https://www.bilibili.com/video/av68373450)
 
-当前观看至: [https://www.bilibili.com/video/av68373450?p=58](https://www.bilibili.com/video/av68373450?p=58) 
+当前观看至: [https://www.bilibili.com/video/av68373450?p=60](https://www.bilibili.com/video/av68373450?p=60) 
 
 ### 运算符
 
@@ -332,32 +332,63 @@ Bilibili: [https://www.bilibili.com/video/av68373450](https://www.bilibili.com/v
    * java 实现
 
      ```java
-     package com.painso.study.array;
+     package com.painso.study.array2;
      
      import java.util.Arrays;
      
+     /**
+      * @author ephz3nt
+      * @version 1.0
+      * @description 冒泡排序算法实现
+      */
      public class BubbleSort {
-         public static void main(String[] args) {
-             int[] ary = {23,1,44,545,22,5677,223,11,32,4,13};
-     //        System.out.println(Arrays.toString(ary));
-             sort(ary);
-         }
-         public static void sort(int[] array){
-             for (int i = 0;i< array.length;i++){
-                 for (int j = 0;j < array.length-1;j++){
+     
+         // sort method
+         public static int[] sort(int[] s){
+             /* 一层for循环
+                二层循环每次排序结束后的处理
+              */
+             for (int i = 0; i < s.length-1;i++){
+                 /*
+                 二层for循环
+                 实际进行排序算法的循环体
+                 一二层的条件s.length要-1 否则会触发二层循环下标越界
+                  */
+                 //
+                 for (int j = 0; j < s.length-1;j++ ){
+                     // 定义临时变量用作交换数组值的位置
                      int tmp;
-                     if (array[j]>array[j+1]){
-                         tmp = array[j+1];
-                         array[j+1] = array[j];
-                         array[j] = tmp;
+                     // 判断如果当前值>后一位索引的值则互换位置
+                     if (s[j] > s[j+1]){
+                         tmp = s[j];
+                         s[j] = s[j+1];
+                         s[j+1] = tmp;
+                     }else{
+                         continue;
                      }
-     
                  }
-     
              }
-             System.out.println(Arrays.toString(array));
-     
+             return s;
          }
+     
+         public static void main(String[] args) {
+             int[] s1 = {9,7,5,3,1,55,71,555,9879,11};
+             int[] s2 = sort(s1);
+             for (int i = 0; i < s2.length; i++) {
+                 System.out.printf("%d\t",s2[i]);
+             }
+             System.out.println();
+             for (int i = 0; i < s1.length; i++) {
+                 System.out.printf("%d\t",s1[i]);
+             }
+             System.out.println();
+     
+             Arrays.sort(s1);
+             for (int i = 0; i < s1.length; i++) {
+                 System.out.printf("%d\t",s1[i]);
+             }
+         }
+     
      }
      ```
 
@@ -391,4 +422,181 @@ Bilibili: [https://www.bilibili.com/video/av68373450](https://www.bilibili.com/v
 
      
 
-   * `冒泡排序还是不太懂，需复习` https://www.bilibili.com/video/av68373450?p=58
+   * 冒泡排序的关键
+
+     * 假设有以下数组 
+
+       * ```java
+         int[] s = {9,7,5,3,1};
+             for (int i = 0; i < s.length-1;i++){
+                 for (int j = 0; j < s.length-1;j++ ){
+                     int tmp;
+                     if (s[j] > s[j+1]){ // [1]
+                         tmp = s[j];
+                         s[j] = s[j+1];
+                         s[j+1] = tmp;
+                     }else{
+                         continue;
+                     }
+                 }
+             }
+         // 执行嵌套循环顺序为 
+         /* 0-0 表示 外层和内层的第几次循环
+         // 原始数据 	9,7,5,3,1
+         	      1-1: 7,9,5,3,1 // 第一次 因9>7则互换位置
+                   1-2: 7,5,9,3,1 // 第二次 因9>5则互换位置
+                   1-3: 7,5,3,9,1 // 第三次 因9>3则互换位置
+                   1-4: 7,5,3,1,9 // 第四次 因9>3则互换位置
+                   1-5: 7,5,3,1,9 // 第五次 这里注意上方[1]处比较的是 s[j] > s[j+1] 因为这里是第五次循环 j的值是4 下标为4的值正好是最后一位：9 ， 如果比较 下标为5的话就会提示下标越界，因为数组s一共才5个元素，下标从0开始最高为4而已，所以需要在二层for条件表达式减去1
+                   既然第二层循环条件表达式减去1了外层也应同样减去1, 不然后面两次只是重复运行
+         */
+         ```
+
+2. 稀疏矩阵
+
+   * 稀疏矩阵应用于一个矩阵中其元素大部分为零的矩阵
+
+   * 稀疏矩阵包含 行,列,值 固定三列
+
+   * 其中第一行为矩阵参数信息 包含 X行,Y列,Z个值
+
+   * 实现
+
+     ```java
+     package com.painso.study.array2;
+     
+     /**
+      * @author ephz3nt
+      * @version 1.0
+      * @description Sparse Matrix
+      */
+     public class SparseMatrix {
+         /**
+          * 稀疏矩阵，在数值分析中，是其元素大部分为零的矩阵。
+          * 反之，如果大部分元素都非零，则这个矩阵是稠密的。
+          * 在科学与工程领域中求解线性模型时经常出现大型的稀疏矩阵。
+          * 在使用计算机存储和操作稀疏矩阵时，经常需要修改标准算法以利用矩阵的稀疏结构。
+          * 由于其自身的稀疏特性，通过压缩可以大大节省稀疏矩阵的内存代价。
+          * 稀疏矩阵包含 行,列,值 固定三列
+          *         0	0	0	0	0
+          *         0	0	1	0	0
+          *         0	0	0	2	0
+          *         0	0	0	0	0
+          *         0	0	0	0	0
+          * 其中第一行为矩阵参数信息 包含 X行,Y列,Z个值
+          * 如上矩阵 包含 5行,5列,2个值
+          * 用稀疏矩阵表示为
+          *         5    6   2   参数信息: 5行 5列 2个值
+          *         1    2   1   1行2列值为1
+          *         2    3   2   2行3列值为2
+          */
+         // 定义 压缩方法
+         public static int[][] zip(int[][] s){
+             // 定义稀疏矩阵数组行变量，需遍历原数组
+             int sparseLine = 0;
+             // 获取原数组中值的个数，定义稀疏数组前置需求
+             for (int i = 0; i < s.length; i++) {
+                 for (int j = 0; j < s[i].length; j++) {
+                     if (s[i][j] != 0){
+                         sparseLine++;
+                     }
+                 }
+             }
+             // 获取到值个数sparseLine，定义稀疏矩阵数组
+             // 因第一行需额外记录矩阵参数信息需要+1，列为固定3列
+             int[][] sparseMatrix = new int[sparseLine+1][3];
+     
+             // 定义x存储行信息，定义y存储总共多少值用于求列，定义valueSum值总量
+             int x=0;
+             int y =0;
+             int valueSum = 0;
+             for (int i = 0; i < s.length; i++) {
+                 for (int j = 0; j < s[i].length; j++) {
+                     if (s[i][j] !=0){
+                         valueSum++;
+                         // 设置 有效值的x，y轴坐标及值
+                         sparseMatrix[valueSum][0] = i;
+                         sparseMatrix[valueSum][1] = j;
+                         sparseMatrix[valueSum][2] = s[i][j];
+                     }
+                     y++;
+                 }
+                 x++;
+             }
+             // 定义稀疏数组参数 行的值
+             sparseMatrix[0][0] = x;
+             // 定义稀疏数组参数 列的值
+             sparseMatrix[0][1] = y/x;
+             // 定义稀疏数组参数 值总量
+             sparseMatrix[0][2] = valueSum;
+             // 输出并返回压缩后的稀疏矩阵
+     //        for (int i = 0; i < sparseMatrix.length; i++) {
+     //            for (int j = 0; j < sparseMatrix[i].length; j++) {
+     //                System.out.print(sparseMatrix[i][j]+"\t");
+     //            }
+     //            System.out.println();
+     //        }
+             return sparseMatrix;
+         }
+         // 定义解压缩稀疏矩阵方法
+         public static int[][] unzip(int[][] s){
+             // 定义解压缩数组参数信息
+             // 这里看着方括号很多 其实 s[0][0] 和 s[0][1] 为稀疏数组元信息的 行与列的值
+             int[][] unCompressMatrix = new int[s[0][0]][s[0][1]];
+     
+             // 遍历还原值坐标 这里行从1开始因为第0行是稀疏数组元信息
+             for (int i = 1; i < s.length; i++) {
+                 int x=0;
+                 int y=0;
+                 int value=0;
+                 // 取 x,y坐标轴 s[i][0], s[i][1] 的值 s[i][2] 赋给unCompressMatrix
+                 unCompressMatrix[s[i][0]][s[i][1]] = s[i][2];
+             }
+                 return unCompressMatrix;
+         }
+         public static void main(String[] args) {
+             /*
+             定义一个  5*5 的矩阵
+             其中有两个值 1,2
+             坐标分别为
+             1： 第一行第二列
+             2： 第二行第三列
+             0	0	0	0	0
+             0	0	1	0	0
+             0	0	0	2	0
+             0	0	0	0	0
+             0	0	0	0	0
+              */
+             int[][] s1 = new int[5][6];
+             s1[1][2] = 1;
+             s1[2][3] = 2;
+             System.out.println("输出原数组");
+             for (int i = 0; i < s1.length; i++) {
+                 for (int j = 0; j < s1[i].length; j++) {
+                     System.out.print(s1[i][j]+"\t");
+                 }
+                 System.out.println();
+             }
+             System.out.println("==========================");
+             int[][] zipArray = zip(s1);
+             System.out.println("压缩原数组");
+             for (int i = 0; i < zipArray.length; i++) {
+                 for (int j = 0; j < zipArray[i].length; j++) {
+                     System.out.print(zipArray[i][j]+"\t");
+                 }
+                 System.out.println();
+             }
+             System.out.println("解压缩稀疏矩阵");
+             System.out.println("==========================");
+             int[][]  unCompressMatrix=unzip(zipArray);
+             for (int i = 0; i < unCompressMatrix.length; i++) {
+                 for (int j = 0; j < unCompressMatrix[i].length; j++) {
+                     System.out.print(unCompressMatrix[i][j]+"\t");
+                 }
+                 System.out.println();
+             }
+         }
+     }
+     ```
+
+     
