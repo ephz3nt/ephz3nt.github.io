@@ -747,7 +747,7 @@ Process finished with <span class="nb">exit</span> code <span class="m">0</span>
 </li>
 <li>
 <p>然后<code>new</code>了一个<code>dog</code>对象放到栈，<code>dog</code>引用了具体在堆中的对象 内存地址如: 0x0001</p>
-<p><img src="../../../../../Dropbox/Documents/github/blog/images/java-basic/image-20200901203911058.png" alt="image-20200901203911058"></p>
+<p><img src="../../../../../images/java-basic/image-20200901203911058.png" alt="image-20200901203911058"></p>
 </li>
 <li>
 <p>自己画的。。。</p>
@@ -755,7 +755,7 @@ Process finished with <span class="nb">exit</span> code <span class="m">0</span>
 </ol>
 </li>
 </ul>
-<p><img src="../../../../../Dropbox/Documents/github/blog/images/java-basic/image-20200901210551729.png" alt="image-20200901210551729"></p>
+<p><img src="../../../../../images/java-basic/image-20200901210551729.png" alt="image-20200901210551729"></p>
 </li>
 </ol>
 </li>
