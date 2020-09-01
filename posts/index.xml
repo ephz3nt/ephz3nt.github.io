@@ -646,7 +646,118 @@ Process finished with <span class="nb">exit</span> code <span class="m">0</span>
 <p>从代码运行的角度考虑的是先有类后有对象。类是对象的模板。</p>
 </li>
 <li>
-<p>一个类里面只有属性和方法。<code>再牛逼的人写都一样</code></p>
+<p>一个类里面只有属性和方法。<strong><code>再牛逼的人写都一样</code></strong></p>
+<ol>
+<li>
+<p>创建与初始化对象</p>
+<ul>
+<li>使用new关键字创建的时候，除了分配内存之外还会给创建好的对象进行默认的初始化以及对类中构造器的调用</li>
+<li>类中的构造器也称为构造方法，是在进行创建对象的时候必须要调用的。并且构造器有以下两个特点：
+<ol>
+<li>必须和类的名字相同</li>
+<li>必须没有返回类型，也不能写void</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>构造器</p>
+<ul>
+<li>
+<p>即使一个类里什么都不写也会存在一个默认构造器</p>
+<ul>
+<li>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// source
+</span><span class="c1"></span><span class="kn">package</span> <span class="nn">com.painso.study.oop.demo02</span><span class="o">;</span>
+         
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
+<span class="o">}</span>
+<span class="c1">// Decompiler
+</span><span class="c1">//
+</span><span class="c1">// Source code recreated from a .class file by IntelliJ IDEA
+</span><span class="c1">// (powered by FernFlower decompiler)
+</span><span class="c1">//
+</span><span class="c1"></span>         
+<span class="kn">package</span> <span class="nn">com.painso.study.oop.demo02</span><span class="o">;</span>
+         
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nf">Person</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>使用<code>new</code>关键字本质是在调用构造器</p>
+</li>
+<li>
+<p>一旦定义了有参构造，如要使用无参构造器必须显示定义(建议带上)</p>
+</li>
+<li>
+<p>构造器一般用来初始化值</p>
+</li>
+<li>
+<p>IDEA 快捷键 <code>alt + insert</code> 可快捷生成构造方法、Getter/Setter方法等等</p>
+</li>
+</ul>
+</li>
+<li>
+<p>创建对象内存分析</p>
+<ul>
+<li>
+<p>java内存分为栈和堆，堆中又包含方法区，方法区包含静态方法区(修饰符<code>static</code>)</p>
+</li>
+<li>
+<p>堆中存放<code>new</code>实例化后的对象具体内容，栈中存放对象的引用(可以看作快捷方式)，实际上这个对象并不在栈中</p>
+</li>
+<li>
+<p>有以下代码</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// Pet class
+</span><span class="c1"></span><span class="kn">package</span> <span class="nn">com.painso.study.oop.demo03</span><span class="o">;</span>
+       
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Pet</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+       
+    <span class="c1">// 无参构造 non-arguments construct
+</span><span class="c1"></span>       
+    <span class="c1">// shout method
+</span><span class="c1"></span>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">shout</span><span class="o">(){</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">+</span> <span class="s">&#34;叫了一声!&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="c1">// Application class
+</span><span class="c1"></span><span class="kn">package</span> <span class="nn">com.painso.study.oop</span><span class="o">;</span>
+       
+<span class="kn">import</span> <span class="nn">com.painso.study.oop.demo03.Pet</span><span class="o">;</span>
+       
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Application</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Pet</span> <span class="n">dog</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Pet</span><span class="o">();</span>
+        <span class="n">dog</span><span class="o">.</span><span class="na">name</span>  <span class="o">=</span> <span class="s">&#34;旺财&#34;</span><span class="o">;</span>
+        <span class="n">dog</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">3</span><span class="o">;</span>
+        <span class="n">dog</span><span class="o">.</span><span class="na">shout</span><span class="o">();</span>
+        <span class="n">Pet</span> <span class="n">cat</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Pet</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p>内存顺序为</p>
+<ol>
+<li>
+<p>首先加载Application -&gt; 里面包含<code>main()</code>方法及常量<code>旺财</code>-&gt;放到栈中执行</p>
+</li>
+<li>
+<p>然后<code>new</code>了一个<code>dog</code>对象放到栈，<code>dog</code>引用了具体在堆中的对象 内存地址如: 0x0001</p>
+<p><img src="../../../../../Dropbox/Documents/github/blog/images/java-basic/image-20200901203911058.png" alt="image-20200901203911058"></p>
+</li>
+<li>
+<p>自己画的。。。</p>
+</li>
+</ol>
+</li>
+</ul>
+<p><img src="../../../../../Dropbox/Documents/github/blog/images/java-basic/image-20200901210551729.png" alt="image-20200901210551729"></p>
+</li>
+</ol>
 </li>
 </ul>
 ]]></content></item><item><title>Java 变量作用域</title><link>https://painso.com/posts/tech/2020/java-variable-scope/</link><pubDate>Sun, 23 Aug 2020 16:50:36 +0800</pubDate><guid>https://painso.com/posts/tech/2020/java-variable-scope/</guid><description>Java 变量分为: 类变量 实例变量 局部变量 类变量 需要在变量前添加修饰符static，可以在方法中直接调用
