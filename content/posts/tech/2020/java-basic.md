@@ -608,14 +608,109 @@ Bilibili: [https://www.bilibili.com/video/av68373450](https://www.bilibili.com/v
 * 面向对象思想
   * 物以类聚，分类的思维模式，思考问题首先会解决问题需要哪些分类，然后对这些分类进行单独思考。最后才对某个分类下的具体实现进行面向过程的思索。
   * 面向对象适合处理复杂的问题与需多人协作的问题
+  
 * 对于描述复杂的事物，为了宏观上把握从整体上合理分析，我们需要使用面向对象思路来分析整个系统。但是具体到微观操作仍需要面向过程的思路。
+
 * **面向对象编程的本质： 以类的方式组织代码，以对象的方式组织(封装)数据**
+
 * 抽象 抽出共同点
+
 * 三大特性
   1. 封装 `数据包装对外提供相应接口`
   2. 继承 `对应现实继承`
   3. 多态 `同一事物多种形态`
 
 * 从认识的角度考虑的是先有对象后有类。 对象是指具体的事物，类是抽象的，是对对象的抽象
+
 * 从代码运行的角度考虑的是先有类后有对象。类是对象的模板。
-* 一个类里面只有属性和方法。`再牛逼的人写都一样`
+
+* 一个类里面只有属性和方法。**`再牛逼的人写都一样`**
+
+  1. 创建与初始化对象
+
+     * 使用new关键字创建的时候，除了分配内存之外还会给创建好的对象进行默认的初始化以及对类中构造器的调用
+     * 类中的构造器也称为构造方法，是在进行创建对象的时候必须要调用的。并且构造器有以下两个特点：
+       1. 必须和类的名字相同
+       2. 必须没有返回类型，也不能写void
+
+  2. 构造器
+
+     * 即使一个类里什么都不写也会存在一个默认构造器
+
+       * ```java
+         // source
+         package com.painso.study.oop.demo02;
+         
+         public class Person {
+         }
+         // Decompiler
+         //
+         // Source code recreated from a .class file by IntelliJ IDEA
+         // (powered by FernFlower decompiler)
+         //
+         
+         package com.painso.study.oop.demo02;
+         
+         public class Person {
+             public Person() {
+             }
+         }
+         ```
+
+     * 使用`new`关键字本质是在调用构造器
+
+     * 一旦定义了有参构造，如要使用无参构造器必须显示定义(建议带上)
+
+     * 构造器一般用来初始化值
+
+     * IDEA 快捷键 `alt + insert` 可快捷生成构造方法、Getter/Setter方法等等
+
+  3. 创建对象内存分析
+
+     * java内存分为栈和堆，堆中又包含方法区，方法区包含静态方法区(修饰符`static`)
+     * 堆中存放`new`实例化后的对象具体内容，栈中存放对象的引用(可以看作快捷方式)，实际上这个对象并不在栈中
+
+     * 有以下代码
+
+       ```java
+       // Pet class
+       package com.painso.study.oop.demo03;
+       
+       public class Pet {
+           public String name;
+           public int age;
+       
+           // 无参构造 non-arguments construct
+       
+           // shout method
+           public void shout(){
+               System.out.println(this.name + "叫了一声!");
+           }
+       }
+       // Application class
+       package com.painso.study.oop;
+       
+       import com.painso.study.oop.demo03.Pet;
+       
+       public class Application {
+           public static void main(String[] args) {
+               Pet dog = new Pet();
+               dog.name  = "旺财";
+               dog.age = 3;
+               dog.shout();
+               Pet cat = new Pet();
+           }
+       }
+       ```
+
+       内存顺序为
+
+       1. 首先加载Application -> 里面包含`main()`方法及常量`旺财`->放到栈中执行
+
+       2. 然后`new`了一个`dog`对象放到栈，`dog`引用了具体在堆中的对象 内存地址如: 0x0001
+
+          ![image-20200901203911058](../../../../../Dropbox/Documents/github/blog/images/java-basic/image-20200901203911058.png)
+
+       3. 自己画的。。。
+
+     ![image-20200901210551729](../../../../../Dropbox/Documents/github/blog/images/java-basic/image-20200901210551729.png)
