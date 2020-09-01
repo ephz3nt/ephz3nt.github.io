@@ -709,8 +709,8 @@ Bilibili: [https://www.bilibili.com/video/av68373450](https://www.bilibili.com/v
 
        2. 然后`new`了一个`dog`对象放到栈，`dog`引用了具体在堆中的对象 内存地址如: 0x0001
 
-          ![image-20200901203911058](../../../../../Dropbox/Documents/github/blog/images/java-basic/image-20200901203911058.png)
+          ![image-20200901203911058](../../../../../images/java-basic/image-20200901203911058.png)
 
        3. 自己画的。。。
 
-     ![image-20200901210551729](../../../../../Dropbox/Documents/github/blog/images/java-basic/image-20200901210551729.png)
+     ![image-20200901210551729](../../../../../images/java-basic/image-20200901210551729.png)
