@@ -12,7 +12,7 @@ categories:
 
 Bilibili: [https://www.bilibili.com/video/av68373450](https://www.bilibili.com/video/av68373450)
 
-当前观看至: [https://www.bilibili.com/video/av68373450?p=63](https://www.bilibili.com/video/av68373450?p=63) 
+当前观看至: [https://www.bilibili.com/video/av68373450?p=67](https://www.bilibili.com/video/av68373450?p=67) 
 
 ### 运算符
 
@@ -713,4 +713,20 @@ Bilibili: [https://www.bilibili.com/video/av68373450](https://www.bilibili.com/v
 
        3. 自己画的。。。
 
-     ![image-20200901210551729](../../../../../images/java-basic/image-20200901210551729.png)
+          ![image-20200901210551729](../../../../../images/java-basic/image-20200901210551729.png)
+
+* 封装
+
+  * 该藏的藏，该露的露 
+  * 程序设计要追求**高内聚，低耦合**。
+  * 高内聚 类的内部数据操作细节自己完成，不允许外部干涉。
+  * 低耦合 仅暴露少量的方法给外部使用
+  * 封装通常应禁止直接访问一个对象中数据的实际表示，而应通过操作接口来访问，这称为信息隐藏
+  * 记住这句话就够了 **`属性私有，Getter/Setter`**
+  * 封装通常用于成员属性
+  * 封装的意义
+    1. 提高程序的安全性，保护数据
+    2. 隐藏代码的实现细节
+    3. 统一接口
+    4. 提高系统可维护性
+
