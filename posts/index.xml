@@ -8,7 +8,8 @@
 完事后在自己办公电脑从官网下载驱动 https://www.realtek.com/en/component/zoo/category/network-interface-controllers-10-100-1000m-gigabit-ethernet-pci-express-software
 选择Unix (Linux)下的2.5G Ethernet LINUX driver r8125 for kernel up to 5.6 下载后拷贝到U盘，然后插上服务器挂载，解压运行./autorun.sh正常执行完后运行lsmod | grep 8125应该就可以看到显示了。ifconfig -a 也能看到网卡信息。
 安装驱动需要 gcc kernel-dev等包，如果没有的话需要先安装，我是正好有一个USB装RJ45的线。
-接着配置好静态IP明天再部署环境。</description><content type="html"><![CDATA[<p>今天公司到了一台内网测试用服务器，想着直接装好<code>Ubuntu 16.04</code>配置好网络直接扔杂物间(没有机房，只能放那边挨着交换机)</p>
+接着配置好静态IP明天再部署环境。
+最后再吹一波 Linux Mint的兼容性！</description><content type="html"><![CDATA[<p>今天公司到了一台内网测试用服务器，想着直接装好<code>Ubuntu 16.04</code>配置好网络直接扔杂物间(没有机房，只能放那边挨着交换机)</p>
 <p>没想到我的U盘直接认不到了，我是用<code>YUMI</code>把好几个系统装到U盘里的，我自己用的办公电脑是ok的，后面网上查了下说要吧BIOS里面的<code>UEFI</code>改成<code>CMS 兼容模式</code>，结果直接点不亮了。</p>
 <p>没办法，拆开机箱取主板电池下来放电重新来</p>
 <p>重新用<code>YUMI</code>把ISO刻到U盘后发现竟然神奇的可以了，兴奋的等待安装完毕后蛋疼的事情又来了。</p>
@@ -21,6 +22,7 @@
 <p>安装驱动需要 <code>gcc kernel-dev</code>等包，如果没有的话需要先安装，我是正好有一个USB装RJ45的线。</p>
 </blockquote>
 <p>接着配置好静态IP明天再部署环境。</p>
+<p>最后再吹一波 <code>Linux Mint</code>的兼容性！</p>
 ]]></content></item><item><title>Java 基础</title><link>https://painso.com/posts/tech/2020/java-basic/</link><pubDate>Sun, 23 Aug 2020 17:25:46 +0800</pubDate><guid>https://painso.com/posts/tech/2020/java-basic/</guid><description>狂神说JAVA学习笔记 - JavaSE基础部分 Bilibili: https://www.bilibili.com/video/av68373450
 当前观看至: https://www.bilibili.com/video/av68373450?p=67
 运算符 不同类型运算返回值

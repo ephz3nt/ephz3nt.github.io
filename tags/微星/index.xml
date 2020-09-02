@@ -8,4 +8,5 @@
 完事后在自己办公电脑从官网下载驱动 https://www.realtek.com/en/component/zoo/category/network-interface-controllers-10-100-1000m-gigabit-ethernet-pci-express-software
 选择Unix (Linux)下的2.5G Ethernet LINUX driver r8125 for kernel up to 5.6 下载后拷贝到U盘，然后插上服务器挂载，解压运行./autorun.sh正常执行完后运行lsmod | grep 8125应该就可以看到显示了。ifconfig -a 也能看到网卡信息。
 安装驱动需要 gcc kernel-dev等包，如果没有的话需要先安装，我是正好有一个USB装RJ45的线。
-接着配置好静态IP明天再部署环境。</description></item></channel></rss>
+接着配置好静态IP明天再部署环境。
+最后再吹一波 Linux Mint的兼容性！</description></item></channel></rss>
