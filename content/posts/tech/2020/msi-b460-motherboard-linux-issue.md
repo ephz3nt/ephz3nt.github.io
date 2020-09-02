@@ -31,3 +31,5 @@ categories:
 
 接着配置好静态IP明天再部署环境。
 
+最后再吹一波 `Linux Mint`的兼容性！
+
