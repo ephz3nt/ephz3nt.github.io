@@ -24,7 +24,7 @@
 <p>接着配置好静态IP明天再部署环境。</p>
 <p>最后再吹一波 <code>Linux Mint</code>的兼容性！</p>
 ]]></content></item><item><title>Java 基础</title><link>https://painso.com/posts/tech/2020/java-basic/</link><pubDate>Sun, 23 Aug 2020 17:25:46 +0800</pubDate><guid>https://painso.com/posts/tech/2020/java-basic/</guid><description>狂神说JAVA学习笔记 - JavaSE基础部分 Bilibili: https://www.bilibili.com/video/av68373450
-当前观看至: https://www.bilibili.com/video/av68373450?p=67
+当前观看至: https://www.bilibili.com/video/av68373450?p=70
 运算符 不同类型运算返回值
 double a = 55; float b = 10F; long c = 10; int d = 20; short e = 25; byte f = 25; 如果变量a+b+c+d相加，返回值类型为double 如果变量b+c+d+e相加，返回值类型为float
 如果d+e相加，返回值为int 如果e+f相加，返回值为int 。。。 结论
@@ -32,7 +32,7 @@ double a = 55; float b = 10F; long c = 10; int d = 20; short e = 25; byte f = 25
 如果小于int的类型，返回int 自增、自减 ++ --
 package operator; public class Demo01 { public static void main(String[] args) { int a = 1; int b = a++; int c = ++a; System.</description><content type="html"><![CDATA[<h2 id="狂神说java学习笔记---javase基础部分">狂神说JAVA学习笔记 - JavaSE基础部分</h2>
 <p>Bilibili: <a href="https://www.bilibili.com/video/av68373450">https://www.bilibili.com/video/av68373450</a></p>
-<p>当前观看至: <a href="https://www.bilibili.com/video/av68373450?p=67">https://www.bilibili.com/video/av68373450?p=67</a></p>
+<p>当前观看至: <a href="https://www.bilibili.com/video/av68373450?p=70">https://www.bilibili.com/video/av68373450?p=70</a></p>
 <h3 id="运算符">运算符</h3>
 <ol>
 <li>
@@ -801,6 +801,70 @@ Process finished with <span class="nb">exit</span> code <span class="m">0</span>
 <li>统一接口</li>
 <li>提高系统可维护性</li>
 </ol>
+</li>
+</ul>
+</li>
+<li>
+<p>继承</p>
+<ul>
+<li>
+<p>继承的本质是对某一批类的抽象，从而实现对现实世界更好的建模。</p>
+</li>
+<li>
+<p><code>extends</code>的意思是<strong>扩展</strong>，子类是父类的扩展。</p>
+</li>
+<li>
+<p>Java中的类只有单继承，没有多继承！</p>
+</li>
+<li>
+<p>继承是类和类之间的一种关系，除此之外类和类直接的关系还有依赖、组合、聚合等</p>
+</li>
+<li>
+<p>继承关系的两个类，一个为子类(派生类)，一个为父类(基类, 这里的基我理解为<strong>Base</strong>)。子类继承父类，使用关键字<code>extends</code>来表示。</p>
+</li>
+<li>
+<p>子类和父类直接从意义上讲应具有 <strong>&ldquo;is a&rdquo;</strong> 的关系。如有一个父类：人 -&gt; <code>Person</code>，子类有： 学生 -&gt; <code>Student</code>，老师 -&gt; <code>Teacher</code>， 子类 学生和老师都是人，<code>Student/Teacher is a Person</code></p>
+</li>
+<li>
+<p>在<code>IDEA</code>中使用快捷键<code>CTRL+H</code>可以显示类的继承树</p>
+</li>
+<li>
+<p>在Java中，所有的类都默认直接/间接继承<code>Object</code>类，都是它的崽。</p>
+</li>
+<li>
+<p><code>private</code>修饰的属性或方法无法被继承及<code>super</code>调用</p>
+</li>
+<li>
+<p>当<code>new</code>一个子类对象的时候会先执行其父类的构造器再执行当前类的构造器</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.painso.study.oop.demo05</span><span class="o">;</span>
+    
+<span class="c1">// student is a person  派生类/子类
+</span><span class="c1">// 子类继承了父类就会有父类的全部方法
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Student</span> <span class="kd">extends</span> <span class="n">Person</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nf">Student</span><span class="o">(){</span>
+        <span class="kd">super</span><span class="o">();</span> <span class="c1">// 这里默认隐藏了此方法，super() 必须放置在第一行，如果在后面会直接报错
+</span><span class="c1"></span>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Student Construct&#34;</span><span class="o">);</span>
+    <span class="c1">//  super();
+</span><span class="c1"></span>    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></li>
+<li>
+<p>重写</p>
+<ol>
+<li>需要有继承关系，子类重写父类的方法</li>
+<li>只和非静态<code>non-static</code>方法有关</li>
+<li>参数列表必须相同</li>
+<li>修饰符 范围可以扩大但不能缩小 <code>public -&gt; protected -&gt; default -&gt; private</code></li>
+<li>抛出的异常范围可以被缩小，但不能扩大 <code>Exception -&gt; ClassNotFoundException</code></li>
+<li>子类和父类的方法必须一致，方法体不同</li>
+</ol>
+<ul>
+<li>为什么需要重写
+<ul>
+<li>父类的功能子类不一定需要或者不一定满足。</li>
+</ul>
+</li>
+</ul>
 </li>
 </ul>
 </li>
