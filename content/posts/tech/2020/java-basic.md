@@ -12,7 +12,7 @@ categories:
 
 Bilibili: [https://www.bilibili.com/video/av68373450](https://www.bilibili.com/video/av68373450)
 
-当前观看至: [https://www.bilibili.com/video/av68373450?p=67](https://www.bilibili.com/video/av68373450?p=67) 
+当前观看至: [https://www.bilibili.com/video/av68373450?p=70](https://www.bilibili.com/video/av68373450?p=70) 
 
 ### 运算符
 
@@ -729,4 +729,51 @@ Bilibili: [https://www.bilibili.com/video/av68373450](https://www.bilibili.com/v
     2. 隐藏代码的实现细节
     3. 统一接口
     4. 提高系统可维护性
+  
+* 继承
 
+  * 继承的本质是对某一批类的抽象，从而实现对现实世界更好的建模。
+
+  * `extends`的意思是**扩展**，子类是父类的扩展。
+
+  * Java中的类只有单继承，没有多继承！
+
+  * 继承是类和类之间的一种关系，除此之外类和类直接的关系还有依赖、组合、聚合等
+
+  * 继承关系的两个类，一个为子类(派生类)，一个为父类(基类, 这里的基我理解为**Base**)。子类继承父类，使用关键字`extends`来表示。
+
+  * 子类和父类直接从意义上讲应具有 **"is a"** 的关系。如有一个父类：人 -> `Person`，子类有： 学生 -> `Student`，老师 -> `Teacher`， 子类 学生和老师都是人，`Student/Teacher is a Person`
+
+  * 在`IDEA`中使用快捷键`CTRL+H`可以显示类的继承树
+
+  * 在Java中，所有的类都默认直接/间接继承`Object`类，都是它的崽。
+
+  * `private`修饰的属性或方法无法被继承及`super`调用
+
+  * 当`new`一个子类对象的时候会先执行其父类的构造器再执行当前类的构造器
+
+    ```java
+    package com.painso.study.oop.demo05;
+    
+    // student is a person  派生类/子类
+    // 子类继承了父类就会有父类的全部方法
+    public class Student extends Person {
+        public Student(){
+            super(); // 这里默认隐藏了此方法，super() 必须放置在第一行，如果在后面会直接报错
+            System.out.println("Student Construct");
+        //  super();
+        }
+    }
+    ```
+
+  * 重写
+
+    1. 需要有继承关系，子类重写父类的方法
+    2. 只和非静态`non-static`方法有关
+    3. 参数列表必须相同
+    4. 修饰符 范围可以扩大但不能缩小 `public -> protected -> default -> private`
+    5. 抛出的异常范围可以被缩小，但不能扩大 `Exception -> ClassNotFoundException`
+    6. 子类和父类的方法必须一致，方法体不同
+
+    * 为什么需要重写
+      * 父类的功能子类不一定需要或者不一定满足。
