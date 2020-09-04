@@ -12,7 +12,7 @@ categories:
 
 Bilibili: [https://www.bilibili.com/video/av68373450](https://www.bilibili.com/video/av68373450)
 
-当前观看至: [https://www.bilibili.com/video/av68373450?p=70](https://www.bilibili.com/video/av68373450?p=70) 
+当前观看至: [https://www.bilibili.com/video/av68373450?p=77](https://www.bilibili.com/video/av68373450?p=77) 
 
 ### 运算符
 
@@ -777,3 +777,253 @@ Bilibili: [https://www.bilibili.com/video/av68373450](https://www.bilibili.com/v
 
     * 为什么需要重写
       * 父类的功能子类不一定需要或者不一定满足。
+  
+* 多态
+
+  * 即同一方法可以根据发送的对象的不同而采取多种不同的行为方式。
+
+  * 一个对象的实际类型是确定的，但可以指向对象的引用的类型有很多
+
+  * 多态存在的条件
+
+    * 有继承关系
+    * 子类重写父类方法
+    * 父类引用指向子类对象
+
+  * 多态是方法的多态，属性没有多态性。
+
+    ```java
+    package com.painso.study.oop.demo06;
+    
+    public class Application {
+        public static void main(String[] args) {
+            // 一个对象的实际类型是确定的
+    //        new Person();
+    //        new Student();
+            // 可以指向的引用类型就不确定了
+            // 父类的引用指向子类
+            Student s1 = new Student(); // s1能调用的方法都是Student自己的或者继承父类的
+            Person s2 = new Student();  // s2 父类型可以指向子类，但不能调用子类独有的方法
+            Object s3 = new Student();
+            s1.run();
+            s2.run(); // 子类重写了父类的方法，执行了子类的方法
+            // 对象能执行哪些方法，主要看对象左边的类型，和右边关系不大！
+            s1.eat();
+            ((Student) s2).eat();
+        }
+    }
+    ```
+
+  * 类型转换两者必须有联系(如继承)，否则将触发类型转换异常`ClassCastException`
+
+  * `instanceof` 判断对象是否属于目标类 > `s1 instanceof Student`
+
+    * `instanceof` 原始对象所属类需与目标类有继承关系
+
+  * 类型转换
+
+    * 低转高自动转换，高转低需强制转换 `Student stu1 = (Student)s2`
+    * 子类转换为父类可能会丢失自己本来的一些方法
+    * 类型转换的意义在于方便方法调用，减少重复性代码
+
+  * `static`关键字
+
+    * `static`可用于修饰变量和方法
+
+    * `static`在程序启动时拥有较高的加载优先级
+
+    * `static`静态匿名代码块只能被调用一次
+
+      ```java
+      package com.painso.study.oop.demo07;
+      
+      public class Person {
+          public Person(){
+              System.out.println("构造器代码块");
+          }
+          static {
+              System.out.println("静态匿名代码块");
+          }
+          {
+              System.out.println("匿名代码块");
+          }
+          public static void main(String[] args) {
+              Person p1 = new Person();
+              System.out.println("**********************");
+              Person p2 = new Person();
+          }
+      }
+      /* output
+      静态匿名代码块
+      匿名代码块
+      构造器代码块
+      **********************
+      匿名代码块
+      构造器代码块
+      */
+      ```
+
+    * `static`可用于静态导入包
+
+      ```java
+      package com.painso.study.oop.demo07;
+      
+      import static java.lang.Math.random;
+      
+      public class StaticImport {
+                 public static void main(String[] args) {
+                  System.out.println(Math.random());
+                  System.out.println(random());
+              }
+      }
+      ```
+
+* 抽象类
+
+  * `abstract`修饰符可以用来修饰方法也可以修饰类，如果修饰方法那么该方法就是抽象方法，如果修饰类那么该类就是抽象类。
+
+  * 抽象类中可以没有抽象方法，但是有抽象方法的类一定要声明为抽象类
+
+  * 抽象类不能使用`new`关键字来创建对象，它是用来让子类继承的。
+
+  * 抽象方法只有方法的声明，没有方法的实现，它是用来让子类实现的。
+
+  * 子类继承抽象类那么就必须要实现抽象类没有实现的抽象方法，否则该子类也要声明为抽象类。
+
+  * 抽象类定义的所有方法由继承它的子类实现，如果该子类也为抽象类且定义了其他抽象方法那么继承该子类的子子类必须实现它爸爸和爷爷所定义的所有方法。
+
+  * 抽象类存在构造器、匿名代码块、`static`匿名代码块
+
+    ```java
+    package com.painso.study.oop.demo08;
+    
+    // abstract 抽象类
+    public abstract class Action {
+        public Action(){
+            System.out.println("abstract constructor");
+        }
+        {
+            System.out.println("anonymous code block");
+        }
+        static {
+            System.out.println("static anonymous code block");
+        }
+        // 抽象方法，定义约束/框架
+        // 只有方法的名字，没有方法体
+        public abstract void doSomething();
+    }
+    /* output
+    static anonymous code block
+    anonymous code block
+    abstract constructor
+    **************
+    anonymous code block
+    abstract constructor
+    */
+    ```
+
+* 接口
+
+  * 声明类的关键字是**`class`**声明接口的关键字是**`interface`**
+  * 普通类 -> 只有具体实现
+  * 抽象类 -> 具体实现和规范(抽象方法)都有
+  * 接口    ->  只有规范，自己无法写方法，约束和实现的分离。
+  * 接口就是规范，定义一组规则，体现了现实世界中的**`如果你是...则必须能...`**的思想。如果你是马云则必须对钱没有兴趣。如果你是好人则必须有好人卡
+  * 接口的本质就是契约，就像我们人间的法律一样，制定好后大家都遵守。
+  * OO**`Object-Oriented`**的精髓是对对象的抽象，最能体现这一点的就是接口。为什么我们讨论设计模式都只针对具备了抽象能力的语言(`c++、java、c#`)等，就是因为设计模式所研究的实际上就是如何合理的去抽象。
+  * 一个类可以实现多个接口，**`implements InterfaceOne,InterfaceTwo`**
+  * 接口的方法使用`public abstract`修饰，属性使用`public static final`修饰
+  * 接口不能被实例化，因为接口中没有**`构造方法`**也没有**`匿名/静态匿名`**代码块
+
+* 内部类
+
+  * 内部类就是在一个类的内部定义一个类，比如`A`类中定义一个`B`类，那么`B`类相对`A`类来说就是内部类，而`A`类相对`B`类来说就是外部类。
+
+  * 一个java类文件中可以有多个`class`类，但只能有一个`public`修饰符的类
+
+  * 内部类的种类
+
+    1. 成员内部类
+
+       ```java
+       package com.painso.study.oop.demo10;
+       
+       public class Outer {
+           private int id = 99;
+           public void out(){
+               System.out.println("outer class method");
+           }
+           // 定义内部类
+           public class Inner{ // 定义内部类
+               // 定义内部类方法
+               public void in(){
+                   System.out.println("inner class method");
+               }
+               // 获取外部类私有属性
+               public void getID(){
+                   System.out.println(id);
+               }
+           }
+           public static void main(String[] args) {
+               // 实例化外部类
+               Outer outer = new Outer();
+               outer.out();
+               // 实例化内部类方法1
+               Outer.Inner inner1 = outer.new Inner();
+               inner1.in();
+               // 实例化内部类方法2
+               Outer.Inner inner2 = new Outer().new Inner();
+               inner2.in();
+               inner2.getID();
+           }
+       }
+       ```
+
+       * 成员内部类可以获取外部类的**私有/静态**的**属性/方法**
+
+    2. 静态内部类
+
+       * 静态内部类不能获取外部类的非静态**属性/方法**
+
+    3. 局部内部类
+
+       ```java
+       package com.painso.study.oop.demo10;
+       
+       public class Local {
+           public void method(){
+               // 局部内部类 local inner class
+               class Inner{
+                   // 定义局部内部类方法
+                   public void localMethod(){
+                       System.out.println("i'm local inner class");
+                   }
+               }
+               // 实例化
+               Inner inner = new Inner();
+               inner.localMethod();
+           }
+           public static void main(String[] args) {
+               Local local = new Local();
+               local.method();
+           }
+       }
+       ```
+
+    4. 匿名内部类
+
+       ```java
+       package com.painso.study.oop.demo10;
+       public class Anonymous {
+           public static void main(String[] args) {
+               new Eat().eat();
+           }
+       }
+       class Eat{
+           public void eat(){
+               System.out.println("eat");
+           }
+       }
+       ```
+
+       

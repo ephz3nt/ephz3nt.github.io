@@ -33,3 +33,31 @@ categories:
 
 最后再吹一波 `Linux Mint`的兼容性！
 
+### 后记
+
+1. 弄好之后用kubeadm部署了个单机版kubernetes，用第二块nvmeSSD去做k8s的sc
+
+   用glusterfs+heketi实现，`heketi-cli topology load --json cluster.json`的时候提示
+
+   ```shell
+   Adding device /dev/nvm0n1 ... Unable to add device: Setup of device /dev/vdb failed (already initialized or contains data?): WARNING: xfs signature detected on /dev/nvm0n1 at offset 0. Wipe it? [y/n]: [n]
+     Aborted wiping of xfs.
+     1 existing signature left on the device
+   ```
+
+   执行
+
+   ```shell
+   pvcreate -ff --metadatasize=128M --dataalignment=256K /dev/nvm0n1
+   ```
+
+   后重新运行`heketi-cli topology load --json cluster.json`解决
+
+2. 重启机器后发现heketi自动写入`/etc/fstab`的磁盘挂载信息使用`mount -a`提示 `/dev/mapper/xxx`找不到文件
+
+   看了下`dmesg`有一些类似内核的报错，网上搜了下用`vgchange -ay`即可重新挂载volumegroup
+
+   随后 重启 glusterfsd、heketi、docker
+
+
+
