@@ -12,3 +12,4 @@ $RECYCLE.BIN/
 # OSX
 .DS_Store
 resources/
+use-hugo-build-blog-on-github.md

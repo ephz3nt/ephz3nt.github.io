@@ -1026,4 +1026,13 @@ Bilibili: [https://www.bilibili.com/video/av68373450](https://www.bilibili.com/v
        }
        ```
 
-       
+### 异常处理机制
+
+* 抛出异常
+* 捕获异常
+* 异常处理的五个关键字
+  * try
+  * catch
+  * finally
+  * throw
+  * throws
