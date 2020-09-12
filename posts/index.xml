@@ -1,4 +1,710 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on ephz3nt</title><link>https://painso.com/posts/</link><description>Recent content in Posts on ephz3nt</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 02 Sep 2020 20:14:05 +0800</lastBuildDate><atom:link href="https://painso.com/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>微星B460主板安装Linux问题</title><link>https://painso.com/posts/tech/2020/msi-b460-motherboard-linux-issue/</link><pubDate>Wed, 02 Sep 2020 20:14:05 +0800</pubDate><guid>https://painso.com/posts/tech/2020/msi-b460-motherboard-linux-issue/</guid><description>今天公司到了一台内网测试用服务器，想着直接装好Ubuntu 16.04配置好网络直接扔杂物间(没有机房，只能放那边挨着交换机)
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on ephz3nt</title><link>https://painso.com/posts/</link><description>Recent content in Posts on ephz3nt</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 09 Sep 2020 21:55:43 +0800</lastBuildDate><atom:link href="https://painso.com/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Google SRE 生存指南笔记</title><link>https://painso.com/posts/tech/2020/google-sre-notes/</link><pubDate>Wed, 09 Sep 2020 21:55:43 +0800</pubDate><guid>https://painso.com/posts/tech/2020/google-sre-notes/</guid><description>SRE简介 SRE是指Site Reliability Engineer (网站可靠性工程师)。他是软件工程师和系统管理员的结合，一个SRE工程师基本上需要掌握很多知识：算法，数据结构，编程能力，网络编程，分布式系统，可扩展架构，故障排除。 - 百度百科
+Site： 一个网站 Reliability： 被定义为&amp;quot;值得信赖的质量或一贯可靠的质量&amp;rdquo; Engineering： 被定义为&amp;quot;熟练地运用技巧以达到某种目的的行动&amp;rdquo; 《SRE 生存指南》- Nat Welch 系统中断响应与正常运行时间最大化
+语录 故障是常态，正常才是异常 个人不应该害怕事故，而是要确信如果事故发生，团队将会响应和改进系统，而不是关注发生事故带来的耻辱和愤怒。事故是我们可以从中学习的东西，而不是让人害怕和羞耻的事情！ 1. 简介 SRE的目标是提高服务可靠性，帮助业务实现并改善用户的服务体验 SRE定义： 一个专注于熟练地维护一个网站以使其持续可靠的领域 互联网上的软件永远做不到完全可靠，这里有两个原因
+互联网是一个分布式系统，各部分经常出现故障，这会影响服务可用性。 软件是人编写的，所以Bug不可避免，而Bug会导致系统宕机。 可靠性层次结构 Mikey Pyramid
+用户体验 开发 容量规划 测试与发布 事后回顾 事故响应 监控 以上七点都被沟通所包围，因为每一层都需要沟通才能成功。
+在加入或新项目评估新服务时，请遵循下面的一系列步骤
+弄清楚团队结构。团队里谁负责什么？谁说了算？ 查找团队为其服务或项目编写的任何文档。 让某人绘制出系统架构图。让他们向你展示什么连接到哪个服务、什么依赖于这个项目、数据如何流经服务，以及项目如何部署。 进行每个环节时提出以下问题</description><content type="html"><![CDATA[<h1 id="sre简介">SRE简介</h1>
+<blockquote>
+<p>SRE是指Site Reliability Engineer (网站可靠性工程师)。他是软件工程师和系统管理员的结合，一个SRE工程师基本上需要掌握很多知识：算法，数据结构，编程能力，网络编程，分布式系统，可扩展架构，故障排除。 - 百度百科</p>
+</blockquote>
+<ul>
+<li>Site： 一个网站</li>
+<li>Reliability： 被定义为&quot;值得信赖的质量或一贯可靠的质量&rdquo;</li>
+<li>Engineering： 被定义为&quot;熟练地运用技巧以达到某种目的的行动&rdquo;</li>
+</ul>
+<h1 id="sre-生存指南--nat-welch">《SRE 生存指南》- Nat Welch</h1>
+<blockquote>
+<p>系统中断响应与正常运行时间最大化</p>
+</blockquote>
+<h2 id="语录">语录</h2>
+<ul>
+<li>故障是常态，正常才是异常</li>
+<li>个人不应该害怕事故，而是要确信如果事故发生，团队将会响应和改进系统，而不是关注发生事故带来的耻辱和愤怒。事故是我们可以从中学习的东西，而不是让人害怕和羞耻的事情！</li>
+</ul>
+<h2 id="1-简介">1. 简介</h2>
+<ul>
+<li>SRE的目标是提高服务可靠性，帮助业务实现并改善用户的服务体验</li>
+<li>SRE定义： 一个专注于熟练地维护一个网站以使其持续可靠的领域</li>
+</ul>
+<blockquote>
+<p>互联网上的软件永远做不到完全可靠，这里有两个原因</p>
+<ol>
+<li>互联网是一个分布式系统，各部分经常出现故障，这会影响服务可用性。</li>
+<li>软件是人编写的，所以Bug不可避免，而Bug会导致系统宕机。</li>
+</ol>
+</blockquote>
+<ul>
+<li>
+<p>可靠性层次结构 Mikey Pyramid</p>
+<p><img src="../../../../images/google-sre-notes/image-20200909223259992.png" alt="image-20200909223259992"></p>
+<ol>
+<li>用户体验</li>
+<li>开发</li>
+<li>容量规划</li>
+<li>测试与发布</li>
+<li>事后回顾</li>
+<li>事故响应</li>
+<li>监控</li>
+</ol>
+<blockquote>
+<p>以上七点都被<strong>沟通</strong>所包围，因为每一层都需要沟通才能成功。</p>
+</blockquote>
+</li>
+<li>
+<p>在加入或新项目评估新服务时，请遵循下面的一系列步骤</p>
+<ol>
+<li>弄清楚团队结构。团队里谁负责什么？谁说了算？</li>
+<li>查找团队为其服务或项目编写的任何文档。</li>
+<li>让某人绘制出系统架构图。让他们向你展示什么连接到哪个服务、什么依赖于这个项目、数据如何流经服务，以及项目如何部署。</li>
+</ol>
+</li>
+<li>
+<p>进行每个环节时提出以下问题</p>
+<ul>
+<li>服务有监控机制吗？</li>
+<li>团队有事故响应的计划吗？</li>
+<li>团队有事故回顾报告吗？它们存放在哪里？</li>
+<li>服务是怎么被测试的？项目有发布计划吗？</li>
+<li>有人曾经做过扩展计划吗？</li>
+<li>能使用什么工具来改进服务？</li>
+<li>当前的可靠性水平是否提供了令人满意的用户体验？</li>
+</ul>
+<blockquote>
+<p>人的时间和精力都是有限的，因此你总是需要与更多的人共同协作，所以一定要慢慢来。
+走慢点意味着事情不那么容易会被遗漏。你也不希望每个服务的基础还没来得及打好就崩塌了。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="2-监控">2. 监控</h2>
+<p>首先需要确定质量标准是什么，并确保系统持续逼近或保持在质量标准极限范围内。其次需要系统地关注这项工作而不是随机地查看一下系统。</p>
+<h3 id="监控的类型">监控的类型</h3>
+<ol>
+<li>
+<p>指标</p>
+<p>即性能数字，例如磁盘空间使用率、接收的数据包数量、CPU负载等等</p>
+</li>
+<li>
+<p>日志</p>
+<p>日志用来记录事故，通常也包含一些数字与数据，但往往结构松散。有些是完整的<code>json</code>数据块，有些是人工格式的文本字符串</p>
+</li>
+</ol>
+<p>对于Web程序最常见的指标是错误数、请求数和请求持续时间，最常见的日志是错误堆栈跟踪。</p>
+<p>简称</p>
+<ul>
+<li>
+<p><code>ERD (Error Counts, Request Counts, Request Duration)</code>或<code>RED</code></p>
+</li>
+<li>
+<p><code>REL (Requests, Errors, Latency)</code></p>
+<blockquote>
+<p>我比较喜欢第二种称呼，容易理解</p>
+</blockquote>
+</li>
+</ul>
+<p>监控应用三连：</p>
+<ol>
+<li>怎么知道服务处于正常状态？</li>
+<li>怎么知道它不正常？</li>
+<li>如何定义它是正常的？</li>
+</ol>
+<p><strong>从基础开始</strong></p>
+<p>如果你的服务是Web服务器，那么首先要确保能够收集错误数、请求数和请求持续时间<code>ERD</code></p>
+<p>对于后台服务使用<code>IDS (Instrusion Detection Systems) 入侵检测系统</code></p>
+<p>有了基础才能开始扩展</p>
+<p>用户通过上传服务器上传图片，后上传服务器写入本地磁盘并检查这些图片，将元数据存储到数据库中，然后将图片上传到云存储服务</p>
+<p><img src="../../../../../images/google-sre-notes/image-20200912084914408.png" alt="上传图像服务的实例图"></p>
+<p>哪些指标可以告诉你此服务器正在执行工作？</p>
+<ul>
+<li>请求错误数、请求持续时间和请求总数(<strong>ERD</strong>)： 因为这是Web服务器，也是监控的底线</li>
+<li>上传的字节数： 这将说明所使用的网络带宽。因为一些请求可能非常大，但因为并非每个请求都是一样的，我们想知道进入服务器的数据量是否开始出现峰值。</li>
+<li>图像大小(以字节为单位)： 这从不同的角度提供了相同的信息。在接收到字节并对其进行处理之后，最终的图像有多大？例如，通过这种途径，如果上传客户端发生变化(例如新的iPhone使用更高像素的镜头，或者在图像发送前使用压缩算法对图像进行压缩)，那么我们可以看到与调整网络带宽对比的效果。</li>
+<li>上传的图片： 此指标仅在看到重大变化时才有用。如果遇到了与之前差异非常大的图片，这或许可以解释是什么导致了系统服务中断。</li>
+<li>数据库中的图像元数据记录数： 将其记录数与上传的图像数量进行比较，以确保在数据库关闭时不会丢弃图像数据</li>
+<li>存储中的图像数量： 这可以确保图像最终被正确保存。如果没有正确保持，则可能云存储已关闭或存在网络问题</li>
+</ul>
+<h3 id="黑盒监控与白盒监控">黑盒监控与白盒监控</h3>
+<p>在考虑要监控的内容时，通常有两个考虑的方向 - 黑盒监控和白盒监控。</p>
+<p>黑盒监控假设监控工具对应用程序一无所知或知之甚少。通常它是一个探测或一系列常规请求，以检查事情是否按预期方式工作。</p>
+<p>白盒监控是对代码的监测。它知道程序是如何工作的，因为它来自程序内部。如果以飞机的电子设备进行类比，那么白盒监控就是驾驶仓内的仪表，黑盒监控则是飞机飞过无线电塔是发送和接收的更新。</p>
+<h3 id="slislo-和错误预算简介">SLI、SLO 和错误预算简介</h3>
+<ul>
+<li><strong>SLI</strong> <code>Service Level Indicator</code> 服务水平指标</li>
+</ul>
+<blockquote>
+<p>对于业务来说可能是最重要的指标。对网站来说，一个常见的SLI是请求得到正常响应的百分比；对于其他类型服务来说，SLI可以是性能指标，例如在100ms内返回搜索结果的百分比。</p>
+</blockquote>
+<ul>
+<li>
+<p><strong>SLO</strong> <code>Service Level Objective</code> 服务水平目标</p>
+<blockquote>
+<p>是围绕SLI构建的目标。它通常是一个百分比，并与一个时间范围挂钩。例如，时间段是最后30天、最后24小时、当前财务季度等等。它通常以一个带有一连串9的数字来度量。如果有人用99.999来形容连续运行时间，通常他们是在说服务持续运行时间的百分比。脱离了时间的度量，SLO的意义就不是那么大了，所以我们通常假设人们所说的是之过去30天内滚动累计平均值。</p>
+</blockquote>
+<p>以下是SLO的一些示例</p>
+<ul>
+<li>90% (1个9的正常运行时间)： 这意味着10%的停机时间，也就是说在过去30天里停机了3天。</li>
+<li>99% (2个9的正常运行时间)： 这意味着过去30天中有1%，或者说7.2小时的停机时间。</li>
+<li>99.9% (3个9的正常运行时间)：意味着0.1%，或者说43.2分钟的停机时间。</li>
+<li>99.95% (3.5个9的正常运行时间)： 意味着0.05%，或者说21.6分钟的停机时间。</li>
+<li>99.99% (4个9的正常运行时间)： 意味着0.01%，或者说4.32分钟的停机时间。</li>
+<li>99.999% (5个9的正常运行时间)： 意味着0.001%，或者说26秒的停机时间</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>数量级通常是10的倍数。我们通常把事情看成几个数量级，因为只有这样才能发现问题。例如，如果你可以做10件事，那么可能也可以做40件事，但并不意味着你能做100或1000件这样的事情。</p>
+</blockquote>
+<ul>
+<li>
+<p>SLA <code>Service Level Agreement</code> 服务水平协议</p>
+<blockquote>
+<p>是企业围绕SLO发布的协议。通常它要求在不满足SLO时向客户提供货币补偿。这在**软件即服务(Software as a Service, SaaS)**的公司中最为常见，其他公司也会有这种情况。</p>
+<p>发布SLA的公司通常也拥有比发布的SLA更严格的内部SLO，这样做公司可以在一定程度上规避向客户赔付的风险。</p>
+</blockquote>
+</li>
+<li>
+<p>错误预算</p>
+<blockquote>
+<p>并非每个服务都需要SLO和错误预算，但它们可以成为非常有用的工具，以确定何时可以安全地承担风险。有时，人们会说&quot;信任但要验证&quot;或&quot;请以数据来支持你的说法&rdquo;。在承担可能影响业务的风险时，这很重要。就像你想知道人力资源团队是否及为何要改变你的健康保险一样，你的同事希望知道，你只是以一种企业可以处理的方式来承担风险。</p>
+<p>如果你走进一间没有数据的房间说&quot;是的，一切都会好的&rdquo;，这并不能令人信服。如果你能展示数据并说&quot;你可以信任我们，因为我们在过去一个月内完成了100次部署而没有导致停机，并且如果这次确实失败了，也可以回滚并保证仍然在我们商定的SLO范围内。如果由于故障的发生，本月没有满足SLO，那么我们将停止部署，直到事情稳定下来并重新达到我们的共识&rdquo;，这就好多了。</p>
+<p><strong>SLO绝不是工作被优先考虑的唯一原因。如果只追求SLO，那么你的团队可能会发现自己与业务需求非常脱节。如果发生这种情况，请先退后一步，通过团队合作和与管理层沟通来更好地找准自己在组织中的定位。</strong></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="收集和保存监控数据">收集和保存监控数据</h3>
+<ul>
+<li>
+<p>轮询应用程序</p>
+<blockquote>
+<p>轮询(也称为 Pull 拉取)程序从服务器中抓取数据，然后存储并显示数据。轮询应用程序的缺点是，需要保留一些关于所有服务的记录，以备不时之需。这不是这类程序的问题，但需要考虑的问题是： 如何知道服务器上正在运行哪些服务？轮询应用非常广泛，从谷歌这样的公司到想监视自己家Wi-Fi路由器的人都在使用这类程序。</p>
+</blockquote>
+</li>
+<li>
+<p>推送应用程序</p>
+<blockquote>
+<p>推送应用程序与轮询应用程序刚好相反。它不是从服务上主动抓取指标数据，而是被动地由服务向它传送指标数据。通常这里会存在一个中间服务，它负责把指标数据转换和聚合，然后将它们传给中央监控程序。推送应用程序常被吐槽的一点是，如果许多服务同时向它传送数据，则可能会出现问题。但推送应用程序本身没有任何问题，它们只是具有不同的架构。与轮询应用程序一样，有很多大大小小的公司使用推送应用程序，并且行之有效。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="展示监控信息">展示监控信息</h3>
+<p>收集数据并将其保存到数据存储中之后，就可以向用户展示这些数据了。许多监控工具都提供了自己的可视化系统。有些其他工具则建议你构建自己的可视化系统。一个流行的开源可视化工具是Grafana。</p>
+<p>无论你使用什么来实现可视化和访问指标，人们通常会使用4类工具来获取和共享数据。</p>
+<ul>
+<li>
+<p>任意查询</p>
+<blockquote>
+<p>每个人都需要能够自己创建查询来访问自己构建的指标和日志，原因很简单：如果人们无法访问他们，指标就毫无用处。虽然你可以为大家创建图标和仪表盘，但是工作时通常会遇到一些新的问题，需要针对指标数据存储创建新的查询以解决问题。你当然想让同事能够在没有你的情况下也能完成他们的工作。但如果你是唯一可以查询的人，那么你将很快成为&quot;查询执行者&rdquo;，或者没有人会关注指标。这两种结果对你来说都不算明智。</p>
+</blockquote>
+</li>
+<li>
+<p>图表</p>
+<blockquote>
+<p>图表主要用作随时间变化的数据的可视化展示。米勒定律指出，一般人头脑中只能容纳不到10个对象(因此很难记住具有很长一串数字的表格)，但是你却可以使用一个图表一次显示数千个数字。</p>
+<p>图表的典型使用规则如下</p>
+<ul>
+<li>X轴(图形的下边缘)包含时间。</li>
+<li>无论绘制什么，都必须有一个键。</li>
+<li>所有的轴都必须标记。</li>
+<li>所有的数字都必须有单位。</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p>仪表板</p>
+<blockquote>
+<p>构建仪表板的最佳规则是让用户看到他们需要的数据。如果你是为你自己或你的团队设计仪表板，请记住以下建议和注意事项</p>
+<ul>
+<li>如果打算在电视机上展示仪表板，请确保它只有几个图表，并且可以从很远的地方看清楚。如果必须跑过整个房间来到电视机旁边才能看清楚，那它可能没有达到应有的效果。</li>
+<li>如果可以的话，让仪表板支持移动设备。越来越多的工程师首先在手机上检查故障和图表，然后才打开笔记本电脑进行深入排查。</li>
+<li>有人建议在仪表板上一次最多展示5个图表，保留前3个图表以显示关于服务的最重要的内容。这样当页面首次加载时，最上面的内容就是你应该首要关注的地方。一个好办法是设置到其他仪表板的链接。如果你有一个关于网络流量的图表，那么下面要有指向仪表板的链接，其中包含有关网络的详细信息，以防图表显示出问题。</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p>聊天机器人</p>
+<blockquote>
+<p>一个非常有用的工具是能够让图表出现在聊天中，或者能够从聊天中请求图表。Github在其博客中写道，他们只需要在Slack中输入 <code>/graphme 20150517..20150523 @github.deploys.total</code>，就可以获取<code>github.deploys.total</code>从<code>2015年5月17日至2015年5月23日</code>的带有指标数据的图表。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="管理和维护监控数据">管理和维护监控数据</h3>
+<ol>
+<li>经典的、经过验证的且真实的方法 - 付钱请别人去做。自己不用去操心监控服务器是否故障、磁盘空间是否满了</li>
+<li>自己构建监控系统的问题
+<ol>
+<li>磁盘空间
+<ol>
+<li>计算收集的数据量大小以及消耗存储空间的速度。如果空间有限则需要在某个时刻开始删除历史数据。解决这个问题的两种常见方法是抽样和归档。</li>
+<li>投入更多的存储空间，因为硬盘价格一年比一年低。</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="他们知道有监控吗">他们知道有监控吗</h3>
+<p>他们可以是你的老板、产品团队、工程团队或者你认为应该关心监控服务的任何其他人。首先要告诉他们有新的监控系统，一个包含示例图标、文档链接和仪表板的精心编写的电子邮件是第一步，这是远远不够的。下一步是以正经的语气发送消息，展示有用的图表或仪表板。例如一个令人兴奋的宣告&quot;你看到网站上个月有多少请求了吗？&rdquo;</p>
+<p>第一步只是告知监控存在。</p>
+<p>第二部是将其与你的生活融为一体，并不断向其他人展示其实用性。</p>
+<h2 id="事故响应">事故响应</h2>
+<p>事故响应属于<code>Mikey Pyramid</code>中监控的下一个层次。事故响应建立在使用监控系统构建的数据之上，并借助反馈循环，来帮助我们加强对服务的监控。</p>
+<p>这向我们展示了什么是重要的。因为如果没有警报，而是有人告诉我们服务没有正常工作，那么我们的监控就是不到位的。</p>
+<h4 id="什么是事故响应">什么是事故响应</h4>
+<p>事故响应通常包含以下几个动作</p>
+<ol>
+<li>
+<p>关注，注意到有些东西不对劲</p>
+<blockquote>
+<p>关注是通过警报来实现的。警报就像一个110呼叫 - 来自一个在软件中看到错误的人的求救信息</p>
+<p>人工上报可能很有用，但通常最好从自动化系统接收警报。</p>
+<p>自动化系统与人类不同，它们是一致的。</p>
+</blockquote>
+</li>
+<li>
+<p>交流，告诉别人哪些东西不对劲</p>
+</li>
+<li>
+<p>恢复，纠正不对劲的东西</p>
+</li>
+</ol>
+]]></content></item><item><title>Java 线程</title><link>https://painso.com/posts/tech/2020/java-thread/</link><pubDate>Mon, 07 Sep 2020 21:06:51 +0800</pubDate><guid>https://painso.com/posts/tech/2020/java-thread/</guid><description>观看至： https://www.bilibili.com/video/BV1V4411p7EF?p=17
+什么是任务、进程、线程 多任务表示一个人边吃饭边玩手机，看上去是同时进行，实际上这一秒在吃饭下一秒在玩手机，只是切换时间很短感觉不出来 说道进程就得提程序，程序运行会创建一个进程，里面包含一个主线程如main函数，还有其他语言自带的守护线程如Java的GC 线程不一定立即执行，它是由CPU调度的 线程的三种创建方式 Thread class 继承Thread类
+不建议使用： 避免OOP单继承局限性 创建一个Class继承Thread class并重写run()方法，启动线程使用.start() package com.painso.study.thread.demo01; // create thread way 1: extend Thread class, override run() method, call start enable thread public class D1 extends Thread{ @Override public void run(){ // run() body for (int i = 0; i&amp;lt;20;i++){ System.out.println(&amp;#34;i&amp;#39;m run() body &amp;#34;+i); } } public static void main(String[] args) { // main() body D1 d1 = new D1(); d1.</description><content type="html"><![CDATA[<p>观看至： <a href="https://www.bilibili.com/video/BV1V4411p7EF?p=17">https://www.bilibili.com/video/BV1V4411p7EF?p=17</a></p>
+<h3 id="什么是任务进程线程">什么是任务、进程、线程</h3>
+<ul>
+<li>多任务表示一个人边吃饭边玩手机，看上去是同时进行，实际上这一秒在吃饭下一秒在玩手机，只是切换时间很短感觉不出来</li>
+<li>说道进程就得提程序，程序运行会创建一个进程，里面包含一个主线程如<code>main</code>函数，还有其他语言自带的守护线程如Java的<code>GC</code></li>
+<li>线程不一定立即执行，它是由CPU调度的</li>
+</ul>
+<h3 id="线程的三种创建方式">线程的三种创建方式</h3>
+<ul>
+<li>
+<p>Thread <code>class</code> 继承Thread类</p>
+<ul>
+<li><strong>不建议使用： 避免OOP单继承局限性</strong></li>
+<li>创建一个<code>Class</code>继承<code>Thread class</code>并重写<code>run()</code>方法，启动线程使用<code>.start()</code></li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.painso.study.thread.demo01</span><span class="o">;</span>
+<span class="c1">// create thread way 1: extend Thread class, override run() method, call start enable thread
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">D1</span> <span class="kd">extends</span> <span class="n">Thread</span><span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(){</span>
+        <span class="c1">// run() body
+</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">20</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;i&#39;m run() body &#34;</span><span class="o">+</span><span class="n">i</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// main() body
+</span><span class="c1"></span>        <span class="n">D1</span> <span class="n">d1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">D1</span><span class="o">();</span>
+        <span class="n">d1</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">20</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;i&#39;m main() body &#34;</span><span class="o">+</span><span class="n">i</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></li>
+<li>
+<p>Runnable <code>interface</code> 实现Runnable接口</p>
+<ul>
+<li><strong>建议使用： 避免单继承局限性，方便灵活，方便同一个对象被多个线程使用</strong></li>
+<li>创建一个<code>Class</code>实现<code>Runnable</code>接口并重写<code>run()</code>方法，启动线程使用<code>new Thread(p).start()</code></li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.painso.study.thread.demo03</span><span class="o">;</span>
+<span class="c1">// create thread way 2: implement Runnable interface, override run() method, call Thread(p).start()
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">D</span> <span class="kd">implements</span> <span class="n">Runnable</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;i&#39;m a thread implement Runnable interface&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// create Runnable interface implement Object
+</span><span class="c1"></span>        <span class="n">D</span> <span class="n">d</span> <span class="o">=</span> <span class="k">new</span> <span class="n">D</span><span class="o">();</span>
+        <span class="c1">// create thread Object
+</span><span class="c1"></span>        <span class="n">Thread</span> <span class="n">thread</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="n">d</span><span class="o">);</span> <span class="c1">// agent
+</span><span class="c1"></span>        <span class="n">thread</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></li>
+<li>
+<p>Callable <code>interface</code> 实现Callable接口</p>
+</li>
+</ul>
+<h3 id="初识并发问题">初识并发问题</h3>
+<ul>
+<li>
+<p>当多个线程操作同一个资源会导致线程不安全从而出现一些奇怪的问题</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.painso.study.thread.demo04</span><span class="o">;</span>	
+<span class="c1">// 多个线程同时操作同一个对象
+</span><span class="c1">// 买火车票的例子
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">D1</span> <span class="kd">implements</span> <span class="n">Runnable</span> <span class="o">{</span>
+  <span class="c1">// 票数
+</span><span class="c1"></span>  <span class="kd">private</span> <span class="kt">int</span> <span class="n">ticketNums</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+      <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+          <span class="k">if</span> <span class="o">(</span><span class="n">ticketNums</span> <span class="o">&lt;=</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+              <span class="k">break</span><span class="o">;</span>
+          <span class="o">}</span>
+          <span class="c1">// 模拟延时
+</span><span class="c1"></span>          <span class="k">try</span> <span class="o">{</span>
+              <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">200</span><span class="o">);</span>
+          <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+              <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+          <span class="o">}</span>
+<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getName</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34;拿到了第&#34;</span> <span class="o">+</span> <span class="n">ticketNums</span><span class="o">--</span> <span class="o">+</span> <span class="s">&#34;张票&#34;</span><span class="o">);</span>
+<span class="c1">//            ticketNums--;
+</span><span class="c1"></span>      <span class="o">}</span>
+  <span class="o">}</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">D1</span> <span class="n">ticket</span> <span class="o">=</span> <span class="k">new</span> <span class="n">D1</span><span class="o">();</span>
+      <span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="n">ticket</span><span class="o">,</span> <span class="s">&#34;小麦&#34;</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+      <span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="n">ticket</span><span class="o">,</span> <span class="s">&#34;小红&#34;</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+      <span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="n">ticket</span><span class="o">,</span> <span class="s">&#34;小明&#34;</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+<span class="cm">/* output
+</span><span class="cm">小麦拿到了第10张票
+</span><span class="cm">小红拿到了第9张票
+</span><span class="cm">小明拿到了第8张票
+</span><span class="cm">小麦拿到了第7张票
+</span><span class="cm">小红拿到了第6张票
+</span><span class="cm">小明拿到了第5张票
+</span><span class="cm">小麦拿到了第4张票
+</span><span class="cm">小红拿到了第3张票
+</span><span class="cm">小明拿到了第2张票
+</span><span class="cm">小麦拿到了第1张票
+</span><span class="cm">小红拿到了第0张票
+</span><span class="cm">小明拿到了第-1张票
+</span><span class="cm">*/</span>
+</code></pre></div><p>要解决上述问题需要用到锁</p>
+</li>
+<li>
+<p>案例： 龟兔赛跑 <code>rabbit tortoise race</code> <strong>即使跑的再慢也不能停止脚步</strong></p>
+<ol>
+<li>首先设置赛道距离，需要离终点越来越近</li>
+<li>判断比赛是否结束</li>
+<li>打印出胜利者</li>
+<li>龟兔赛跑开始</li>
+<li>设定兔子需要睡觉，需模拟兔子睡觉</li>
+<li>乌龟赢得比赛</li>
+</ol>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.painso.study.thread.demo05</span><span class="o">;</span>
+  
+<span class="c1">// 模拟龟兔赛跑
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">D</span> <span class="kd">implements</span> <span class="n">Runnable</span> <span class="o">{</span>
+  
+    <span class="c1">// 胜利者 胜利者只有一个这里用 static 关键字
+</span><span class="c1"></span>    <span class="kd">private</span> <span class="kd">static</span> <span class="n">String</span> <span class="n">winner</span><span class="o">;</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">100</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">String</span> <span class="n">role</span> <span class="o">=</span> <span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getName</span><span class="o">();</span>
+            <span class="c1">// 判断比赛是否结束
+</span><span class="c1"></span>            <span class="kt">boolean</span> <span class="n">flag</span> <span class="o">=</span> <span class="n">isGameOver</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+            <span class="c1">// 如果比赛结束则停止程序
+</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">flag</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">break</span><span class="o">;</span>
+            <span class="o">}</span>
+            <span class="c1">// 模拟兔子休息
+</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">role</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&#34;Rabbit&#34;</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">%</span> <span class="n">10</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">try</span> <span class="o">{</span>
+                    <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">200</span><span class="o">);</span>
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+            <span class="c1">//  模拟乌龟速度
+</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">role</span> <span class="o">==</span> <span class="s">&#34;Tortoise&#34;</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">try</span> <span class="o">{</span>
+                    <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">10</span><span class="o">);</span>
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">role</span> <span class="o">+</span> <span class="s">&#34;离终点还有&#34;</span> <span class="o">+</span> <span class="o">(</span><span class="n">100</span> <span class="o">-</span> <span class="n">i</span><span class="o">)</span> <span class="o">+</span> <span class="s">&#34;米&#34;</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="c1">// 判断比赛是否完成
+</span><span class="c1"></span>    <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">isGameOver</span><span class="o">(</span><span class="kt">int</span> <span class="n">steps</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 判断是否有胜利者
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">winner</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="c1">// 判断是否有角色到达终点
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">steps</span> <span class="o">&gt;=</span> <span class="n">100</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">winner</span> <span class="o">=</span> <span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getName</span><span class="o">();</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;winner is &#34;</span> <span class="o">+</span> <span class="n">winner</span><span class="o">);</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">D</span> <span class="n">race</span> <span class="o">=</span> <span class="k">new</span> <span class="n">D</span><span class="o">();</span>
+        <span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="n">race</span><span class="o">,</span> <span class="s">&#34;Rabbit&#34;</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+        <span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="n">race</span><span class="o">,</span> <span class="s">&#34;Tortoise&#34;</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></li>
+</ul>
+<h3 id="callable-接口"><strong>Callable</strong> 接口</h3>
+<pre><code>1. 实现`Callable`接口，需要返回值类型
+2. 重写`call`方法，需要抛出异常
+3. 创建目标对象
+4. 创建执行服务： `ExecutorService ser = Executors.newFixedThreadPool(1)`
+5. 提交执行： `Future&lt;Boolean&gt; result1 = ser.submit(t1)`
+6. 获取结果： `boolean result = result1.get()`
+7. 关闭服务： `ser.shutdownNow()`
+</code></pre>
+<h3 id="静态代理模式">静态代理模式</h3>
+<ul>
+<li>
+<p><img src="../../../../images/java-thread/image-20200908211831654.png" alt="image-20200908211831654"></p>
+</li>
+<li>
+<p>真实对象和代理对象都要实现同一个接口</p>
+</li>
+<li>
+<p>代理对象接受真实对象为参数</p>
+</li>
+<li>
+<p>代理对象可以为真实对象做额外操作，而真实对象只需关注本身</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.painso.study.thread.demo06</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ThreadProxy</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 静态代理
+</span><span class="c1"></span>        <span class="k">new</span> <span class="n">WeddingCompany</span><span class="o">(</span><span class="k">new</span> <span class="n">You</span><span class="o">()).</span><span class="na">Marry</span><span class="o">();</span>
+        <span class="c1">// 类比实现了Runnable接口的对象
+</span><span class="c1"></span>        <span class="k">new</span> <span class="n">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;aaa&#34;</span><span class="o">)).</span><span class="na">start</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="kd">interface</span> <span class="nc">Marry</span> <span class="o">{</span>
+    <span class="kt">void</span> <span class="nf">Marry</span><span class="o">();</span>
+<span class="o">}</span>
+<span class="kd">class</span> <span class="nc">You</span> <span class="kd">implements</span> <span class="n">Marry</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">Marry</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;张三结婚了&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="kd">class</span> <span class="nc">WeddingCompany</span> <span class="kd">implements</span> <span class="n">Marry</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="n">Marry</span> <span class="n">role</span><span class="o">;</span>
+  
+    <span class="kd">public</span> <span class="nf">WeddingCompany</span><span class="o">(</span><span class="n">Marry</span> <span class="n">role</span><span class="o">)</span> <span class="o">{</span>
+  
+        <span class="k">this</span><span class="o">.</span><span class="na">role</span> <span class="o">=</span> <span class="n">role</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">before</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;布置。。。。。。。&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+  
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">after</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;结帐。。。。。&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">Marry</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">before</span><span class="o">();</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">role</span><span class="o">.</span><span class="na">Marry</span><span class="o">();</span>
+        <span class="n">after</span><span class="o">();</span>
+  
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></li>
+</ul>
+<h3 id="lambda-表达式">Lambda 表达式</h3>
+<ul>
+<li>
+<p>Lambda，是第十一个希腊字母。 大写<code>Λ</code>用于： 粒子物理学上，Λ重子的符号 宇宙学及物理学上，爱因斯坦宇宙学常量的符号 数学上，三角形函数的符号 小写<code>λ</code>用于： 物理上的波长符号 放射学的衰变常数 线性代数中的特征值</p>
+</li>
+<li>
+<p>避免匿名内部类定义过多</p>
+</li>
+<li>
+<p>其实质属于函数式编程的概念</p>
+</li>
+<li>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/*
+</span><span class="cm">(params) -&gt; expression
+</span><span class="cm">(params) -&gt; statement
+</span><span class="cm">(params) -&gt; { statements }
+</span><span class="cm">a -&gt; System.out.println(&#34;i like lambda--&gt;&#34;+a);
+</span><span class="cm">*/</span>
+<span class="kn">package</span> <span class="nn">com.painso.study.thread.demo07</span><span class="o">;</span>
+  
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Lambda</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">new</span> <span class="n">Thread</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;i&#39;m lambda, Thread name: &#34;</span> <span class="o">+</span> <span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getName</span><span class="o">()),</span><span class="s">&#34;WeaponX&#34;</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></li>
+<li>
+<p>函数式接口</p>
+<ul>
+<li>
+<p>任何接口如果只包含唯一一个抽象方法，那么它就是一个函数式接口。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Runnable</span><span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></li>
+<li>
+<p>对于函数式接口，我们可以通过<code>Lambda</code>表达式来创建该接口的对象。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="多线程五大状态">多线程五大状态</h3>
+<ul>
+<li>
+<p>线程的生命周期 <code>lifecycle</code></p>
+<ul>
+<li><img src="../../../../images/java-thread/image-20200909211759495.png" alt="image-20200909211759495"></li>
+<li><img src="../../../../images/java-thread/image-20200909211922010.png" alt="image-20200909211922010"></li>
+</ul>
+</li>
+<li>
+<p>线程方法</p>
+<ul>
+<li>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>setPriority(int newPriority)</td>
+<td>更改线程的优先级</td>
+</tr>
+<tr>
+<td>static void sleep(long millis)</td>
+<td>在指定的毫秒数内让当前正在执行的线程休眠</td>
+</tr>
+<tr>
+<td>void join()</td>
+<td>等待该线程终止</td>
+</tr>
+<tr>
+<td>static void yield()</td>
+<td>暂停当前正在执行的线程对象，并执行其他线程</td>
+</tr>
+<tr>
+<td>void interrupt()</td>
+<td>中断线程，不推荐使用</td>
+</tr>
+<tr>
+<td>boolean isAlive()</td>
+<td>检查线程是否处于活动状态</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>停止线程</p>
+<ul>
+<li>不推荐使用JDK提供的<code>stop()、destroy()</code>方法  已废弃</li>
+<li>推荐线程自己停止</li>
+<li>建议使用一个标志位进行终止变量 -&gt; <code>if flag==false</code>则终止线程运行</li>
+</ul>
+</li>
+<li>
+<p>Sleep</p>
+<ul>
+<li>每个对象都有一个锁，<code>sleep</code>不会释放锁。</li>
+</ul>
+</li>
+<li>
+<p>线程礼让 <strong>Yield</strong></p>
+<ul>
+<li>
+<p>礼让线程，让当前正在执行的线程暂停，但不阻塞</p>
+</li>
+<li>
+<p>将线程从运行状态转为就绪状态</p>
+</li>
+<li>
+<p>**让CPU重新调度，<code>Yield</code>不一定成功，看CPU心情</p>
+<blockquote>
+<p>假设有A和B两个线程，启动主程序时CPU安排A先进入调度，但是A使用了<code>Yield</code>方法，从而回归最开始的就绪状态重新让CPU安排调度</p>
+</blockquote>
+<p><img src="../../../../images/java-thread/image-20200910201442614.png" alt="image-20200910201442614"></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Join</p>
+<ul>
+<li>Join合并线程，待此线程执行完成后，再执行其他线程，此时其他线程处于阻塞状态</li>
+<li>理解为线程之间插队</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="线程状态观测">线程状态观测</h3>
+<ul>
+<li>
+<p>Thread.State</p>
+<p>线程状态可以处于以下状态之一</p>
+<p>一个线程可以在给定的时间点处于一个状态。这些状态是不反映任何操作系统线程状态的虚拟机状态。</p>
+<ul>
+<li>
+<p>NEW</p>
+<blockquote>
+<p>尚未启动的线程处于此状态</p>
+</blockquote>
+</li>
+<li>
+<p>RUNNABLE</p>
+<blockquote>
+<p>在Java虚拟机中执行的线程处于此状态</p>
+</blockquote>
+</li>
+<li>
+<p>BLOCKED</p>
+<blockquote>
+<p>被阻塞等待监视器锁定的线程处于此状态</p>
+</blockquote>
+</li>
+<li>
+<p>WAITING</p>
+<blockquote>
+<p>正在等待另一个线程执行特定动作的线程处于此状态</p>
+</blockquote>
+</li>
+<li>
+<p>TIMED_WAITING</p>
+<blockquote>
+<p>正在等待另一个线程执行动作达到指定等待时间的线程处于此状态</p>
+</blockquote>
+</li>
+<li>
+<p>TERMINATED</p>
+<blockquote>
+<p>已退出的线程处于此状态</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="线程的优先级">线程的优先级</h3>
+<ul>
+<li>Java提供一个线程调度器来监控程序中启动后进入就绪状态的所有线程，线程调度器按照优先级决定应该调度哪个线程来执行。</li>
+<li>线程的优先级用数字表示，范围从1～10
+<ul>
+<li><code>Thread.MIN_PRIORITY = 1;</code></li>
+<li><code>Thread.MAX_PRIORITY = 10;</code></li>
+<li><code>Thread.NORM_PRIORITY = 5;</code></li>
+</ul>
+</li>
+<li>使用以下方式改变或获取优先级
+<ul>
+<li><code>getPriority()</code></li>
+<li><code>setPriority(int x)</code></li>
+</ul>
+</li>
+</ul>
+]]></content></item><item><title>微星B460主板安装Linux问题</title><link>https://painso.com/posts/tech/2020/msi-b460-motherboard-linux-issue/</link><pubDate>Wed, 02 Sep 2020 20:14:05 +0800</pubDate><guid>https://painso.com/posts/tech/2020/msi-b460-motherboard-linux-issue/</guid><description>今天公司到了一台内网测试用服务器，想着直接装好Ubuntu 16.04配置好网络直接扔杂物间(没有机房，只能放那边挨着交换机)
 没想到我的U盘直接认不到了，我是用YUMI把好几个系统装到U盘里的，我自己用的办公电脑是ok的，后面网上查了下说要吧BIOS里面的UEFI改成CMS 兼容模式，结果直接点不亮了。
 没办法，拆开机箱取主板电池下来放电重新来
 重新用YUMI把ISO刻到U盘后发现竟然神奇的可以了，兴奋的等待安装完毕后蛋疼的事情又来了。
@@ -1160,6 +1866,20 @@ Process finished with <span class="nb">exit</span> code <span class="m">0</span>
 </code></pre></div></li>
 </ol>
 </li>
+</ul>
+</li>
+</ul>
+<h3 id="异常处理机制">异常处理机制</h3>
+<ul>
+<li>抛出异常</li>
+<li>捕获异常</li>
+<li>异常处理的五个关键字
+<ul>
+<li>try</li>
+<li>catch</li>
+<li>finally</li>
+<li>throw</li>
+<li>throws</li>
 </ul>
 </li>
 </ul>
@@ -3107,4 +3827,4 @@ RewriteRule . /404.htm [L]
 <span class="nx">print_r</span><span class="p">(</span><span class="nv">$row</span><span class="p">);</span>
 <span class="k">echo</span> <span class="s2">&#34;/&lt;pre&gt;&#34;</span><span class="p">;</span>
 <span class="cp">?&gt;</span>
-</code></pre></div>]]></content></item></channel></rss>
+</code></pre></div>]]></content></item><item><title/><link>https://painso.com/posts/tech/2020/untitled/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://painso.com/posts/tech/2020/untitled/</guid><description/><content type="html"></content></item></channel></rss>
