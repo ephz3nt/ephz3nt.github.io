@@ -1,4 +1,4 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on ephz3nt</title><link>https://painso.com/posts/</link><description>Recent content in Posts on ephz3nt</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 09 Sep 2020 21:55:43 +0800</lastBuildDate><atom:link href="https://painso.com/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Google SRE 生存指南笔记</title><link>https://painso.com/posts/tech/2020/google-sre-notes/</link><pubDate>Wed, 09 Sep 2020 21:55:43 +0800</pubDate><guid>https://painso.com/posts/tech/2020/google-sre-notes/</guid><description>SRE简介 SRE是指Site Reliability Engineer (网站可靠性工程师)。他是软件工程师和系统管理员的结合，一个SRE工程师基本上需要掌握很多知识：算法，数据结构，编程能力，网络编程，分布式系统，可扩展架构，故障排除。 - 百度百科
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on ephz3nt</title><link>https://painso.com/posts/</link><description>Recent content in Posts on ephz3nt</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 09 Sep 2020 21:55:43 +0800</lastBuildDate><atom:link href="https://painso.com/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Google SRE 生存指南笔记</title><link>https://painso.com/posts/tech/2020/real-world-sre-notes/</link><pubDate>Wed, 09 Sep 2020 21:55:43 +0800</pubDate><guid>https://painso.com/posts/tech/2020/real-world-sre-notes/</guid><description>SRE简介 SRE是指Site Reliability Engineer (网站可靠性工程师)。他是软件工程师和系统管理员的结合，一个SRE工程师基本上需要掌握很多知识：算法，数据结构，编程能力，网络编程，分布式系统，可扩展架构，故障排除。 - 百度百科
 Site： 一个网站 Reliability： 被定义为&amp;quot;值得信赖的质量或一贯可靠的质量&amp;rdquo; Engineering： 被定义为&amp;quot;熟练地运用技巧以达到某种目的的行动&amp;rdquo; 《SRE 生存指南》- Nat Welch 系统中断响应与正常运行时间最大化
 语录 故障是常态，正常才是异常 个人不应该害怕事故，而是要确信如果事故发生，团队将会响应和改进系统，而不是关注发生事故带来的耻辱和愤怒。事故是我们可以从中学习的东西，而不是让人害怕和羞耻的事情！ 1. 简介 SRE的目标是提高服务可靠性，帮助业务实现并改善用户的服务体验 SRE定义： 一个专注于熟练地维护一个网站以使其持续可靠的领域 互联网上的软件永远做不到完全可靠，这里有两个原因
 互联网是一个分布式系统，各部分经常出现故障，这会影响服务可用性。 软件是人编写的，所以Bug不可避免，而Bug会导致系统宕机。 可靠性层次结构 Mikey Pyramid
@@ -37,7 +37,7 @@ Site： 一个网站 Reliability： 被定义为&amp;quot;值得信赖的质量�
 <ul>
 <li>
 <p>可靠性层次结构 Mikey Pyramid</p>
-<p><img src="../../../../images/google-sre-notes/image-20200909223259992.png" alt="image-20200909223259992"></p>
+<p><img src="../../../../images/real-world-sre-notes/image-20200909223259992.png" alt="image-20200909223259992"></p>
 <ol>
 <li>用户体验</li>
 <li>开发</li>
@@ -113,7 +113,7 @@ Site： 一个网站 Reliability： 被定义为&amp;quot;值得信赖的质量�
 <p>对于后台服务使用<code>IDS (Instrusion Detection Systems) 入侵检测系统</code></p>
 <p>有了基础才能开始扩展</p>
 <p>用户通过上传服务器上传图片，后上传服务器写入本地磁盘并检查这些图片，将元数据存储到数据库中，然后将图片上传到云存储服务</p>
-<p><img src="../../../../../images/google-sre-notes/image-20200912084914408.png" alt="上传图像服务的实例图"></p>
+<p><img src="../../../../../images/real-world-sre-notes/image-20200912084914408.png" alt="上传图像服务的实例图"></p>
 <p>哪些指标可以告诉你此服务器正在执行工作？</p>
 <ul>
 <li>请求错误数、请求持续时间和请求总数(<strong>ERD</strong>)： 因为这是Web服务器，也是监控的底线</li>
@@ -248,7 +248,7 @@ Site： 一个网站 Reliability： 被定义为&amp;quot;值得信赖的质量�
 <h2 id="事故响应">事故响应</h2>
 <p>事故响应属于<code>Mikey Pyramid</code>中监控的下一个层次。事故响应建立在使用监控系统构建的数据之上，并借助反馈循环，来帮助我们加强对服务的监控。</p>
 <p>这向我们展示了什么是重要的。因为如果没有警报，而是有人告诉我们服务没有正常工作，那么我们的监控就是不到位的。</p>
-<h4 id="什么是事故响应">什么是事故响应</h4>
+<h3 id="什么是事故响应">什么是事故响应</h3>
 <p>事故响应通常包含以下几个动作</p>
 <ol>
 <li>
@@ -266,6 +266,70 @@ Site： 一个网站 Reliability： 被定义为&amp;quot;值得信赖的质量�
 <p>恢复，纠正不对劲的东西</p>
 </li>
 </ol>
+<h3 id="警报">警报</h3>
+<p>警报最好以多种方式发送同一个警报避免单个服务故障，<strong>警报发送失败的后果可能会非常严重</strong>。</p>
+<p>警报服务</p>
+<ul>
+<li>PagerDuty</li>
+<li>VictorOps</li>
+<li>睿象云</li>
+<li>OpsGenie</li>
+</ul>
+<p><img src="../../../../images/real-world-sre-notes/image-20200913113915619.png" alt="image-20200913113915619"></p>
+<p>警报内容</p>
+<ul>
+<li>
+<p>主题应该小于50个字符。这可以让接收警报的人快速了解情况。</p>
+</li>
+<li>
+<p>使用祈使句。这尤其重要，因为当错误发生时人们常常希望给出有关如何操作的说明。例如&quot;转到AWS控制台并终止实例<code>i-1234567890</code>&rdquo;</p>
+<blockquote>
+<p><em>祈使句</em>（Imperative Sentence）是英语中的一个句式，也是用于表达命令、请求、劝告、警告、禁止等的句子。<em>祈使句</em>最常用于表达命令，因此在学校文法中也常称为命令句。</p>
+</blockquote>
+</li>
+<li>
+<p>在主题后面提供额外的注解。如果警报服务允许，警报内容应该包括实时细节，如图表或指标的评估。此外还应该包括对响应警报的人有用的文档链接。</p>
+</li>
+</ul>
+<h3 id="沟通">沟通</h3>
+<p>一旦有人接收警报并确认，他们就需要开始通报消息。<strong>无论如何你都应该每30分钟向所有相关人员发送一条消息。即使没有任何变化，也要告诉他们</strong>。要了解你的听众，如果没有强制要求可以不用太技术化；但如果你的听众是懂技术的，那么分享你能分享的，但要保持简明扼要。如果是内部交流，当人们需要了解更多信息时，一定要告诉他们去哪里才能找到。</p>
+<p>如果在处理一个问题10分钟后仍然毫无头绪，那么就应该去寻求帮助。如果TA也不知道，那就引进其他人。慢慢地培养那些参与其中的人，直到你了解什么不起作用，以及如何使系统良好运行为止。</p>
+<h3 id="事故指挥系统">事故指挥系统</h3>
+<p>国家事故管理系统(National Incident Management System) 简称NIMS</p>
+<p>事故指挥系统(Incident Command System) 简称ICS</p>
+<p>ICS的第一条规则是谁先到场负责。先到场的几乎总是值班的那个人，那么就由他来负责。如果有其他人出现，不论他的资历或所从属的组织如何，那么直到角色被授权，第一个到场的就是负责人。这样做的目的是规范化应对事故的结构，以确保不会出现多头领导的局面。你可以想象在野火场景下的这样一个结果： 一队消防队员赶到现场，他们正在处理火灾；然后，一个警察局长和消防局长出现了，一群警察也随之赶到；一场火灾，所以人们可能认为最好听从消费队长的指挥，但是正常的结构规定他们必须听从警察局长。</p>
+<p>遵循ICS，警官们在处理事故期间不必思考，因为有一个人在负责。那个第一出现在现场的人就是事故指挥官，在这种情况下，他可能是现场第一批消费对于中资历最深的人。然而，不要忘记授权。作为事故指挥官，有些任务需要去授权。上述示例中，可以让警察局长负责沟通，让消防队长负责人员调配和物资管理，请警官开展疏散工作，并指定一名警官来负责。</p>
+<p><img src="../../../../images/real-world-sre-notes/image-20200913133953712.png" alt="image-20200913133953712"></p>
+<h3 id="恢复系统">恢复系统</h3>
+<p>平均恢复时间(Mean Time to Recovery, 简称MTTR)</p>
+<h4 id="追踪一个挂掉的系统">追踪一个挂掉的系统</h4>
+<ol>
+<li>首先，深呼吸。逼自己慢下来。吸气的时候数到6，屏息的时候再数到6，呼气的时候再数到6，最后在再次开始这个循环之前再数到6。这样做几次就会让你放松一点，慢慢呼吸会迫使我们在崩溃之前先检查一下自己。</li>
+</ol>
+<blockquote>
+<p>这种呼吸方法叫做盒式呼吸。它来自美国海军海豹突击队。如何冷静下来并不重要，关键是找到让自己冷静下来的方法，这样你就可以清楚地进行思考了。</p>
+</blockquote>
+<ol start="2">
+<li>
+<p>检查最近是否有部署。如果是，那么代码可能是最近才部署的。可以尝试将看到的错误与出现的新版本进行匹配。如果问题出现在这里，那么应该恢复部署并回滚到以前的版本。</p>
+</li>
+<li>
+<p>如果回滚没有解决问题，下一个要查看的方面就是环境是否发生了变化。输入改变了吗？是否开始接收大量流量？收到的是一堆无意义或损坏的流量吗？当想出如何更改应用程序以更好地处理这种类型的错误流量时，是否开始阻止某个IP地址或用户代理？这是有效的流量吗？</p>
+<blockquote>
+<p>删除或停止响应与某种过滤器匹配的Web服务器的流量称为负载释放。它通常被认为是一种激进的策略，但是当某种类型的流量导致应用程序崩溃时，它就非常有用。</p>
+</blockquote>
+</li>
+<li>
+<p>如果用户输入没有改变，那么一个依赖项可能发生改变。数据库准备好了吗？我们依赖的服务是否正在运行？是否有人在没有告诉我们的情况下以应用程序不兼容的方式做了修改？</p>
+</li>
+<li>
+<p>如果你找不到东西，那么这就是求助其他同事开始深入挖掘的好时机。这并不是永久性修复，而是将系统带回到大多数客户可以使用的状态的方法。然后，你可以让客户继续使用服务，同时与你的团队合作，制定一个长期计划，以防止再次发生这种情况。</p>
+</li>
+</ol>
+<h4 id="警报解除">警报解除</h4>
+<p>宣布警报解除的第一步是确保应用程序能够完成它该做的事，然后就可以开始解决根本问题了。请注意，第一目标始终是启动系统，而不是解决问题或找出根本原因。</p>
+<p>请注意两个单独的警报解除消息： 第一个说事情应该恢复正常；第二个说警报解除，并说明何时进一步通信</p>
+<p><img src="../../../../images/real-world-sre-notes/image-20200913141942334.png" alt="谷歌云生产事件记录截图"></p>
 ]]></content></item><item><title>Java 线程</title><link>https://painso.com/posts/tech/2020/java-thread/</link><pubDate>Mon, 07 Sep 2020 21:06:51 +0800</pubDate><guid>https://painso.com/posts/tech/2020/java-thread/</guid><description>观看至： https://www.bilibili.com/video/BV1V4411p7EF?p=17
 什么是任务、进程、线程 多任务表示一个人边吃饭边玩手机，看上去是同时进行，实际上这一秒在吃饭下一秒在玩手机，只是切换时间很短感觉不出来 说道进程就得提程序，程序运行会创建一个进程，里面包含一个主线程如main函数，还有其他语言自带的守护线程如Java的GC 线程不一定立即执行，它是由CPU调度的 线程的三种创建方式 Thread class 继承Thread类
 不建议使用： 避免OOP单继承局限性 创建一个Class继承Thread class并重写run()方法，启动线程使用.start() package com.painso.study.thread.demo01; // create thread way 1: extend Thread class, override run() method, call start enable thread public class D1 extends Thread{ @Override public void run(){ // run() body for (int i = 0; i&amp;lt;20;i++){ System.out.println(&amp;#34;i&amp;#39;m run() body &amp;#34;+i); } } public static void main(String[] args) { // main() body D1 d1 = new D1(); d1.</description><content type="html"><![CDATA[<p>观看至： <a href="https://www.bilibili.com/video/BV1V4411p7EF?p=17">https://www.bilibili.com/video/BV1V4411p7EF?p=17</a></p>
