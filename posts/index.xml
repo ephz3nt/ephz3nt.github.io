@@ -390,6 +390,89 @@ Site： 一个网站 Reliability： 被定义为&amp;quot;值得信赖的质量�
 <p>在开始会议时做出声明，要求那些没有阅读事后回顾报告的人说明不读的原因或不让他们参加会议。这里的想法是，那些没有阅读事后回顾报告的人提出的一些问题或观点，而这些问题或观点可能已经在文档中有所陈述。会议不应该迎合那些为了更广泛的学习而无法花时间了解事故的人。</p>
 <h3 id="小结">小结</h3>
 <p>作为一名SRE工程师，或者作为渴望建立可靠性的组织的一部分，事后回顾报告是从处理现在到未来的过度。在<code>Mikey Pyramid</code>中，在事后回顾报告以上的所有层级都是关于未来的 - 规划和改进过程。而下层(监控和事故响应)的一切都是关于处理当前事故的。在开始思考未来之前，事后回顾报告允许我们回顾过去。</p>
+<h2 id="5-测试与发布">5. 测试与发布</h2>
+<p>测试表明缺陷存在，而不是不存在</p>
+<p>无论测试什么，都不需要验证其反面</p>
+<p>不管做什么测试，它都是迭代的，应该大致遵循科学的方法。对于那些不知道这种方法的人，或者对将此方法应用到软件开发方面感到困难的人，请遵循以下步骤。</p>
+<ol>
+<li>观察： 例如发现服务中断、获得一个需求，或者只是在编写软件</li>
+<li>提问： 问你自己，当软件处理这种类型的输入，或者这个依赖不存在，或者软件进入这种状态时，会发生什么？</li>
+<li>假设： 提出假设。在代码中，这更多的是询问你想要发生什么</li>
+<li>测试： 行动并验证，代码是否以想要的方式做出了反应？</li>
+<li>拒绝或通过： 如果测试失败，那么需要修改一些东西(如测试、代码、基础设施、流程等)以满足你的期望。</li>
+</ol>
+<p><strong>lint代码检查</strong></p>
+<blockquote>
+<p>lint检查是确保代码与特定的代码规范相匹配的操作。这对于促使拥有大量开发人员的项目坚持一致的代码风格非常有用。lint检查和测试的执行都适合使用自动化来实现。我们将对此进行简单讨论，但是在请求代码评审之前，你希望某人做的任何事情通常都是可以自动化的。</p>
+</blockquote>
+<h3 id="测试的种类">测试的种类</h3>
+<ul>
+<li>
+<p>单元测试： 用于确保函数和方法正常工作</p>
+</li>
+<li>
+<p>特性测试： 也称为冒烟测试和验收测试。它们验证特性是否正常工作</p>
+</li>
+<li>
+<p>集成测试： 这些测试用于确保特性和系统正确地协同工作</p>
+</li>
+<li>
+<p>负面测试</p>
+<blockquote>
+<p>虽然不一定是一种类型的测试，但是负面测试是需要牢记的重要方法。这个方法认为，人们总是会输入你不期望的数据。这可能是带有非法的字符或代码输入，这些字符或代码会导致安全漏洞；或者用户只是纯粹的意外操作。</p>
+<p>在测试时，尽可能多地为输入提出不正常的情况。用户经常会与你的想法不同，并且总会有一些用户有不好的意图，或者给你发送不正常的输入。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="基础设施测试">基础设施测试</h4>
+<p>混沌工程</p>
+<ul>
+<li>Netflix Chaos Monkey</li>
+</ul>
+<p>压力测试</p>
+<ul>
+<li>Apache Bench</li>
+<li>Siege</li>
+<li>Wrk</li>
+<li>Beeswithmachineguns</li>
+<li>Hey</li>
+</ul>
+<p>压力测试对于理解服务如何处理大量请求很有用，但是与正常的Web服务流量相比，这常常是不现实的。为了解决这个问题，人们经常测试生产访问量。最常用的两种方法</p>
+<ul>
+<li>
+<p>影子测试</p>
+<blockquote>
+<p>影子测试是将请求记录到服务中，然后将它们在应用程序的新版本进行重放，以此来测试它</p>
+</blockquote>
+<p>一些工具</p>
+<ul>
+<li>用于HTTP请求的<code>vegeta</code>与<code>goreplay</code></li>
+<li>用于TCP连接的<code>tcpreplay</code></li>
+<li>用于数据库查询的<code>query-playback</code>与<code>mongoreplay</code></li>
+</ul>
+</li>
+<li>
+<p>金丝雀</p>
+<blockquote>
+<p>金丝雀是引入新版本的服务实例并让其获得少量访问量的一种做法。</p>
+<p>形象的说法： 把脚慢慢伸进水里，看看是不是太热了。</p>
+</blockquote>
+</li>
+<li>
+<p>特性开关</p>
+<blockquote>
+<p>它工作起来像金丝雀，但是它使用代码。此布尔语句表示次用户是否启用该特性，然后继续。</p>
+<p>例如只让10%的登录用户看到一个特性，或者只让员工看到一个特性。通过监控，你可以看到某些代码的错误是否比其他代码更多。特性开关可能使调试变得更加困难，因为如果用户在使用服务时看到不正常的事情，那么你可能需要首先弄清楚启用了哪些特性，然后才能正确地对用户体验进行调试。</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>如果没有监控，像这样的生产测试是非常危险的，因为你很少或根本看不到变更对每个人的影响。测试的全部目的是验证假设。如果无法查看测试结果，则无法验证任何内容，因此实际上没有测试任何内容。</strong></p>
+<h3 id="测试流程">测试流程</h3>
+<p>除测试计算机软件外，测试流程和人也很重要。</p>
+<p>Google的(DiRT， Disaster Recovery Testing 灾难恢复测试)，Google计划大规模停机，看看团队如何反映。</p>
+<p>DiRT的例子包括使谷歌总部不可访问、关闭大量团队所依赖的系统、使数据中心离线，以及跨多个团队的统一停机计划等。</p>
+<h3 id="发布">发布</h3>
+<p>如果你正在发布代码，并且你没有任何办法掌握它们，那么总是存在如果出现问题则必须回滚的风险。如果回滚很容易，这不是问题，但如果不是，这将是一个大问题。</p>
 ]]></content></item><item><title>Java 线程</title><link>https://painso.com/posts/tech/2020/java-thread/</link><pubDate>Mon, 07 Sep 2020 21:06:51 +0800</pubDate><guid>https://painso.com/posts/tech/2020/java-thread/</guid><description>观看至： https://www.bilibili.com/video/BV1V4411p7EF?p=23
 什么是任务、进程、线程 多任务表示一个人边吃饭边玩手机，看上去是同时进行，实际上这一秒在吃饭下一秒在玩手机，只是切换时间很短感觉不出来 说道进程就得提程序，程序运行会创建一个进程，里面包含一个主线程如main函数，还有其他语言自带的守护线程如Java的GC 线程不一定立即执行，它是由CPU调度的 线程的三种创建方式 Thread class 继承Thread类
 不建议使用： 避免OOP单继承局限性 创建一个Class继承Thread class并重写run()方法，启动线程使用.start() package com.painso.study.thread.demo01; // create thread way 1: extend Thread class, override run() method, call start enable thread public class D1 extends Thread{ @Override public void run(){ // run() body for (int i = 0; i&amp;lt;20;i++){ System.out.println(&amp;#34;i&amp;#39;m run() body &amp;#34;+i); } } public static void main(String[] args) { // main() body D1 d1 = new D1(); d1.</description><content type="html"><![CDATA[<p>观看至： <a href="https://www.bilibili.com/video/BV1V4411p7EF?p=23">https://www.bilibili.com/video/BV1V4411p7EF?p=23</a></p>
