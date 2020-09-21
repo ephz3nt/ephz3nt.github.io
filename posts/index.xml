@@ -473,6 +473,53 @@ Site： 一个网站 Reliability： 被定义为&amp;quot;值得信赖的质量�
 <p>DiRT的例子包括使谷歌总部不可访问、关闭大量团队所依赖的系统、使数据中心离线，以及跨多个团队的统一停机计划等。</p>
 <h3 id="发布">发布</h3>
 <p>如果你正在发布代码，并且你没有任何办法掌握它们，那么总是存在如果出现问题则必须回滚的风险。如果回滚很容易，这不是问题，但如果不是，这将是一个大问题。</p>
+<h2 id="容量规划">容量规划</h2>
+<p>容量规划需要和其他非技术部门沟通，因此懂得行业术语对开展工作至关重要。它设置了开始讨论的准入门槛。</p>
+<blockquote>
+<p>这些不是法律、投资或财务建议，因为你只是个工程师。在做财务决策之前，要和你的会计师、银行出纳员、财务规划师、律师、首席财务官，或者这一类管钱的人谈谈。</p>
+</blockquote>
+<ul>
+<li>
+<p>现金流</p>
+<blockquote>
+<p>描述有多少钱，这些钱从哪里来，去往哪里。包括收入，即钱从哪里来；以及支出，钱从哪里去。</p>
+</blockquote>
+</li>
+<li>
+<p>损益表(P&amp;L： Profits And Losses)</p>
+<blockquote>
+<p>通常以季度为单位，描述你有多少钱，以及这些钱如何变化。这些数字来自收入减去支出。如果结果大于零，你就有利润。如果小于零，就会有亏损</p>
+</blockquote>
+</li>
+<li>
+<p>资产负债表</p>
+<blockquote>
+<p>资产负债表是资产、负债和股权的列表。基本上，这包括公司所拥有的财产、债主以及股东。资产负债表的基本计算方程是资产=负债+权益。花的钱(资产)等于从银行借的钱(负债)和股票(从投资者那里得到的钱)的总和。</p>
+</blockquote>
+</li>
+<li>
+<p>资本支出与经营支出</p>
+<blockquote>
+<p>资本是用来定义组织所拥有的物品或资产的价值的术语。资本可以是货币、知识产权、房地产、实物商品等。资本支出是增加你拥有的资本数量的投资。经常有人说，资本支出是与带来更多收入直接相关的资金。</p>
+<p>经营性支出就是除资本支出外的一些支出。它是你无法收回的投资，如保险、劳动力、人力成本、基础设施等。如果你是园艺服务者，购买割草机是资本支出，而它的燃料是经营性支出。</p>
+</blockquote>
+</li>
+<li>
+<p>投资回报率</p>
+<blockquote>
+<p>也叫ROI(Return on Investment) 。在金融界，这通常是一个百分比。为了计算这个百分比，需要用赚的钱减去最初投资的本金，然后处以本金。公式就是ROI=净货币/初始投资。常常有人问，&ldquo;我们为什么这样做，我们期望得到什么回报？&ldquo;答案并不总是金钱：有时是机会或者实物。</p>
+</blockquote>
+</li>
+<li>
+<p>成本中心与利润中心</p>
+<blockquote>
+<p>成本中心与利润中心通常按照与资本支出的经营性支出类似的方式分开。成本中心和利润中心都是一群人所在的机构。投资利润中心就意味着投资能转化为销售的产品。反过来，成本中心是其余的一切。因此，人力资源(HR)部门通常是一个成本中心，因为它对于企业来说是必要的，但对产品的生产不是必要的。根据公司的不同，软件开发人员可以被认为是成本中心或利润中心。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="为什么需要计划">为什么需要计划</h3>
+<p>童子军座右铭 - 做好准备，容量规划就是做好应对不可避免的变化的准备。其背后的理论是，在万事具备与毫无准备仅凭临场应对直接寻找平衡。你永远不可能完全准备好面对你所不知道的风险。所以，相反，你应该制定一个大概的计划，这个计划允许有临场发挥的空间，并且还能解决目前所知道的问题。你制定的计划越长远，临场发挥的空间就越大。</p>
+<p>例如： 如果你的计划提前了两三年，那么你可能甚至不知道你的组织到那时可能支持什么产品，而如果你的计划是给之后一个月制定的，那么你可能对业务上将要发生的事情了如指掌。</p>
 ]]></content></item><item><title>Java 线程</title><link>https://painso.com/posts/tech/2020/java-thread/</link><pubDate>Mon, 07 Sep 2020 21:06:51 +0800</pubDate><guid>https://painso.com/posts/tech/2020/java-thread/</guid><description>观看至： https://www.bilibili.com/video/BV1V4411p7EF?p=23
 什么是任务、进程、线程 多任务表示一个人边吃饭边玩手机，看上去是同时进行，实际上这一秒在吃饭下一秒在玩手机，只是切换时间很短感觉不出来 说道进程就得提程序，程序运行会创建一个进程，里面包含一个主线程如main函数，还有其他语言自带的守护线程如Java的GC 线程不一定立即执行，它是由CPU调度的 线程的三种创建方式 Thread class 继承Thread类
 不建议使用： 避免OOP单继承局限性 创建一个Class继承Thread class并重写run()方法，启动线程使用.start() package com.painso.study.thread.demo01; // create thread way 1: extend Thread class, override run() method, call start enable thread public class D1 extends Thread{ @Override public void run(){ // run() body for (int i = 0; i&amp;lt;20;i++){ System.out.println(&amp;#34;i&amp;#39;m run() body &amp;#34;+i); } } public static void main(String[] args) { // main() body D1 d1 = new D1(); d1.</description><content type="html"><![CDATA[<p>观看至： <a href="https://www.bilibili.com/video/BV1V4411p7EF?p=23">https://www.bilibili.com/video/BV1V4411p7EF?p=23</a></p>
