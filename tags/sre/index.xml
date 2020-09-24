@@ -1,7 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SRE on ephz3nt</title><link>https://painso.com/tags/sre/</link><description>Recent content in SRE on ephz3nt</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 09 Sep 2020 21:55:43 +0800</lastBuildDate><atom:link href="https://painso.com/tags/sre/index.xml" rel="self" type="application/rss+xml"/><item><title>Google SRE 生存指南笔记</title><link>https://painso.com/posts/tech/2020/real-world-sre-notes/</link><pubDate>Wed, 09 Sep 2020 21:55:43 +0800</pubDate><guid>https://painso.com/posts/tech/2020/real-world-sre-notes/</guid><description>SRE简介 SRE是指Site Reliability Engineer (网站可靠性工程师)。他是软件工程师和系统管理员的结合，一个SRE工程师基本上需要掌握很多知识：算法，数据结构，编程能力，网络编程，分布式系统，可扩展架构，故障排除。 - 百度百科
-Site： 一个网站 Reliability： 被定义为&amp;quot;值得信赖的质量或一贯可靠的质量&amp;rdquo; Engineering： 被定义为&amp;quot;熟练地运用技巧以达到某种目的的行动&amp;rdquo; 《SRE 生存指南》- Nat Welch 系统中断响应与正常运行时间最大化
-语录 故障是常态，正常才是异常 个人不应该害怕事故，而是要确信如果事故发生，团队将会响应和改进系统，而不是关注发生事故带来的耻辱和愤怒。事故是我们可以从中学习的东西，而不是让人害怕和羞耻的事情！ 1. 简介 SRE的目标是提高服务可靠性，帮助业务实现并改善用户的服务体验 SRE定义： 一个专注于熟练地维护一个网站以使其持续可靠的领域 互联网上的软件永远做不到完全可靠，这里有两个原因
-互联网是一个分布式系统，各部分经常出现故障，这会影响服务可用性。 软件是人编写的，所以Bug不可避免，而Bug会导致系统宕机。 可靠性层次结构 Mikey Pyramid
-用户体验 开发 容量规划 测试与发布 事后回顾 事故响应 监控 以上七点都被沟通所包围，因为每一层都需要沟通才能成功。
-在加入或新项目评估新服务时，请遵循下面的一系列步骤
-弄清楚团队结构。团队里谁负责什么？谁说了算？ 查找团队为其服务或项目编写的任何文档。 让某人绘制出系统架构图。让他们向你展示什么连接到哪个服务、什么依赖于这个项目、数据如何流经服务，以及项目如何部署。 进行每个环节时提出以下问题</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SRE on ephz3nt</title><link>https://painso.com/tags/sre/</link><description>Recent content in SRE on ephz3nt</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 23 Sep 2020 11:00:43 +0800</lastBuildDate><atom:link href="https://painso.com/tags/sre/index.xml" rel="self" type="application/rss+xml"/><item><title>Google SRE 运维解密笔记</title><link>https://painso.com/posts/tech/2020/google-sre-how/</link><pubDate>Wed, 23 Sep 2020 11:00:43 +0800</pubDate><guid>https://painso.com/posts/tech/2020/google-sre-how/</guid><description>本书对于 SRE 的定义
+我们认为如果软件工程师主要专注于设计和构建软件系统，那么应该有另外一种职业专注于整个软件系统的生命周期管理。从其设计一直到部署，历经不断改进，最后顺利退役。这样一种职业必须具备非常广泛的技能，但是和其他职业的专注点都不同。Google 将这个职业称为站点可靠性工程师(SRE: Site Reliability Engineering)。
+&amp;ldquo;无论对一个软件系统运行原理掌握得多么彻底，也不能阻止人犯意外错误。&amp;rdquo;
+只有靠着对细节的不懈关注，做好充足的灾难预案和准备工作，时刻警惕着，不放过一切机会去避免灾难发生。这就是 SRE 最重要的理念！
+介绍 不能将碰运气当成战略。 - SRE 俗语
+SRE 团队要承担以下几类职责
+可用性改进 延迟优化 性能优化 效率优化 变更管理 监控 紧急事务处理 容量规划与管理 在保障服务 SLO 的前提下最大化迭代速度 在企业中，最主要的矛盾就是迭代创新的速度与产品稳定程度之间的矛盾。 在 SRE 模型中，我们选择正面面对这种矛盾，使用的工具是错误预算。
+&amp;ldquo;错误预算&amp;quot;起源于这样一个理念： 任何产品都不是，也不应该做到 100%可靠(显然这并不适用于心脏起博器和防抱死系统等)。因为对最终用户来说，99.999%和 100%的可用性是没有实质区别的。
+多少才是？
+基于用户的使用习惯，服务可靠性要达到什么程度用户才会满意？ 如果这项服务的可靠程度不够，用户是否有其他的替代选择？ 服务的可靠程度是否会影响用户对这项服务的使用模式？ 如果一个服务的可靠性目标是 99.99%，那么错误预算就是 0.01%。这意味着产品研发部门和 SRE 部门可以在这个范围内将预算用于新功能上线或产品创新等任何事情。
+监控系统 监控系统是 SRE 团队监控服务质量和可用性的一个主要手段。
+一个需要人工阅读邮件和分析警报来决定目前是否需要采取某种行动的系统本质上就是错误的。监控系统不应该依赖人来分析警报信息，而是应该由系统自动分析，仅当需要用户执行某种操作时，才需要通知用户。
+一个监控系统应该只有三类输出
+紧急警报 - alert 意味着收到警报的用户需要立即执行某种操作，目标是解决某种已经发生的问题，或者是避免即将发生的问题。</description></item><item><title>Google SRE 生存指南笔记</title><link>https://painso.com/posts/tech/2020/real-world-sre-notes/</link><pubDate>Wed, 09 Sep 2020 21:55:43 +0800</pubDate><guid>https://painso.com/posts/tech/2020/real-world-sre-notes/</guid><description>《SRE 生存指南》- Nat Welch
+系统中断响应与正常运行时间最大化
+SRE 简介 SRE 是指 Site Reliability Engineer (网站可靠性工程师)。他是软件工程师和系统管理员的结合，一个 SRE 工程师基本上需要掌握很多知识：算法，数据结构，编程能力，网络编程，分布式系统，可扩展架构，故障排除。 - 百度百科
+Site： 一个网站
+Reliability： 被定义为&amp;quot;值得信赖的质量或一贯可靠的质量&amp;rdquo;
+Engineering： 被定义为&amp;quot;熟练地运用技巧以达到某种目的的行动&amp;rdquo;
+语录
+故障是常态，正常才是异常
+个人不应该害怕事故，而是要确信如果事故发生，团队将会响应和改进系统，而不是关注发生事故带来的耻辱和愤怒。事故是我们可以从中学习的东西，而不是让人害怕和羞耻的事情！
+1. 简介 SRE 的目标是提高服务可靠性，帮助业务实现并改善用户的服务体验 SRE 定义： 一个专注于熟练地维护一个网站以使其持续可靠的领域 互联网上的软件永远做不到完全可靠，这里有两个原因
+互联网是一个分布式系统，各部分经常出现故障，这会影响服务可用性。 软件是人编写的，所以 Bug 不可避免，而 Bug 会导致系统宕机。 可靠性层次结构 Mikey Pyramid</description></item></channel></rss>
