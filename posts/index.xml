@@ -1,4 +1,37 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on ephz3nt</title><link>https://painso.com/posts/</link><description>Recent content in Posts on ephz3nt</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 23 Sep 2020 11:00:43 +0800</lastBuildDate><atom:link href="https://painso.com/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Google SRE 运维解密笔记</title><link>https://painso.com/posts/tech/2020/google-sre-how/</link><pubDate>Wed, 23 Sep 2020 11:00:43 +0800</pubDate><guid>https://painso.com/posts/tech/2020/google-sre-how/</guid><description>本书对于 SRE 的定义
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on ephz3nt</title><link>https://painso.com/posts/</link><description>Recent content in Posts on ephz3nt</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 29 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://painso.com/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Vue上传阿里云OSS问题</title><link>https://painso.com/posts/tech/2020/vue-upload-aliyun-oss-issue/</link><pubDate>Thu, 29 Oct 2020 00:00:00 +0000</pubDate><guid>https://painso.com/posts/tech/2020/vue-upload-aliyun-oss-issue/</guid><description>前段时间部署前端同事的 Vue 代码遇到的，记录一下。
+问题概述 前端同事在vue.config.js配置了 OSS 的 proxy
+&amp;#34;/ossUpload&amp;#34;: { target: &amp;#34;https://xxx-proj.oss-cn-shanghai.aliyuncs.com&amp;#34;, changeOrigin: true, ws: true, pathRewrite: { &amp;#34;^/ossUpload&amp;#34;: &amp;#34;&amp;#34;, }, }, 由于 Vue 编译后为纯静态文件，导致我部署到 Nginx 访问不到这个/ossUpload路径，于是只能加个proxy_pass规则。
+location ^~/ossUpload { proxy_pass https://xxx-proj.oss-cn-shanghai.aliyuncs.com/; 加上后发现上传报错，直接在 Vue 启动开发模式发现上传 OSS 的状态码是204, 看到这个想到websocket的配置需要设置http_upgrade的一些配置，于是配置上去正常上传了。 最终 Nginx 配置如下
+location ^~/ossUpload { proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_set_header X-Forwarded-Proto $scheme; proxy_set_header X-NginX-Proxy true; proxy_redirect off; proxy_http_version 1.1; proxy_set_header Upgrade $http_upgrade; proxy_set_header Connection &amp;quot;upgrade&amp;quot;; proxy_pass https://xxx-proj.oss-cn-shanghai.aliyuncs.com/; 时间过去比较久， 一些细节忘记了 - -</description><content type="html"><![CDATA[<p>前段时间部署前端同事的 Vue 代码遇到的，记录一下。</p>
+<h3 id="问题概述">问题概述</h3>
+<p>前端同事在<code>vue.config.js</code>配置了 OSS 的 proxy</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript">    <span class="s2">&#34;/ossUpload&#34;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">target</span><span class="o">:</span> <span class="s2">&#34;https://xxx-proj.oss-cn-shanghai.aliyuncs.com&#34;</span><span class="p">,</span>
+        <span class="nx">changeOrigin</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nx">ws</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nx">pathRewrite</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&#34;^/ossUpload&#34;</span><span class="o">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">},</span>
+</code></pre></div><p>由于 Vue 编译后为纯静态文件，导致我部署到 Nginx 访问不到这个<code>/ossUpload</code>路径，于是只能加个<code>proxy_pass</code>规则。</p>
+<pre><code>      location ^~/ossUpload {
+        proxy_pass https://xxx-proj.oss-cn-shanghai.aliyuncs.com/;
+</code></pre><p>加上后发现上传报错，直接在 Vue 启动开发模式发现上传 OSS 的状态码是<code>204</code>, 看到这个想到<code>websocket</code>的配置需要设置<code>http_upgrade</code>的一些配置，于是配置上去正常上传了。
+最终 Nginx 配置如下</p>
+<pre><code>      location ^~/ossUpload {
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-NginX-Proxy true;
+        proxy_redirect off;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection &quot;upgrade&quot;;
+        proxy_pass https://xxx-proj.oss-cn-shanghai.aliyuncs.com/;
+</code></pre><blockquote>
+<p>时间过去比较久， 一些细节忘记了 - -</p>
+</blockquote>
+]]></content></item><item><title>Google SRE 运维解密笔记</title><link>https://painso.com/posts/tech/2020/google-sre-how/</link><pubDate>Wed, 23 Sep 2020 11:00:43 +0800</pubDate><guid>https://painso.com/posts/tech/2020/google-sre-how/</guid><description>本书对于 SRE 的定义
 我们认为如果软件工程师主要专注于设计和构建软件系统，那么应该有另外一种职业专注于整个软件系统的生命周期管理。从其设计一直到部署，历经不断改进，最后顺利退役。这样一种职业必须具备非常广泛的技能，但是和其他职业的专注点都不同。Google 将这个职业称为站点可靠性工程师(SRE: Site Reliability Engineering)。
 &amp;ldquo;无论对一个软件系统运行原理掌握得多么彻底，也不能阻止人犯意外错误。&amp;rdquo;
 只有靠着对细节的不懈关注，做好充足的灾难预案和准备工作，时刻警惕着，不放过一切机会去避免灾难发生。这就是 SRE 最重要的理念！
