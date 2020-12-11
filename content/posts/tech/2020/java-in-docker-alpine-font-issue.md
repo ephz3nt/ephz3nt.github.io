@@ -18,8 +18,9 @@ tags:
 ### 问题概述
 
 同事新写的接口，功能大概是访问提供某些参数会返回一个 Excel 表格。在本机测试正常，但是部署到测试环境下载下来的表格内容是
-|||
-|----| ----|
+
+|             |                                                                                                                                           |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
 | {"code":500 | data":null,"message":"Handler dispatch failed; nested exception is java.lang.InternalError: java.lang.reflect.InvocationTargetException"} |
 
 #### 控制台报错信息
