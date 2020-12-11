@@ -1,51 +1,4 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on ephz3nt</title><link>https://painso.com/posts/</link><description>Recent content in Posts on ephz3nt</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 30 Nov 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://painso.com/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>记一次小程序请求PHP后端报错</title><link>https://painso.com/posts/tech/2020/wechat-miniprogram-issues/</link><pubDate>Mon, 30 Nov 2020 00:00:00 +0000</pubDate><guid>https://painso.com/posts/tech/2020/wechat-miniprogram-issues/</guid><description>小程序业务有外接一套商城，由于需要部署一套测试环境，所以在公司内网服务器使用 K8S 跑了一套。 但是问题来了，线上的没有问题，测试环境小程序调用 PHP 后端接口貌似出现了问题，无法获取用户信息。 数据库是直接从线上导出来的，PHP 代码除了配置文件不同，其他都没有变动。
-使用Charles抓包看了下报错
-&amp;quot;status&amp;quot;: 400, &amp;quot;msg&amp;quot;: &amp;quot;系统出现异常&amp;quot;, &amp;quot;data&amp;quot;: { &amp;quot;message&amp;quot;: &amp;quot;SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'token' at row 1&amp;quot;, &amp;quot;file&amp;quot;: &amp;quot;\/var\/www\/html\/vendor\/topthink\/think-orm\/src\/db\/PDOConnection.php&amp;quot;, &amp;quot;code&amp;quot;: 10501, &amp;quot;line&amp;quot;: 713, &amp;quot;trace&amp;quot;: [{ &amp;quot;file&amp;quot;: &amp;quot;\/var\/www\/html\/vendor\/topthink\/think-orm\/src\/db\/PDOConnection.php&amp;quot;, &amp;quot;line&amp;quot;: 769, &amp;quot;function&amp;quot;: &amp;quot;getPDOStatement&amp;quot;, &amp;quot;class&amp;quot;: &amp;quot;think\\db\\PDOConnection&amp;quot;, &amp;quot;type&amp;quot;: &amp;quot;-&amp;gt;&amp;quot;, &amp;quot;args&amp;quot;: [&amp;quot;INSERT INTO `user_token` SET `uid` = :ThinkBind_1_1689079_ , `token` = :ThinkBind_2_1472105804_ , `expires_time` = :ThinkBind_3_1500549319_ , `create_time` = :ThinkBind_4_1947827158_ , `login_ip` = :ThinkBind_5_2004432133_ &amp;quot;, { &amp;quot;ThinkBind_1_1689079_&amp;quot;: [1, 1], &amp;quot;ThinkBind_2_1472105804_&amp;quot;: [&amp;quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.</description><content type="html"><![CDATA[<p>小程序业务有外接一套商城，由于需要部署一套测试环境，所以在公司内网服务器使用 K8S 跑了一套。
-但是问题来了，线上的没有问题，测试环境小程序调用 PHP 后端接口貌似出现了问题，无法获取用户信息。
-数据库是直接从线上导出来的，PHP 代码除了配置文件不同，其他都没有变动。</p>
-<p>使用<code>Charles</code>抓包看了下报错</p>
-<pre><code>	&quot;status&quot;: 400,
-	&quot;msg&quot;: &quot;系统出现异常&quot;,
-	&quot;data&quot;: {
-		&quot;message&quot;: &quot;SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'token' at row 1&quot;,
-		&quot;file&quot;: &quot;\/var\/www\/html\/vendor\/topthink\/think-orm\/src\/db\/PDOConnection.php&quot;,
-		&quot;code&quot;: 10501,
-		&quot;line&quot;: 713,
-		&quot;trace&quot;: [{
-			&quot;file&quot;: &quot;\/var\/www\/html\/vendor\/topthink\/think-orm\/src\/db\/PDOConnection.php&quot;,
-			&quot;line&quot;: 769,
-			&quot;function&quot;: &quot;getPDOStatement&quot;,
-			&quot;class&quot;: &quot;think\\db\\PDOConnection&quot;,
-			&quot;type&quot;: &quot;-&gt;&quot;,
-			&quot;args&quot;: [&quot;INSERT INTO `user_token` SET `uid` = :ThinkBind_1_1689079_ , `token` = :ThinkBind_2_1472105804_ , `expires_time` = :ThinkBind_3_1500549319_ , `create_time` = :ThinkBind_4_1947827158_ , `login_ip` = :ThinkBind_5_2004432133_ &quot;, {
-				&quot;ThinkBind_1_1689079_&quot;: [1, 1],
-				&quot;ThinkBind_2_1472105804_&quot;: [&quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaG9wLmNsaWVudC50ZXN0LmRkamdqLf4wao1MDAwNiIsImF1ZCI6InNob3AuY2xpZW50LnRlc3QuZGRqZ2ouY29tOjUwMDA2IiwiaWF0IjoxNjA2NzE4MjMyLCJuYmYiOjE2MDY3MTgyMzIsImV4cCI6MTYwNjcyOTAzMiwianRpIjp7ImlkIjoxLCJ0eXBlIjoicm91dGluZSJ9fQ.gTxWWSCKTx7d3KjUz3YniGJx3D4Hp4DlixwEMpS6iY8&quot;, 2],
-				&quot;ThinkBind_3_1500549319_&quot;: [&quot;2020-11-30 17:37:12&quot;, 2],
-				&quot;ThinkBind_4_1947827158_&quot;: [&quot;2020-11-30 14:37:12.001472&quot;, 2],
-				&quot;ThinkBind_5_2004432133_&quot;: [&quot;172.100.0.99&quot;, 2]
-			},
-			true, false]
-		}
-        ...
-</code></pre><p>其实这个错误，我好几天前就发现了，并且找到通过使用</p>
-<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SET</span> <span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">sql_mode</span><span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
-</code></pre></div><p>即可修复。
-但是又出现了新问题，现在访问 PHP 后端的话，小程序客户端会出现无限调用 PHP 后端授权接口的情况，由于小程序对接 PHP 后端部分也是外包的，我自己也没有开发经验，也有联系对方排查，但无奈效率太低，而且对方也不太想处理这种因环境导致的问题。</p>
-<p>今天看到上面的报错，发现有一段 SQL 语句，于是手动提取出来去 MySQL 执行</p>
-<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">`</span><span class="n">user_token</span><span class="o">`</span> <span class="k">SET</span> <span class="o">`</span><span class="n">uid</span><span class="o">`</span> <span class="o">=</span> <span class="s2">&#34;1&#34;</span> <span class="p">,</span> <span class="o">`</span><span class="n">token</span><span class="o">`</span> <span class="o">=</span> <span class="s2">&#34;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaG9wLmNsaWVudC50ZXN0LmRkamdqLf4wao1MDAwNiIsImF1ZCI6InNob3AuY2xpZW50LnRlc3QuZGRqZ2ouY29tOjUwMDA2IiwiaWF0IjoxNjA2NzE2OTcyLCJuYmYiOjE2MDY3MTY5NzIsImV4cCI6MTYwNjcyNzc3MiwianRpIjp7ImlkIjoxLCJ0eXBlIjoicm91dGluZSJ9fQ.hQcnb8ERndq_N7njCeKFmQp0YEZOtMoxZXwonIAzfUM&#34;</span> <span class="p">,</span> <span class="o">`</span><span class="n">expires_time</span><span class="o">`</span> <span class="o">=</span> <span class="s2">&#34;2020-11-30 17:16:12&#34;</span> <span class="p">,</span> <span class="o">`</span><span class="n">create_time</span><span class="o">`</span> <span class="o">=</span> <span class="s2">&#34;2020-11-30 14:16:12.782399&#34;</span> <span class="p">,</span> <span class="o">`</span><span class="n">login_ip</span><span class="o">`</span> <span class="o">=</span> <span class="s2">&#34;1.1.1.1&#34;</span><span class="p">;</span>
-</code></pre></div><p>获得同样的报错
-<code>Data too long for column 'token' at row 1</code>，于是去 Google 了一下，无意中看到<code>StackOverFlow</code>的一个问答<a href="https://stackoverflow.com/a/34353155">https://stackoverflow.com/a/34353155</a>,于是尝试将<code>token</code>字段的<code>varchar</code>修改成<code>longtext</code>，重新尝试调用竟然成功解决了问题！</p>
-<p>最终步骤</p>
-<ol>
-<li>
-<p>设置 SQL_MODE</p>
-<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SET</span> <span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">sql_mode</span><span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
-</code></pre></div></li>
-<li>
-<p>将出错的字段类型修改成<code>longtext</code></p>
-</li>
-</ol>
-]]></content></item><item><title>Java ExcelUtil 库导出Excel表格报错问题</title><link>https://painso.com/posts/tech/2020/java-in-docker-alpine-font-issue/</link><pubDate>Thu, 29 Oct 2020 00:00:00 +0000</pubDate><guid>https://painso.com/posts/tech/2020/java-in-docker-alpine-font-issue/</guid><description>环境信息 运行环境: Docker 使用镜像: adoptopenjdk/openjdk11:alpine 问题概述 同事新写的接口，功能大概是访问提供某些参数会返回一个 Excel 表格。在本机测试正常，但是部署到测试环境下载下来的表格内容是 ||| |&amp;mdash;-| &amp;mdash;-| | {&amp;ldquo;code&amp;rdquo;:500 | data&amp;rdquo;:null,&amp;ldquo;message&amp;rdquo;:&amp;ldquo;Handler dispatch failed; nested exception is java.lang.InternalError: java.lang.reflect.InvocationTargetException&amp;rdquo;} |
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on ephz3nt</title><link>https://painso.com/posts/</link><description>Recent content in Posts on ephz3nt</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 11 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://painso.com/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Java ExcelUtil 库导出Excel表格报错问题</title><link>https://painso.com/posts/tech/2020/java-in-docker-alpine-font-issue/</link><pubDate>Fri, 11 Dec 2020 00:00:00 +0000</pubDate><guid>https://painso.com/posts/tech/2020/java-in-docker-alpine-font-issue/</guid><description>环境信息 运行环境: Docker 使用镜像: adoptopenjdk/openjdk11:alpine 问题概述 同事新写的接口，功能大概是访问提供某些参数会返回一个 Excel 表格。在本机测试正常，但是部署到测试环境下载下来的表格内容是 ||| |&amp;mdash;-| &amp;mdash;-| | {&amp;ldquo;code&amp;rdquo;:500 | data&amp;rdquo;:null,&amp;ldquo;message&amp;rdquo;:&amp;ldquo;Handler dispatch failed; nested exception is java.lang.InternalError: java.lang.reflect.InvocationTargetException&amp;rdquo;} |
 控制台报错信息 org.springframework.web.util.NestedServletException: Handler dispatch failed; nested exception is java.lang.InternalError: java.lang.reflect.InvocationTargetException at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1055) ~[spring-webmvc-5.2.2.RELEASE.jar!/:5.2.2.RELEASE] at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943) ~[spring-webmvc-5.2.2.RELEASE.jar!/:5.2.2.RELEASE] at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.2.2.RELEASE.jar!/:5.2.2.RELEASE] at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898) ~[spring-webmvc-5.2.2.RELEASE.jar!/:5.2.2.RELEASE] at javax.servlet.http.HttpServlet.service(HttpServlet.java:634) ~[tomcat-embed-core-9.0.29.jar!/:9.0.29] at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.2.2.RELEASE.jar!/:5.2.2.RELEASE] at javax.servlet.http.HttpServlet.service(HttpServlet.java:741) ~[tomcat-embed-core-9.0.29.jar!/:9.0.29] at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) ~[tomcat-embed-core-9.0.29.jar!/:9.0.29] at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.29.jar!/:9.0.29] at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.29.jar!/:9.0.29] at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.29.jar!/:9.0.29] at org.</description><content type="html"><![CDATA[<h3 id="环境信息">环境信息</h3>
 <ul>
 <li>运行环境: Docker</li>
@@ -169,7 +122,54 @@
 </span><span class="err"></span><span class="k">COPY</span> ./example-web/target/example-web.jar .<span class="err">
 </span><span class="err"></span><span class="k">ENV</span> TZ Asia/Shanghai<span class="err">
 </span><span class="err"></span><span class="k">ENTRYPOINT</span> <span class="p">[</span><span class="s2">&#34;java&#34;</span><span class="p">,</span><span class="s2">&#34;-Dfile.encoding=utf-8&#34;</span><span class="p">,</span><span class="s2">&#34;-Xms1g&#34;</span><span class="p">,</span><span class="s2">&#34;-Xmx1g&#34;</span><span class="p">,</span><span class="s2">&#34;-Djava.security.egd=file:/dev/./urandom&#34;</span><span class="p">,</span><span class="s2">&#34;-jar&#34;</span><span class="p">,</span><span class="s2">&#34;example-web.jar&#34;</span><span class="p">,</span><span class="s2">&#34;--spring.profiles.active=test&#34;</span><span class="p">]</span><span class="err">
-</span></code></pre></div>]]></content></item><item><title>Vue上传阿里云OSS问题</title><link>https://painso.com/posts/tech/2020/vue-upload-aliyun-oss-issue/</link><pubDate>Thu, 29 Oct 2020 00:00:00 +0000</pubDate><guid>https://painso.com/posts/tech/2020/vue-upload-aliyun-oss-issue/</guid><description>前段时间部署前端同事的 Vue 代码遇到的，记录一下。
+</span></code></pre></div>]]></content></item><item><title>记一次小程序请求PHP后端报错</title><link>https://painso.com/posts/tech/2020/wechat-miniprogram-issues/</link><pubDate>Mon, 30 Nov 2020 00:00:00 +0000</pubDate><guid>https://painso.com/posts/tech/2020/wechat-miniprogram-issues/</guid><description>小程序业务有外接一套商城，由于需要部署一套测试环境，所以在公司内网服务器使用 K8S 跑了一套。 但是问题来了，线上的没有问题，测试环境小程序调用 PHP 后端接口貌似出现了问题，无法获取用户信息。 数据库是直接从线上导出来的，PHP 代码除了配置文件不同，其他都没有变动。
+使用Charles抓包看了下报错
+&amp;quot;status&amp;quot;: 400, &amp;quot;msg&amp;quot;: &amp;quot;系统出现异常&amp;quot;, &amp;quot;data&amp;quot;: { &amp;quot;message&amp;quot;: &amp;quot;SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'token' at row 1&amp;quot;, &amp;quot;file&amp;quot;: &amp;quot;\/var\/www\/html\/vendor\/topthink\/think-orm\/src\/db\/PDOConnection.php&amp;quot;, &amp;quot;code&amp;quot;: 10501, &amp;quot;line&amp;quot;: 713, &amp;quot;trace&amp;quot;: [{ &amp;quot;file&amp;quot;: &amp;quot;\/var\/www\/html\/vendor\/topthink\/think-orm\/src\/db\/PDOConnection.php&amp;quot;, &amp;quot;line&amp;quot;: 769, &amp;quot;function&amp;quot;: &amp;quot;getPDOStatement&amp;quot;, &amp;quot;class&amp;quot;: &amp;quot;think\\db\\PDOConnection&amp;quot;, &amp;quot;type&amp;quot;: &amp;quot;-&amp;gt;&amp;quot;, &amp;quot;args&amp;quot;: [&amp;quot;INSERT INTO `user_token` SET `uid` = :ThinkBind_1_1689079_ , `token` = :ThinkBind_2_1472105804_ , `expires_time` = :ThinkBind_3_1500549319_ , `create_time` = :ThinkBind_4_1947827158_ , `login_ip` = :ThinkBind_5_2004432133_ &amp;quot;, { &amp;quot;ThinkBind_1_1689079_&amp;quot;: [1, 1], &amp;quot;ThinkBind_2_1472105804_&amp;quot;: [&amp;quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.</description><content type="html"><![CDATA[<p>小程序业务有外接一套商城，由于需要部署一套测试环境，所以在公司内网服务器使用 K8S 跑了一套。
+但是问题来了，线上的没有问题，测试环境小程序调用 PHP 后端接口貌似出现了问题，无法获取用户信息。
+数据库是直接从线上导出来的，PHP 代码除了配置文件不同，其他都没有变动。</p>
+<p>使用<code>Charles</code>抓包看了下报错</p>
+<pre><code>	&quot;status&quot;: 400,
+	&quot;msg&quot;: &quot;系统出现异常&quot;,
+	&quot;data&quot;: {
+		&quot;message&quot;: &quot;SQLSTATE[22001]: String data, right truncated: 1406 Data too long for column 'token' at row 1&quot;,
+		&quot;file&quot;: &quot;\/var\/www\/html\/vendor\/topthink\/think-orm\/src\/db\/PDOConnection.php&quot;,
+		&quot;code&quot;: 10501,
+		&quot;line&quot;: 713,
+		&quot;trace&quot;: [{
+			&quot;file&quot;: &quot;\/var\/www\/html\/vendor\/topthink\/think-orm\/src\/db\/PDOConnection.php&quot;,
+			&quot;line&quot;: 769,
+			&quot;function&quot;: &quot;getPDOStatement&quot;,
+			&quot;class&quot;: &quot;think\\db\\PDOConnection&quot;,
+			&quot;type&quot;: &quot;-&gt;&quot;,
+			&quot;args&quot;: [&quot;INSERT INTO `user_token` SET `uid` = :ThinkBind_1_1689079_ , `token` = :ThinkBind_2_1472105804_ , `expires_time` = :ThinkBind_3_1500549319_ , `create_time` = :ThinkBind_4_1947827158_ , `login_ip` = :ThinkBind_5_2004432133_ &quot;, {
+				&quot;ThinkBind_1_1689079_&quot;: [1, 1],
+				&quot;ThinkBind_2_1472105804_&quot;: [&quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaG9wLmNsaWVudC50ZXN0LmRkamdqLf4wao1MDAwNiIsImF1ZCI6InNob3AuY2xpZW50LnRlc3QuZGRqZ2ouY29tOjUwMDA2IiwiaWF0IjoxNjA2NzE4MjMyLCJuYmYiOjE2MDY3MTgyMzIsImV4cCI6MTYwNjcyOTAzMiwianRpIjp7ImlkIjoxLCJ0eXBlIjoicm91dGluZSJ9fQ.gTxWWSCKTx7d3KjUz3YniGJx3D4Hp4DlixwEMpS6iY8&quot;, 2],
+				&quot;ThinkBind_3_1500549319_&quot;: [&quot;2020-11-30 17:37:12&quot;, 2],
+				&quot;ThinkBind_4_1947827158_&quot;: [&quot;2020-11-30 14:37:12.001472&quot;, 2],
+				&quot;ThinkBind_5_2004432133_&quot;: [&quot;172.100.0.99&quot;, 2]
+			},
+			true, false]
+		}
+        ...
+</code></pre><p>其实这个错误，我好几天前就发现了，并且找到通过使用</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SET</span> <span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">sql_mode</span><span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</code></pre></div><p>即可修复。
+但是又出现了新问题，现在访问 PHP 后端的话，小程序客户端会出现无限调用 PHP 后端授权接口的情况，由于小程序对接 PHP 后端部分也是外包的，我自己也没有开发经验，也有联系对方排查，但无奈效率太低，而且对方也不太想处理这种因环境导致的问题。</p>
+<p>今天看到上面的报错，发现有一段 SQL 语句，于是手动提取出来去 MySQL 执行</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">`</span><span class="n">user_token</span><span class="o">`</span> <span class="k">SET</span> <span class="o">`</span><span class="n">uid</span><span class="o">`</span> <span class="o">=</span> <span class="s2">&#34;1&#34;</span> <span class="p">,</span> <span class="o">`</span><span class="n">token</span><span class="o">`</span> <span class="o">=</span> <span class="s2">&#34;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaG9wLmNsaWVudC50ZXN0LmRkamdqLf4wao1MDAwNiIsImF1ZCI6InNob3AuY2xpZW50LnRlc3QuZGRqZ2ouY29tOjUwMDA2IiwiaWF0IjoxNjA2NzE2OTcyLCJuYmYiOjE2MDY3MTY5NzIsImV4cCI6MTYwNjcyNzc3MiwianRpIjp7ImlkIjoxLCJ0eXBlIjoicm91dGluZSJ9fQ.hQcnb8ERndq_N7njCeKFmQp0YEZOtMoxZXwonIAzfUM&#34;</span> <span class="p">,</span> <span class="o">`</span><span class="n">expires_time</span><span class="o">`</span> <span class="o">=</span> <span class="s2">&#34;2020-11-30 17:16:12&#34;</span> <span class="p">,</span> <span class="o">`</span><span class="n">create_time</span><span class="o">`</span> <span class="o">=</span> <span class="s2">&#34;2020-11-30 14:16:12.782399&#34;</span> <span class="p">,</span> <span class="o">`</span><span class="n">login_ip</span><span class="o">`</span> <span class="o">=</span> <span class="s2">&#34;1.1.1.1&#34;</span><span class="p">;</span>
+</code></pre></div><p>获得同样的报错
+<code>Data too long for column 'token' at row 1</code>，于是去 Google 了一下，无意中看到<code>StackOverFlow</code>的一个问答<a href="https://stackoverflow.com/a/34353155">https://stackoverflow.com/a/34353155</a>,于是尝试将<code>token</code>字段的<code>varchar</code>修改成<code>longtext</code>，重新尝试调用竟然成功解决了问题！</p>
+<p>最终步骤</p>
+<ol>
+<li>
+<p>设置 SQL_MODE</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SET</span> <span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">sql_mode</span><span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</code></pre></div></li>
+<li>
+<p>将出错的字段类型修改成<code>longtext</code></p>
+</li>
+</ol>
+]]></content></item><item><title>Vue上传阿里云OSS问题</title><link>https://painso.com/posts/tech/2020/vue-upload-aliyun-oss-issue/</link><pubDate>Thu, 29 Oct 2020 00:00:00 +0000</pubDate><guid>https://painso.com/posts/tech/2020/vue-upload-aliyun-oss-issue/</guid><description>前段时间部署前端同事的 Vue 代码遇到的，记录一下。
 问题概述 前端同事在vue.config.js配置了 OSS 的 proxy
 &amp;#34;/ossUpload&amp;#34;: { target: &amp;#34;https://xxx-proj.oss-cn-shanghai.aliyuncs.com&amp;#34;, changeOrigin: true, ws: true, pathRewrite: { &amp;#34;^/ossUpload&amp;#34;: &amp;#34;&amp;#34;, }, }, 由于 Vue 编译后为纯静态文件，导致我部署到 Nginx 访问不到这个/ossUpload路径，于是只能加个proxy_pass规则。
 location ^~/ossUpload { proxy_pass https://xxx-proj.oss-cn-shanghai.aliyuncs.com/; 加上后发现上传报错，直接在 Vue 启动开发模式发现上传 OSS 的状态码是204, 看到这个想到websocket的配置需要设置http_upgrade的一些配置，于是配置上去正常上传了。 最终 Nginx 配置如下
