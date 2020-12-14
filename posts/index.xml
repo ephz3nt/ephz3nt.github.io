@@ -965,6 +965,21 @@ SLO 的定义是 <code>SLI ≤ 目标值</code>，或者<code>范围下限 ≤ S
 </blockquote>
 </li>
 </ul>
+<h3 id="对分布式系统的监控">对分布式系统的监控</h3>
+<ul>
+<li>每个共识组中的成员数量，以及每个成员的状态(健康或不健康)</li>
+<li>始终落后的副本</li>
+<li>领头人角色是否存在</li>
+<li>领头人角色变化次数</li>
+<li>共识交易记录数字</li>
+<li>系统中的提议数量，以及系统中被接受的提议数量</li>
+<li>吞吐量和延迟
+为了更好地理解系统性能，以及帮助进行故障排查，我们还需要监控以下几点</li>
+<li>针对提议接收时间的延迟分布</li>
+<li>系统不同部分之间观察到的网络延迟</li>
+<li>接收者在持久化日志上花费的时间</li>
+<li>系统每秒处理的字节数</li>
+</ul>
 ]]></content></item><item><title>Google SRE 生存指南笔记</title><link>https://painso.com/posts/tech/2020/real-world-sre-notes/</link><pubDate>Wed, 09 Sep 2020 21:55:43 +0800</pubDate><guid>https://painso.com/posts/tech/2020/real-world-sre-notes/</guid><description>《SRE 生存指南》- Nat Welch
 系统中断响应与正常运行时间最大化
 SRE 简介 SRE 是指 Site Reliability Engineer (网站可靠性工程师)。他是软件工程师和系统管理员的结合，一个 SRE 工程师基本上需要掌握很多知识：算法，数据结构，编程能力，网络编程，分布式系统，可扩展架构，故障排除。 - 百度百科
