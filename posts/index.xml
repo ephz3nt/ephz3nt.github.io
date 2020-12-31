@@ -1330,6 +1330,30 @@ SLO 的定义是 <code>SLI ≤ 目标值</code>，或者<code>范围下限 ≤ S
 </ul>
 </li>
 </ul>
+<h2 id="第二十八章-迅速培养-sre-加入-on-call">第二十八章： 迅速培养 SRE 加入 on-call</h2>
+<p>推荐的培训方式</p>
+<ol>
+<li>设计一个具体的，有延续性的学习体验，以便学员跟进。</li>
+<li>鼓励反向工程，利用统计学来思考问题，以及多思考问题的本质。</li>
+<li>鼓励学员分析失败的案例，分享好的事后总结来阅读。</li>
+<li>创造一些受控的，但是逼真的场景让学员利用真是的监控环境和工具来修复。</li>
+<li>在团队内以角色扮演的形式演习理论上可能发生的问题，让大家在这个过程中交流彼此的解决问题的方式。</li>
+<li>给学员创造条件让他们参与间隙 on-call，和实际轮值的 on-call 工程师交流经验。</li>
+<li>让学员与 sre 老手一起共同修订培训计划中的某个部分。</li>
+<li>帮学员一起找到一个具有一定复杂度的项目，帮助他们在整个技术栈内建立自己的地位。</li>
+</ol>
+<h3 id="有抱负的-on-call-工程师的-5-个特点">有抱负的 on-call 工程师的 5 个特点</h3>
+<ul>
+<li>对事故的渴望： 事后总结的阅读和书写
+<blockquote>
+<p>忘记过去的人必然会犯重复的错误</p>
+</blockquote>
+</li>
+<li>故障处理分角色演习</li>
+<li>破坏真的东西，并且修复它们</li>
+<li>维护文档是学徒任务的一部分</li>
+<li>尽早、尽快见习on-call</li>
+</ul>
 ]]></content></item><item><title>Google SRE 生存指南笔记</title><link>https://painso.com/posts/tech/2020/real-world-sre-notes/</link><pubDate>Wed, 09 Sep 2020 21:55:43 +0800</pubDate><guid>https://painso.com/posts/tech/2020/real-world-sre-notes/</guid><description>《SRE 生存指南》- Nat Welch
 系统中断响应与正常运行时间最大化
 SRE 简介 SRE 是指 Site Reliability Engineer (网站可靠性工程师)。他是软件工程师和系统管理员的结合，一个 SRE 工程师基本上需要掌握很多知识：算法，数据结构，编程能力，网络编程，分布式系统，可扩展架构，故障排除。 - 百度百科
